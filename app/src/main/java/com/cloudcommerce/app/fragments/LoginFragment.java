@@ -88,6 +88,7 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
             case R.id.forgot_pwd:
                 break;
             case R.id.login_as_guest_txt:
+                loadGuestLoginScreen();
                 break;
         }
     }
@@ -95,4 +96,5 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
         Intent registerIntent = new Intent(getActivity(), RegisterActivity.class);
         startActivity(registerIntent);
     }
+
 }

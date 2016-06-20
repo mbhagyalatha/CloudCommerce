@@ -82,6 +82,7 @@ public class RegisterFragment extends BaseFragment implements EditText.OnFocusCh
             case R.id.register_btn:
                 break;
             case R.id.login_as_guest_txt:
+                loadGuestLoginScreen();
                 break;
         }
     }

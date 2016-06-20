@@ -29,4 +29,8 @@
     <string name="register_title">Register</string>
     <string name="already_have_an_account">Already have an Account</string>
     <string name="name_hint_txt">Name</string>
+
+    <!-- Guest Login -->
+    <string name="guest_text">Guest</string>
+    <string name="continue_text">Continue</string>
 </resources>

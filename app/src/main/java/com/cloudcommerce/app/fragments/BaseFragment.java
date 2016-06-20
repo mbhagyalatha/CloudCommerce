@@ -2,6 +2,7 @@ package com.cloudcommerce.app.fragments;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,9 @@ import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.cloudcommerce.app.activities.GuestLoginActivity;
+import com.cloudcommerce.app.activities.RegisterActivity;
 
 /**
  * Created by Santosh on 11/6/2015.
@@ -70,5 +74,9 @@ public class BaseFragment extends Fragment {
         SpannableString spanString = new SpannableString(textToUnderline);
         spanString.setSpan(new UnderlineSpan(), 0, spanString.length(), 0);
         return spanString;
+    }
+    public void loadGuestLoginScreen(){
+        Intent guestLoginIntent = new Intent(getActivity(), GuestLoginActivity.class);
+        startActivity(guestLoginIntent);
     }
 }
