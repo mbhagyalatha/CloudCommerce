@@ -28,9 +28,15 @@
     <!-- Register Strings -->
     <string name="register_title">Register</string>
     <string name="already_have_an_account">Already have an Account</string>
-    <string name="name_hint_txt">Name</string>
+    <string name="first_name_hint_txt">First Name</string>
+    <string name="last_name_hint_txt">First Name</string>
 
-    <!-- Guest Login -->
+    <!-- Guest Login strings -->
     <string name="guest_text">Guest</string>
     <string name="continue_text">Continue</string>
+
+    <!-- Forgot Password strings -->
+    <string name="forgot_pwd_info">Enter your email address and we\'ll send you a link to reset your password</string>
+    <string name="submit_txt">Submit</string>
+
 </resources>

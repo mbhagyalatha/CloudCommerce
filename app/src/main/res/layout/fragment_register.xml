@@ -26,13 +26,24 @@
                 android:text="@string/register_title"
                 android:textColor="@color/title_text_color"
                 android:textSize="@dimen/title_text_size" />
+
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/firstname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
                 android:fontFamily="sans-serif-light"
-                android:hint="@string/name_hint_txt"
+                android:hint="@string/first_name_hint_txt"
+                android:textColor="@color/edittext_text_color"
+                android:textSize="@dimen/edittext_text_size" />
+
+            <EditText
+                android:id="@+id/lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_edittext_top_spacing"
+                android:fontFamily="sans-serif-light"
+                android:hint="@string/last_name_hint_txt"
                 android:textColor="@color/edittext_text_color"
                 android:textSize="@dimen/edittext_text_size" />
 
@@ -46,15 +57,6 @@
                 android:textColor="@color/edittext_text_color"
                 android:textSize="@dimen/edittext_text_size" />
 
-            <EditText
-                android:id="@+id/register_pwd"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/login_edittext_top_spacing"
-                android:fontFamily="sans-serif-light"
-                android:hint="@string/pwd_hint_txt"
-                android:textColor="@color/edittext_text_color"
-                android:textSize="@dimen/edittext_text_size" />
 
             <Button
                 android:id="@+id/register_btn"
