@@ -38,8 +38,11 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
+                if(registerFragment != null)
+                //hide keyboard
+                hideKeyBoard(registerFragment.getCurrentFocussedEditText());
                 //finish activity
                 finish();
         }

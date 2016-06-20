@@ -4,17 +4,20 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.utils.Utils;
 
 public class RegisterFragment extends BaseFragment implements EditText.OnFocusChangeListener, View.OnClickListener {
-    private EditText username, registerEmail, registerPassword, currentSelectedView;
+    private EditText firstName, registerEmail, lastname, currentSelectedView;
     private Button loginBtn, registerBtn;
     private TextView loginAsGuest;
 
@@ -43,12 +46,12 @@ public class RegisterFragment extends BaseFragment implements EditText.OnFocusCh
     }
 
     private void initializeViews(View registerView) {
-        username = (EditText) registerView.findViewById(R.id.username);
+        firstName = (EditText) registerView.findViewById(R.id.firstname);
         registerEmail = (EditText) registerView.findViewById(R.id.register_email);
-        registerPassword = (EditText) registerView.findViewById(R.id.register_pwd);
-        username.setOnFocusChangeListener(this);
+        lastname = (EditText) registerView.findViewById(R.id.lastname);
+        firstName.setOnFocusChangeListener(this);
         registerEmail.setOnFocusChangeListener(this);
-        registerPassword.setOnFocusChangeListener(this);
+        lastname.setOnFocusChangeListener(this);
         loginBtn = (Button) registerView.findViewById(R.id.login_btn);
         registerBtn = (Button) registerView.findViewById(R.id.register_btn);
         loginAsGuest = (TextView) registerView.findViewById(R.id.login_as_guest_txt);
@@ -80,6 +83,7 @@ public class RegisterFragment extends BaseFragment implements EditText.OnFocusCh
                 getActivity().finish();
                 break;
             case R.id.register_btn:
+                validateRegisterData();
                 break;
             case R.id.login_as_guest_txt:
                 loadGuestLoginScreen();
@@ -90,5 +94,33 @@ public class RegisterFragment extends BaseFragment implements EditText.OnFocusCh
     @Override
     public void onFocusChange(View v, boolean hasFocus) {
         currentSelectedView = (EditText) v;
+    }
+
+    private void validateRegisterData() {
+        if (!TextUtils.isEmpty(firstName.getText().toString()) && (!TextUtils.isEmpty(registerEmail.getText().toString())) && (!TextUtils.isEmpty(lastname.getText().toString()))) {
+            //validate email
+            if (Utils.isEmailValid(registerEmail.getText().toString())) {
+                //send register request
+                Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
+            } else {
+                //show error msg saying to enter valid email
+                registerEmail.setError(getResources().getString(R.string.valid_email_error_msg));
+            }
+
+        } else {
+            if (TextUtils.isEmpty(firstName.getText().toString())) {
+                firstName.setError(getResources().getString(R.string.first_name_error_msg));
+            }
+            if (TextUtils.isEmpty(lastname.getText().toString())) {
+                lastname.setError(getResources().getString(R.string.last_name_error_msg));
+            }
+            if (TextUtils.isEmpty(registerEmail.getText().toString())) {
+                registerEmail.setError(getResources().getString(R.string.email_error_msg));
+            }
+        }
+    }
+
+    public EditText getCurrentFocussedEditText() {
+        return currentSelectedView;
     }
 }

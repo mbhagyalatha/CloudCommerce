@@ -55,7 +55,8 @@
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/email_hint_txt"
                 android:textColor="@color/edittext_text_color"
-                android:textSize="@dimen/edittext_text_size" />
+                android:textSize="@dimen/edittext_text_size"
+                android:inputType="textEmailAddress"/>
 
 
             <Button
