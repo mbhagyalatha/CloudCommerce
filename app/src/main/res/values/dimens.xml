@@ -1,0 +1,79 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <!--Navigation menu  dimensions-->
+    <dimen name="navigation_item_lyt_height">58dp</dimen>
+    <dimen name="navigation_item_lyt_bottom_space">13dp</dimen>
+    <dimen name="abc_action_bar_default_height_material">56dp</dimen>
+    <dimen name="action_bar_title">23sp</dimen>
+    <dimen name="navigation_icon_dimens">32dp</dimen>
+    <dimen name="navigation_item_img_left">24dp</dimen>
+    <dimen name="notification_margin">56dp</dimen>
+    <dimen name="drawer_header_width">297dp</dimen>
+    <dimen name="drawer_header_height">185dp</dimen>
+    <dimen name="drawer_header_view_height">109dp</dimen>
+    <dimen name="drawer_header_profilepic_top_padding">11dp</dimen>
+    <dimen name="drawer_header_name_text_size">16sp</dimen>
+    <dimen name="drawer_app_info_textsize">14sp</dimen>
+    <dimen name="drawer_item_textsize">15sp</dimen>
+    <dimen name="inbox_bg_size">31sp</dimen>
+    <dimen name="navigation_header_text_left_spacing">32dp</dimen>
+
+    <!--Border-->
+    <dimen name="border_width">1dp</dimen>
+
+    <!--Toolbar dimensions-->
+    <dimen name="toolbar_title_right_spacing">8dp</dimen>
+    <dimen name="tool_bar_title">23sp</dimen>
+    <dimen name="toolbar_search_item_width">32dp</dimen>
+    <dimen name="toolbar_search_item_height">33dp</dimen>
+    <dimen name="toolbar_search_item_rightpadding">12dp</dimen>
+    <dimen name="toolbar_search_text_spacing">4dp</dimen>
+    <dimen name="action_icon_text_size">26sp</dimen>
+    <dimen name="actionbar_leftpadding">9dp</dimen>
+    <dimen name="toolbar_search_textsize">14dp</dimen>
+    <dimen name="pb_icon_text_bottom_pading">20dp</dimen>
+    <dimen name="action_close_icon_Image_size">25dp</dimen>
+    <dimen name="action_search_icon_Image_size">22dp</dimen>
+    <dimen name="search_textview_spacing">4dp</dimen>
+    <dimen name="tool_bar_height">50dp</dimen>
+
+    <!-- navigation header dimens-->
+    <dimen name="profile_pic_dimension">74dp</dimen>
+    <dimen name="imageview_padding">1dp</dimen>
+    <dimen name="profile_pic_left_right_spacings">22dp</dimen>
+    <dimen name="profile_pic_top_bottom_spacings">14dp</dimen>
+    <dimen name="header_spacings">11dp</dimen>
+    <dimen name="signin_signout_btn_width">112dp</dimen>
+    <dimen name="signin_signout_btn_height">25dp</dimen>
+    <dimen name="menu_header_items_top_spacing">10dp</dimen>
+
+    <!-- navigation_row_dimens-->
+    <dimen name="drawer_row_icon_left_spacing">15dp</dimen>
+    <dimen name="drawer_row_icon_right_spacing">23dp</dimen>
+
+    <!-- login dimensions-->
+    <dimen name="login_left_right_spacing">33dp</dimen>
+    <dimen name="login_title_top_spacing">80dp</dimen>
+    <dimen name="login_edittext_top_spacing">45dp</dimen>
+    <dimen name="login_btn_top_spacing">39dp</dimen>
+    <dimen name="login_forgot_pwd_top_spacing">29dp</dimen>
+    <dimen name="login_register_info_top_spacing">33dp</dimen>
+    <dimen name="guest_login_top_spacing">40dp</dimen>
+    <dimen name="register_now_txt_size">15sp</dimen>
+    <dimen name="forgot_pwd_txt_size">11sp</dimen>
+    <dimen name="not_a_member_txt_size">13sp</dimen>
+
+    <!-- button dimensions -->
+    <dimen name="button_height">38dp</dimen>
+    <dimen name="btn_text_size">20sp</dimen>
+
+    <!-- titles dimensions -->
+    <dimen name="title_text_size">33sp</dimen>
+
+    <!-- edit field dimens -->
+    <dimen name="edittext_text_size">15sp</dimen>
+
+</resources>

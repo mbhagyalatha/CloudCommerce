@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/drawer_header_width"
+    android:layout_height="@dimen/drawer_header_height"
+    android:background="@color/menu_header_bg_color"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/drawer_header_view_height"
+        android:layout_margin="@dimen/header_spacings"
+        android:background="@color/menu_header_view_bg_color">
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="@dimen/profile_pic_dimension"
+            android:layout_height="@dimen/profile_pic_dimension"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="@dimen/profile_pic_left_right_spacings"
+            android:layout_marginRight="@dimen/profile_pic_left_right_spacings"
+            android:layout_marginTop="@dimen/profile_pic_top_bottom_spacings"
+            android:layout_marginBottom="@dimen/profile_pic_top_bottom_spacings"
+            android:padding="@dimen/imageview_padding"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_menu_service"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/profile_image"
+            android:layout_centerVertical="true">
+
+            <RelativeLayout
+                android:id="@+id/signed_in_user_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/username"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/drawer_header_name_text_size" />
+
+                <TextView
+                    android:id="@+id/email_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/username"
+                    android:gravity="left"
+                    android:layout_marginTop="@dimen/menu_header_items_top_spacing"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/drawer_header_name_text_size" />
+
+                <Button
+                    android:id="@+id/signout_btn"
+                    android:layout_width="@dimen/signin_signout_btn_width"
+                    android:layout_height="@dimen/signin_signout_btn_height"
+                    android:layout_below="@+id/email_text"
+                    android:background="@color/btn_bg_color"
+                    android:layout_marginTop="@dimen/menu_header_items_top_spacing"
+                    android:text="@string/signout"
+                    android:textAllCaps="false" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/signin_required_user_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+               android:layout_centerVertical="true"
+                >
+
+                <TextView
+                    android:id="@+id/welcome_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:singleLine="true"
+                    android:text="@string/welcome_txt"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/drawer_header_name_text_size" />
+
+                <Button
+                    android:id="@+id/signin_btn"
+                    android:layout_width="@dimen/signin_signout_btn_width"
+                    android:layout_height="@dimen/signin_signout_btn_height"
+                    android:layout_below="@+id/welcome_msg"
+                    android:background="@color/btn_bg_color"
+                    android:layout_marginTop="@dimen/menu_header_items_top_spacing"
+                    android:text="@string/signin"
+                    android:textAllCaps="false" />
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>
