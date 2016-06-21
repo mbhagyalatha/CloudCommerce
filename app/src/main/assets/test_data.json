@@ -1,0 +1,20 @@
+{
+  "services_list": [
+    {
+      "serviceName": "Plumbing",
+      "serviceOfferInfo": "20% off"
+    },
+    {
+      "serviceName": "Organize the Office",
+      "serviceOfferInfo": "5% off"
+    },
+    {
+      "serviceName": "Home Improvements",
+      "serviceOfferInfo": "15% off"
+    },
+    {
+      "serviceName": "Painting",
+      "serviceOfferInfo": "10% off"
+    }
+  ]
+}
