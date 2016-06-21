@@ -42,6 +42,13 @@
         <activity
             android:name=".activities.SubServicesActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".activities.HelpActivity"></activity>
     </application>
 
 </manifest>

@@ -76,6 +76,7 @@ public class BaseNavigationActivity extends BaseActivity
     }
 
     protected void displayView(int position, String title) {
+        Log.d(TAG, " selected menu title " + CloudCommerceSessionData.getSessionDataInstance());
         Log.d(TAG, " selected menu title " + CloudCommerceSessionData.getSessionDataInstance().getSelectedMenuTitle() + " : " + title);
         if ((CloudCommerceSessionData.getSessionDataInstance().getSelectedMenuTitle() == null) || (!CloudCommerceSessionData.getSessionDataInstance().getSelectedMenuTitle().equals(title))) {
             //previouslySelectedMenuItemTitle = title;
@@ -156,19 +157,27 @@ public class BaseNavigationActivity extends BaseActivity
     }
 
     private void launchServicesActivity() {
-
+Intent intent = new Intent(this,HomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void launchCartActivity() {
-
+        Intent intent = new Intent(this,CartActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void launchAboutActivity() {
-
+        Intent intent = new Intent(this,AboutActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void launchHelpActivity() {
-
+        Intent intent = new Intent(this,HelpActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }

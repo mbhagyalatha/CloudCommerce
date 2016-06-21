@@ -71,7 +71,7 @@ public class FragmentDrawer extends BaseFragment {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         nav_header_container = (View) layout.findViewById(R.id.nav_header_container);
-        nav_header_container.setBackgroundColor(getResources().getColor(R.color.navigation_header_bg_color));
+        nav_header_container.setBackgroundColor(getResources().getColor(R.color.menu_header_bg_color));
 
         userName = (TextView) layout.findViewById(R.id.username);
         userEmail = (TextView) layout.findViewById(R.id.email_text);
@@ -156,7 +156,7 @@ public class FragmentDrawer extends BaseFragment {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-//                getActivity().invalidateOptionsMenu();
+                //getActivity().invalidateOptionsMenu();
             }
 
             @Override
