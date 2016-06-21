@@ -18,20 +18,20 @@
 
             <TextView
                 android:id="@+id/guest_title"
+                style="@style/roboto_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/guest_title_top_spacing"
-                android:fontFamily="sans-serif-light"
                 android:text="@string/guest_text"
                 android:textColor="@color/title_text_color"
                 android:textSize="@dimen/title_text_size" />
 
             <EditText
                 android:id="@+id/guest_username"
+                style="@style/roboto_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
-                android:fontFamily="sans-serif-light"
                 android:hint="@string/name_hint_txt"
                 android:inputType="textPersonName"
                 android:singleLine="true"
@@ -40,10 +40,10 @@
 
             <EditText
                 android:id="@+id/guest_email"
+                style="@style/roboto_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
-                android:fontFamily="sans-serif-light"
                 android:hint="@string/email_hint_txt"
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
@@ -52,10 +52,10 @@
 
             <EditText
                 android:id="@+id/guest_pwd"
+                style="@style/roboto_light"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
-                android:fontFamily="sans-serif-light"
                 android:hint="@string/pwd_hint_txt"
                 android:inputType="textPassword"
                 android:singleLine="true"
@@ -64,11 +64,11 @@
 
             <Button
                 android:id="@+id/continue_btn"
+                style="@style/roboto_regular"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/button_height"
                 android:layout_marginTop="@dimen/login_btn_top_spacing"
                 android:background="@color/btn_bg_color"
-                android:fontFamily="sans-serif"
                 android:text="@string/continue_text"
                 android:textColor="@color/white"
                 android:textSize="@dimen/btn_text_size" />
