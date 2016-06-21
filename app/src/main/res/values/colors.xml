@@ -5,9 +5,8 @@
     <color name="colorAccent">#FF4081</color>
 
     <!--Navigation menu,toolbar and statusbar colors -->
-    <color name="navigation_header_bg_color">#014785</color>
-    <color name="navigation_item_bg_color">#024079</color>
-    <color name="navigation_item_selected_bg_color">#01396a</color>
+    <color name="navigation_item_bg_color">#0782d9</color>
+    <color name="navigation_item_selected_bg_color">#057bce</color>
     <color name="toolbar_bg_color">#014785</color>
     <color name="statusbar_bg_color">#014076</color>
     <color name="remaining_time_text_color">#d9534f</color>
@@ -26,4 +25,8 @@
 
     <!-- screens bg color -->
     <color name="app_bg_color">#ececec</color>
+
+    <!-- service  screen colors -->
+    <color name="service_info_lyt_bg_color">#80313131</color>
+
 </resources>

@@ -84,4 +84,11 @@
     <dimen name="forgot_pwd_info_txt_top_spacing">36dp</dimen>
     <dimen name="forgot_pwd_info_txt_size">12sp</dimen>
 
+    <!-- services screen dimens-->
+    <dimen name="service_image_height">139dp</dimen>
+    <dimen name="service_info_lyt_height">44dp</dimen>
+    <dimen name="service_card_spacing">8dp</dimen>
+    <dimen name="service_info_spacing">9dp</dimen>
+    <dimen name="service_info_txt_size">12sp</dimen>
+
 </resources>
