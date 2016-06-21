@@ -34,7 +34,10 @@
         </activity>
         <activity
             android:name=".activities.GuestLoginActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ForgotpasswordActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

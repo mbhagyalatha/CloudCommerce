@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.activities.ForgotpasswordActivity;
 import com.cloudcommerce.app.activities.RegisterActivity;
 
 public class LoginFragment extends BaseFragment implements EditText.OnFocusChangeListener, View.OnClickListener {
@@ -86,15 +87,21 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
                 loadRegisterScreen();
                 break;
             case R.id.forgot_pwd:
+                loadForgotPasswordScreen();
                 break;
             case R.id.login_as_guest_txt:
                 loadGuestLoginScreen();
                 break;
         }
     }
-    private void loadRegisterScreen(){
+
+    private void loadRegisterScreen() {
         Intent registerIntent = new Intent(getActivity(), RegisterActivity.class);
         startActivity(registerIntent);
     }
 
+    private void loadForgotPasswordScreen() {
+        Intent forgotPasswordIntent = new Intent(getActivity(), ForgotpasswordActivity.class);
+        startActivity(forgotPasswordIntent);
+    }
 }
