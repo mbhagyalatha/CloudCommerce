@@ -7,11 +7,13 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <LinearLayout
+            android:id="@+id/login_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/login_left_right_spacing"
             android:layout_marginRight="@dimen/login_left_right_spacing"
             android:orientation="vertical">
@@ -34,6 +36,8 @@
                 android:hint="@string/email_hint_txt"
                 android:textColor="@color/edittext_text_color"
                 android:fontFamily="sans-serif-light"
+                android:singleLine="true"
+                android:inputType="textEmailAddress"
                 android:textSize="@dimen/edittext_text_size" />
 
             <EditText
@@ -44,6 +48,8 @@
                 android:hint="@string/pwd_hint_txt"
                 android:textColor="@color/edittext_text_color"
                 android:fontFamily="sans-serif-light"
+                android:singleLine="true"
+                android:inputType="textPassword"
                 android:textSize="@dimen/edittext_text_size" />
 
             <Button

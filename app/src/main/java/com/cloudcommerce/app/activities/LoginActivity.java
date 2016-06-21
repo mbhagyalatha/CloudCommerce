@@ -40,6 +40,9 @@ public class LoginActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case android.R.id.home:
+                if(loginFragment != null)
+                    //hide keyboard
+                    hideKeyBoard(loginFragment.getCurrentFocussedEditText());
                 //finish activity
                 finish();
         }
