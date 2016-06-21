@@ -11,6 +11,7 @@
         android:layout_height="match_parent">
 
         <LinearLayout
+            android:id="@+id/register_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/login_left_right_spacing"
@@ -54,9 +55,9 @@
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
                 android:fontFamily="sans-serif-light"
                 android:hint="@string/email_hint_txt"
+                android:inputType="textEmailAddress"
                 android:textColor="@color/edittext_text_color"
-                android:textSize="@dimen/edittext_text_size"
-                android:inputType="textEmailAddress"/>
+                android:textSize="@dimen/edittext_text_size" />
 
 
             <Button
