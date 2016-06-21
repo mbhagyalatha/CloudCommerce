@@ -10,6 +10,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ public class RegisterFragment extends BaseFragment implements EditText.OnFocusCh
     private EditText firstName, registerEmail, lastname, currentSelectedView;
     private Button loginBtn, registerBtn;
     private TextView loginAsGuest;
+    private LinearLayout registerLayout;
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -55,9 +58,11 @@ public class RegisterFragment extends BaseFragment implements EditText.OnFocusCh
         loginBtn = (Button) registerView.findViewById(R.id.login_btn);
         registerBtn = (Button) registerView.findViewById(R.id.register_btn);
         loginAsGuest = (TextView) registerView.findViewById(R.id.login_as_guest_txt);
+        registerLayout = (LinearLayout)registerView.findViewById(R.id.register_layout);
         loginBtn.setOnClickListener(this);
         registerBtn.setOnClickListener(this);
         loginAsGuest.setOnClickListener(this);
+        registerLayout.setOnClickListener(this);
     }
 
     private void setDataToViews() {
@@ -87,6 +92,10 @@ public class RegisterFragment extends BaseFragment implements EditText.OnFocusCh
                 break;
             case R.id.login_as_guest_txt:
                 loadGuestLoginScreen();
+                break;
+            case R.id.register_layout:
+                //hide keyboard if user clicks anywhere on the screen
+                hideKeyBoard(v);
                 break;
         }
     }
