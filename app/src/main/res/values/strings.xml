@@ -28,8 +28,14 @@
     <!-- Register Strings -->
     <string name="register_title">Register</string>
     <string name="already_have_an_account">Already have an Account</string>
+    <string name="name_hint_txt">Name</string>
     <string name="first_name_hint_txt">First Name</string>
     <string name="last_name_hint_txt">First Name</string>
+    <string name="first_name_error_msg">Enter First Name</string>
+    <string name="last_name_error_msg">Enter Last Name</string>
+    <string name="email_error_msg">Enter Email</string>
+    <string name="valid_email_error_msg">Enter valid Email</string>
+    <string name="password_error_msg">Enter Password</string>
 
     <!-- Guest Login strings -->
     <string name="guest_text">Guest</string>

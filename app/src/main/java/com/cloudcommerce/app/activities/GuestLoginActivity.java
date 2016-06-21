@@ -40,6 +40,9 @@ public class GuestLoginActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                if(guestLoginFragment != null)
+                    //hide keyboard
+                    hideKeyBoard(guestLoginFragment.getCurrentFocussedEditText());
                 //finish activity
                 finish();
         }
