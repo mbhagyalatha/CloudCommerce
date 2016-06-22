@@ -28,5 +28,10 @@
 
     <!-- service  screen colors -->
     <color name="service_info_lyt_bg_color">#80313131</color>
+    <color name="card_border_color">#686868</color>
+
+    <!-- sub service screen colors -->
+    <color name="sub_service_name_txt_color">#636262</color>
+    <color name="sub_service_desc_txt_color">#8f8e8e</color>
 
 </resources>
