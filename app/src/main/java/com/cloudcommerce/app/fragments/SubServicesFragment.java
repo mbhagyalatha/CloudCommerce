@@ -1,6 +1,7 @@
 package com.cloudcommerce.app.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,12 +12,19 @@ import android.view.ViewGroup;
 
 import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.activities.SubServiceDesciptionActivity;
+import com.cloudcommerce.app.activities.SubServicesActivity;
 import com.cloudcommerce.app.adapters.SubServiceAdapter;
+import com.cloudcommerce.app.datamodels.SubServiceDataModel;
+import com.cloudcommerce.app.utils.AppConstants;
+
+import java.util.List;
 
 public class SubServicesFragment extends BaseFragment {
     private RecyclerView subServicesRecyclerView;
     private SubServiceAdapter subsServicesAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private List<SubServiceDataModel> subServicesList;
 
     public SubServicesFragment() {
         // Required empty public constructor
@@ -48,19 +56,34 @@ public class SubServicesFragment extends BaseFragment {
         //layout manager to position its items
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         subServicesRecyclerView.setLayoutManager(llm);
+        subServicesList = CloudCommerceApplication.getTestData().getSubServicesList();
         //set adapter
-        subsServicesAdapter = new SubServiceAdapter(getActivity(), CloudCommerceApplication.getTestData().getSubServicesList());
+        subsServicesAdapter = new SubServiceAdapter(getActivity(), subServicesList);
         subServicesRecyclerView.setAdapter(subsServicesAdapter);
         //pull to refresh functionality
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 //reload service items
-                subsServicesAdapter.subServicesList = CloudCommerceApplication.getTestData().getSubServicesList();
+                subServicesList = CloudCommerceApplication.getTestData().getSubServicesList();
+                subsServicesAdapter.subServicesList = subServicesList;
                 subsServicesAdapter.notifyDataSetChanged();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
+        //adding touch listener to recyclerview to handle item click events
+        subServicesRecyclerView.addOnItemTouchListener(new FragmentDrawer.RecyclerTouchListener(getActivity(), subServicesRecyclerView, new FragmentDrawer.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                //navigate to SubServicesActivity
+                launchServiceDescriptionScreen(position);
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
     }
 
     private void setDataToControls() {
@@ -78,4 +101,10 @@ public class SubServicesFragment extends BaseFragment {
         super.onDetach();
     }
 
+    private void launchServiceDescriptionScreen(int position) {
+        Intent serviceDescIntent = new Intent(getActivity(), SubServiceDesciptionActivity.class);
+        //send selected srevice
+        serviceDescIntent.putExtra(AppConstants.SELECTED_SERVICE, subServicesList.get(position));
+        startActivity(serviceDescIntent);
+    }
 }
