@@ -54,6 +54,7 @@
                     android:layout_marginTop="@dimen/sub_service_desc_top_spacing"
                     android:layout_toLeftOf="@+id/right_arrow"
                     android:textColor="@color/sub_service_desc_txt_color"
+                    android:maxLines="3"
                     android:textSize="@dimen/sub_service_desc_txt_size" />
 
                 <ImageView
