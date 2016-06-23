@@ -1,8 +1,6 @@
 package com.cloudcommerce.app.activities;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -10,31 +8,23 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.cloudcommerce.app.R;
-import com.cloudcommerce.app.datamodels.SubServiceDataModel;
-import com.cloudcommerce.app.fragments.SubServiceDescriptionFragment;
-import com.cloudcommerce.app.fragments.SubServicesFragment;
+import com.cloudcommerce.app.fragments.ServicesListFragment;
 import com.cloudcommerce.app.utils.AppConstants;
 
-public class SubServiceDesciptionActivity extends BaseActivity {
-    private SubServiceDescriptionFragment descriptionFragment;
-    private SubServiceDataModel selectedService;
+public class ServicesListActivity extends BaseActivity {
+    ServicesListFragment subServicesFragment;
+    private String serviceName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub_service_desciption);
-        initialiseToolbar();
-        //get service data
+        setContentView(R.layout.activity_services_list);
         Intent intent = getIntent();
-        if (intent.hasExtra(AppConstants.SELECTED_SERVICE)) {
-            selectedService = (SubServiceDataModel) intent.getSerializableExtra(AppConstants.SELECTED_SERVICE);
-        }
+        serviceName = intent.getStringExtra(AppConstants.SERVICENAME);
+        initialiseToolbar();
         //load fragment
-        descriptionFragment = SubServiceDescriptionFragment.newInstance();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(AppConstants.SELECTED_SERVICE, selectedService);
-        descriptionFragment.setArguments(bundle);
-        loadFragment(descriptionFragment, R.id.service_desc_container, "SubServices");
+        subServicesFragment = ServicesListFragment.newInstance();
+        loadFragment(subServicesFragment, R.id.sub_service_container, "SubServices");
     }
 
     private void initialiseToolbar() {
@@ -42,6 +32,7 @@ public class SubServiceDesciptionActivity extends BaseActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar_top);
         toolbar.setBackgroundColor(getResources().getColor(R.color.toolbar_bg_color));
         mTitle = (TextView) toolBarLayout.findViewById(R.id.toolbar_title);
+        mTitle.setText(serviceName);
         mTitle.setTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

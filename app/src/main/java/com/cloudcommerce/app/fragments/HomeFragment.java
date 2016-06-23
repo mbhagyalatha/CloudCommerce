@@ -2,9 +2,7 @@ package com.cloudcommerce.app.fragments;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +12,7 @@ import android.view.ViewGroup;
 
 import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
-import com.cloudcommerce.app.activities.SubServicesActivity;
+import com.cloudcommerce.app.activities.ServicesListActivity;
 import com.cloudcommerce.app.adapters.ServiceAdapter;
 import com.cloudcommerce.app.datamodels.ServiceDataModel;
 import com.cloudcommerce.app.utils.AppConstants;
@@ -103,7 +101,7 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void launchSubservicesScreen(String serviceName) {
-        Intent subServicesIntent = new Intent(getActivity(), SubServicesActivity.class);
+        Intent subServicesIntent = new Intent(getActivity(), ServicesListActivity.class);
         subServicesIntent.putExtra(AppConstants.SERVICENAME,serviceName);
         startActivity(subServicesIntent);
     }

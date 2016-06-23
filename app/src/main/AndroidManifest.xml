@@ -40,7 +40,7 @@
             android:name=".activities.ForgotpasswordActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.SubServicesActivity"
+            android:name=".activities.ServicesListActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".activities.CartActivity"
@@ -48,8 +48,12 @@
         <activity
             android:name=".activities.AboutActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.HelpActivity" />
-        <activity android:name=".activities.SubServiceDesciptionActivity"></activity>
+        <activity
+            android:name=".activities.HelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ServiceDetailsActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

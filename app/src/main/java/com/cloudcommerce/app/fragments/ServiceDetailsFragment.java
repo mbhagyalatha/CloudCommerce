@@ -2,9 +2,7 @@ package com.cloudcommerce.app.fragments;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,19 +17,19 @@ import com.cloudcommerce.app.datamodels.SubServiceDataModel;
 import com.cloudcommerce.app.datamodels.UserDataModel;
 import com.cloudcommerce.app.utils.AppConstants;
 
-public class SubServiceDescriptionFragment extends BaseFragment implements View.OnClickListener {
+public class ServiceDetailsFragment extends BaseFragment implements View.OnClickListener {
     private SubServiceDataModel selectedService;
     TextView serviceName, serviceDesc, serviceCharge;
     ImageView serviceImage;
     Button addToCartBtn, orderNowBtn;
 
 
-    public SubServiceDescriptionFragment() {
+    public ServiceDetailsFragment() {
         // Required empty public constructor
     }
 
-    public static SubServiceDescriptionFragment newInstance() {
-        SubServiceDescriptionFragment fragment = new SubServiceDescriptionFragment();
+    public static ServiceDetailsFragment newInstance() {
+        ServiceDetailsFragment fragment = new ServiceDetailsFragment();
         return fragment;
     }
 
@@ -48,7 +46,7 @@ public class SubServiceDescriptionFragment extends BaseFragment implements View.
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View serviceDescView = inflater.inflate(R.layout.fragment_sub_service_description, container, false);
+        View serviceDescView = inflater.inflate(R.layout.fragment_service_details, container, false);
         initializeControls(serviceDescView);
         setDataToControls();
         return serviceDescView;

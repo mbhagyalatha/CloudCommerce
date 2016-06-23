@@ -12,26 +12,25 @@ import android.view.ViewGroup;
 
 import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
-import com.cloudcommerce.app.activities.SubServiceDesciptionActivity;
-import com.cloudcommerce.app.activities.SubServicesActivity;
+import com.cloudcommerce.app.activities.ServiceDetailsActivity;
 import com.cloudcommerce.app.adapters.SubServiceAdapter;
 import com.cloudcommerce.app.datamodels.SubServiceDataModel;
 import com.cloudcommerce.app.utils.AppConstants;
 
 import java.util.List;
 
-public class SubServicesFragment extends BaseFragment {
+public class ServicesListFragment extends BaseFragment {
     private RecyclerView subServicesRecyclerView;
     private SubServiceAdapter subsServicesAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private List<SubServiceDataModel> subServicesList;
 
-    public SubServicesFragment() {
+    public ServicesListFragment() {
         // Required empty public constructor
     }
 
-    public static SubServicesFragment newInstance() {
-        SubServicesFragment fragment = new SubServicesFragment();
+    public static ServicesListFragment newInstance() {
+        ServicesListFragment fragment = new ServicesListFragment();
         return fragment;
     }
 
@@ -44,7 +43,7 @@ public class SubServicesFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View subserviceView = inflater.inflate(R.layout.fragment_sub_services, container, false);
+        View subserviceView = inflater.inflate(R.layout.fragment_services_list, container, false);
         initializeControls(subserviceView);
         setDataToControls();
         return subserviceView;
@@ -102,7 +101,7 @@ public class SubServicesFragment extends BaseFragment {
     }
 
     private void launchServiceDescriptionScreen(int position) {
-        Intent serviceDescIntent = new Intent(getActivity(), SubServiceDesciptionActivity.class);
+        Intent serviceDescIntent = new Intent(getActivity(), ServiceDetailsActivity.class);
         //send selected srevice
         serviceDescIntent.putExtra(AppConstants.SELECTED_SERVICE, subServicesList.get(position));
         startActivity(serviceDescIntent);

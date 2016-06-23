@@ -31,7 +31,7 @@ public class SubServiceAdapter extends RecyclerView.Adapter<SubServiceAdapter.Se
 
     @Override
     public ServiceHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.sub_service_card_lyt, parent, false);
+        View view = inflater.inflate(R.layout.service_list_card_lyt, parent, false);
         ServiceHolder holder = new ServiceHolder(view);
         return holder;
     }
