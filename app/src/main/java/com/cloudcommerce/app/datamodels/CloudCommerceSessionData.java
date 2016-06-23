@@ -55,4 +55,21 @@ public class CloudCommerceSessionData {
         prefsEditor.putString(SHPREF_KEY_SELECTED_MENU_TITLE, selectedMenuTitle);
         prefsEditor.commit();
     }
+
+    public static UserDataModel getUserData() {
+        Gson gson = new Gson();
+        String json = CloudCommerceApplication.getAppContext().getSharedPreferences(CLOUD_COMMERCE_APP, Context.MODE_PRIVATE).getString(SHPREF_KEY_USER_OBJECT, null);
+        UserDataModel userDataModel = gson.fromJson(json, UserDataModel.class);
+        return userDataModel;
+    }
+
+    public static void setUserJsonData(UserDataModel currentUserDataModel) {
+        GsonBuilder gsonBuilder = new GsonBuilder();
+        Gson gson = gsonBuilder.create();
+        String userJsonString = gson.toJson(currentUserDataModel);
+        SharedPreferences.Editor prefsEditor = CloudCommerceApplication.getAppContext().getSharedPreferences(CLOUD_COMMERCE_APP, Context.MODE_PRIVATE).edit();
+        prefsEditor.putString(SHPREF_KEY_USER_OBJECT, userJsonString);
+        prefsEditor.commit();
+    }
+
 }
