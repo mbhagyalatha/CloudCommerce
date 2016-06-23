@@ -1,13 +1,19 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.cloudcommerce.app.fragments.SubServiceDescriptionFragment">
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_above="@+id/bottom_lyt"
+        >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@color/app_bg_color"
+        android:layout_above="@+id/bottom_lyt"
         android:orientation="vertical">
 
         <ImageView
@@ -45,76 +51,87 @@
                 android:textColor="@color/sub_service_desc_txt_color"
                 android:textSize="@dimen/sub_service_desc_txt_size" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/border_width"
-                android:layout_marginTop="@dimen/sub_service_desc_bottom_spacing"
-                android:background="@color/sub_service_dec_seperator_color" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/sub_service_spacing">
-
-                <TextView
-                    android:id="@+id/service_charge_txt"
-                    style="@style/roboto_regular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/sub_service_spacing"
-                    android:layout_marginRight="@dimen/sub_service_spacing"
-                    android:layout_toLeftOf="@+id/service_charge"
-                    android:text="@string/visit_charge_txt"
-                    android:textColor="@color/service_charge_txt_color"
-                    android:textSize="@dimen/service_desc_visit_charge_txt_size" />
-
-                <TextView
-                    android:id="@+id/service_charge"
-                    style="@style/roboto_bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="@dimen/sub_service_spacing"
-                    android:text="216"
-                    android:textColor="@color/service_charge_txt_color"
-                    android:textSize="@dimen/service_desc_charge_txt_size" />
-            </RelativeLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/order_lyt_spacing"
-                android:paddingBottom="@dimen/order_lyt_spacing"
-                android:layout_weight="30.5">
-
-                <Button
-                    android:id="@+id/add_to_cart_btn"
-                    style="@style/roboto_regular"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="15"
-                    android:background="@color/add_to_card_btn_bg_color"
-                    android:text="@string/add_to_cart_txt"
-                    android:textAllCaps="false"
-                    android:textSize="@dimen/btn_text_size" />
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.5"/>
-
-                <Button
-                    android:id="@+id/order_now_btn"
-                    style="@style/roboto_regular"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="15"
-                    android:background="@color/service_charge_txt_color"
-                    android:text="@string/order_now_txt"
-                    android:textAllCaps="false"
-                    android:textSize="@dimen/btn_text_size" />
-            </LinearLayout>
 
         </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/bottom_lyt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/sub_service_spacing"
+        android:layout_marginRight="@dimen/sub_service_spacing"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/border_width"
+        android:layout_marginTop="@dimen/sub_service_desc_bottom_spacing"
+        android:background="@color/sub_service_dec_seperator_color" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/sub_service_spacing">
+
+        <TextView
+            android:id="@+id/service_charge_txt"
+            style="@style/roboto_regular"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/sub_service_spacing"
+            android:layout_marginRight="@dimen/sub_service_spacing"
+            android:layout_toLeftOf="@+id/service_charge"
+            android:text="@string/visit_charge_txt"
+            android:textColor="@color/service_charge_txt_color"
+            android:textSize="@dimen/service_desc_visit_charge_txt_size" />
+
+        <TextView
+            android:id="@+id/service_charge"
+            style="@style/roboto_bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/sub_service_spacing"
+            android:text="216"
+            android:textColor="@color/service_charge_txt_color"
+            android:textSize="@dimen/service_desc_charge_txt_size" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/order_lyt_spacing"
+        android:paddingBottom="@dimen/order_lyt_spacing"
+        android:layout_weight="30.5">
+
+        <Button
+            android:id="@+id/add_to_cart_btn"
+            style="@style/roboto_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="15"
+            android:background="@color/add_to_card_btn_bg_color"
+            android:text="@string/add_to_cart_txt"
+            android:textAllCaps="false"
+            android:textSize="@dimen/btn_text_size" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"/>
+
+        <Button
+            android:id="@+id/order_now_btn"
+            style="@style/roboto_regular"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="15"
+            android:background="@color/service_charge_txt_color"
+            android:text="@string/order_now_txt"
+            android:textAllCaps="false"
+            android:textSize="@dimen/btn_text_size" />
+    </LinearLayout>
     </LinearLayout>
 
-</FrameLayout>
+</RelativeLayout>
