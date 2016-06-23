@@ -16,6 +16,9 @@ import android.widget.Toast;
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.activities.ForgotpasswordActivity;
 import com.cloudcommerce.app.activities.RegisterActivity;
+import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
+import com.cloudcommerce.app.datamodels.UserDataModel;
+import com.cloudcommerce.app.utils.AppConstants;
 import com.cloudcommerce.app.utils.Utils;
 
 public class LoginFragment extends BaseFragment implements EditText.OnFocusChangeListener, View.OnClickListener {
@@ -125,8 +128,11 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
         if ((!TextUtils.isEmpty(loginEmail.getText().toString())) && (!TextUtils.isEmpty(loginPassword.getText().toString()))) {
             //validate email
             if (Utils.isEmailValid(loginEmail.getText().toString())) {
-                //send login request
+                //send login request and in its suceess save logged in user data in shared preferences
                 Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
+                UserDataModel user = new UserDataModel();
+                user.setEmail(loginEmail.getText().toString());
+                CloudCommerceSessionData.getSessionDataInstance().setUserJsonData(user);
             } else {
                 //show error msg saying to enter valid email
                 loginEmail.setError(getResources().getString(R.string.valid_email_error_msg));
