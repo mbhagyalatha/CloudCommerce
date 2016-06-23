@@ -48,5 +48,8 @@
     <string name="visit_charge_txt">Visit Charge</string>
     <string name="add_to_cart_txt">Add to Cart</string>
     <string name="order_now_txt">Order now</string>
+    <string name="title_activity_add_address">AddAddressActivity</string>
+
+<string name="add_address_title">Add Address</string>
 
 </resources>
