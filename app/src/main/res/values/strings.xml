@@ -45,4 +45,8 @@
     <string name="forgot_pwd_info">Enter your email address and we\'ll send you a link to reset your password</string>
     <string name="submit_txt">Submit</string>
 
+    <string name="visit_charge_txt">Visit Charge</string>
+    <string name="add_to_cart_txt">Add to Cart</string>
+    <string name="order_now_txt">Order now</string>
+
 </resources>

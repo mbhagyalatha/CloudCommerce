@@ -34,4 +34,9 @@
     <color name="sub_service_name_txt_color">#636262</color>
     <color name="sub_service_desc_txt_color">#8f8e8e</color>
 
+    <!-- sub service description screen colors -->
+    <color name="sub_service_dec_seperator_color">#767676</color>
+    <color name="service_charge_txt_color">#fc5656</color>
+    <color name="add_to_card_btn_bg_color">#545454</color>
+
 </resources>

@@ -5,4 +5,5 @@ package com.cloudcommerce.app.utils;
  */
 public class AppConstants {
     public static final String SERVICENAME = "serviceName";
+    public static final String SELECTED_SERVICE = "selectedService";
 }

@@ -90,7 +90,7 @@
     <dimen name="service_card_spacing">8dp</dimen>
     <dimen name="service_info_spacing">9dp</dimen>
     <dimen name="service_info_txt_size">12sp</dimen>
-    
+
     <!-- sub service screen dimens -->
     <dimen name="sub_service_image_height">140dp</dimen>
     <dimen name="sub_service_spacing">13dp</dimen>
@@ -102,4 +102,8 @@
     <dimen name="sub_service_desc_bottom_spacing">17dp</dimen>
     <dimen name="card_shadow_elevation">2dp</dimen>
 
+    <!-- sub service desc dimens -->
+    <dimen name="service_desc_visit_charge_txt_size">14sp</dimen>
+    <dimen name="service_desc_charge_txt_size">21sp</dimen>
+    <dimen name="order_lyt_spacing">8dp</dimen>
 </resources>
