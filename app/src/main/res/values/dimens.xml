@@ -106,4 +106,6 @@
     <dimen name="service_desc_visit_charge_txt_size">14sp</dimen>
     <dimen name="service_desc_charge_txt_size">21sp</dimen>
     <dimen name="order_lyt_spacing">8dp</dimen>
+    <integer name="phone_no_maxlength">10</integer>
+    <integer name="pincode_maxlength">9</integer>
 </resources>

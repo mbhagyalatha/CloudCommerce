@@ -49,7 +49,20 @@
     <string name="add_to_cart_txt">Add to Cart</string>
     <string name="order_now_txt">Order now</string>
     <string name="title_activity_add_address">AddAddressActivity</string>
-
-<string name="add_address_title">Add Address</string>
-
+    
+    <!-- Add Address screens -->
+    <string name="add_address_title">Add Address</string>
+    <string name="address_hint_text">Address</string>
+    <string name="pincode_hint_text">Pincode</string>
+    <string name="city_hint_text">City</string>
+    <string name="state_hint_text">State</string>
+    <string name="mobile_no_hint_text">Mobile Number</string>
+    <string name="name_error_msg">Enter Name</string>
+    <string name="address_error_msg">Enter Address</string>
+    <string name="pincode_error_msg">Enter Pincode</string>
+    <string name="city_error_msg">Enter City</string>
+    <string name="state_error_msg">Enter State</string>
+    <string name="phone_no_error_msg">Enter Phone Number</string>
+    <string name="valid_phone_number_msg">Enter valid phone number</string>
+    <string name="valid_pincode_msg">Enter valid pincode</string>
 </resources>

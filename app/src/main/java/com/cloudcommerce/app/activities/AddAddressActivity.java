@@ -43,6 +43,9 @@ public class AddAddressActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                if (addAddressFragment != null)
+                    //hide keyboard
+                    hideKeyBoard(addAddressFragment.getCurrentFocussedEditText());
                 //finish activity
                 finish();
         }
