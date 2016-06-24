@@ -1,8 +1,10 @@
 package com.cloudcommerce.app.activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -37,12 +39,29 @@ public class SelectAddressActivity extends BaseActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_select_addr, menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 //finish activity
                 finish();
+            case R.id.add_address:
+                //navigate user to add address screen
+                launchAddAddressScreen();
+                break;
         }
         return true;
+    }
+
+    private void launchAddAddressScreen() {
+        Intent intent = new Intent(this, AddAddressActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
