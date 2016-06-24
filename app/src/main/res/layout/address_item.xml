@@ -56,6 +56,6 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/border_width"
         android:layout_marginTop="@dimen/address_txt_bottom_padding"
-        android:background="@color/menu_items_divide_color" />
+        android:background="@color/select_addr_seperator_line_color" />
 
 </LinearLayout>

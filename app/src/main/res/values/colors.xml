@@ -38,5 +38,6 @@
     <color name="sub_service_dec_seperator_color">#767676</color>
     <color name="service_charge_txt_color">#fc5656</color>
     <color name="add_to_card_btn_bg_color">#545454</color>
+    <color name="select_addr_seperator_line_color">#9d9d9d</color>
 
 </resources>
