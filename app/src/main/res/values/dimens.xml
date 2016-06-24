@@ -108,4 +108,15 @@
     <dimen name="order_lyt_spacing">8dp</dimen>
     <integer name="phone_no_maxlength">10</integer>
     <integer name="pincode_maxlength">9</integer>
+
+    <!-- select Address item dimensions-->
+    <dimen name="select_addr_item_spacing">22dp</dimen>
+    <dimen name="select_addr_top_spacing">27dp</dimen>
+    <dimen name="select_addr_name_left_spacing">21dp</dimen>
+    <dimen name="select_addr_txt_top_spacing">19dp</dimen>
+    <dimen name="edit_icon_dimens">16dp</dimen>
+    <dimen name="address_txt_bottom_padding">15dp</dimen>
+    <dimen name="select_addr_padding_bottom">10dp</dimen>
+    <dimen name="select_addr_btn_width">150dp</dimen>
+
 </resources>
