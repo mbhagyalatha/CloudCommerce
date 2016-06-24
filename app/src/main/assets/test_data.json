@@ -30,5 +30,21 @@
       "sub_service_name": "Garden cleaning",
       "sub_service_desc": "Lorem Ipsum is simply dummy"
     }
+  ],
+  "address_list": [
+    {
+      "userName": "John Smith",
+      "street": "350 avenue",
+      "city": "34th floor",
+      "state": "NewYork",
+      "phone_no": "1050774886"
+    },
+    {
+      "userName": "William Smith",
+      "street": "650 avenue",
+      "city": "39th floor",
+      "state": "NewYork",
+      "phone_no": "1050774886"
+    }
   ]
 }

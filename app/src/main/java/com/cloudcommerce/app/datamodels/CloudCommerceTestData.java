@@ -14,6 +14,8 @@ public class CloudCommerceTestData implements Serializable {
     private List<ServiceDataModel> servicesList;
     @SerializedName("sub_services_list")
     private List<SubServiceDataModel> subServicesList;
+    @SerializedName("address_list")
+    private List<Address> addressList;
 
     public List<ServiceDataModel> getServicesList() {
         return servicesList;
@@ -29,6 +31,14 @@ public class CloudCommerceTestData implements Serializable {
 
     public void setSubServicesList(List<SubServiceDataModel> subServicesList) {
         this.subServicesList = subServicesList;
+    }
+
+    public List<Address> getAddressList() {
+        return addressList;
+    }
+
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
     }
 }
 
