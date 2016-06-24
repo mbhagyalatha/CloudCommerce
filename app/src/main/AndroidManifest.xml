@@ -54,6 +54,9 @@
         <activity
             android:name=".activities.SelectAddressActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CartSummaryActivity"
+            android:screenOrientation="portrait"/>
 
     </application>
 

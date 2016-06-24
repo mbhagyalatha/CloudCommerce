@@ -119,4 +119,18 @@
     <dimen name="select_addr_padding_bottom">10dp</dimen>
     <dimen name="select_addr_btn_width">150dp</dimen>
 
+    <!-- cart summary -->
+    <dimen name="cart_summary_screen_spacings">14dp</dimen>
+    <dimen name="cart_summary_txt_size">14sp</dimen>
+    <dimen name="cart_summary_txt_top_spacing">27dp</dimen>
+    <dimen name="summary_items_count_top_spacing">22dp</dimen>
+    <dimen name="summary_service_name_left_spacing">4dp</dimen>
+    <dimen name="summary_servicename_top_spacing">26dp</dimen>
+    <dimen name="summary_total_price_top_spacing">32dp</dimen>
+    <dimen name="summary_total_price_left_spacing">73dp</dimen>
+    <dimen name="summary_delivery_charges_top_spacing">12dp</dimen>
+    <dimen name="summary_grand_total_top_spacing">17dp</dimen>
+    <dimen name="summary_info_txt_size">14sp</dimen>
+    <dimen name="summary_confirm_btn_bottom_spacing">19dp</dimen>
+
 </resources>

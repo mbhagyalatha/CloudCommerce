@@ -66,6 +66,11 @@
     <string name="valid_phone_number_msg">Enter valid phone number</string>
     <string name="valid_pincode_msg">Enter valid pincode</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- cart summary screen -->
+    <string name="cart_summary_title">Cart Summary</string>
+    <string name="service_summary_txt">Service Summary</string>
+    <string name="summary_item_count">1 Item</string>
+    <string name="summary_total">Total</string>
+    <string name="summary_delivery_charges">Delivery Charges</string>
+    <string name="summary_grand_total">Grand Total</string>
 </resources>
