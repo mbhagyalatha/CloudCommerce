@@ -1,5 +1,6 @@
 package com.cloudcommerce.app.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -27,6 +29,7 @@ import com.cloudcommerce.app.adapters.NavigationDrawerAdapter;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.datamodels.NavigationItem;
 import com.cloudcommerce.app.datamodels.UserDataModel;
+import com.cloudcommerce.app.utils.AppConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -194,6 +197,8 @@ public class FragmentDrawer extends BaseFragment implements OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.signin_btn:
+                //close drawer
+                mDrawerLayout.closeDrawer(containerView);
                 //load signin screen
                 launchloginScreenScreen();
                 break;
@@ -287,6 +292,16 @@ public class FragmentDrawer extends BaseFragment implements OnClickListener {
 
     private void launchloginScreenScreen() {
         Intent serviceDescIntent = new Intent(getActivity(), LoginActivity.class);
-        startActivity(serviceDescIntent);
+        serviceDescIntent.putExtra(AppConstants.LOGIN_FROM_SCREEN, AppConstants.LOGIN_FROM_MENU);
+        startActivityForResult(serviceDescIntent, AppConstants.LOGIN_FROM_MENU_REQ_ID);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG," onActivityResult called");
+        if (requestCode == AppConstants.LOGIN_FROM_MENU_REQ_ID && resultCode == Activity.RESULT_OK) {
+            //do nothing
+        }
     }
 }
