@@ -1,5 +1,6 @@
 package com.cloudcommerce.app.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
     private Button loginBtn, registerNowBtn;
     private TextView forgotPwd, loginAsGuest;
     private LinearLayout loginLyt;
+    private static String fromScreen;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -33,6 +35,10 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
 
     public static LoginFragment newInstance() {
         LoginFragment fragment = new LoginFragment();
+        Bundle bundle = fragment.getArguments();
+        if (bundle != null && bundle.containsKey(AppConstants.LOGIN_FROM_SCREEN)) {
+            fromScreen = bundle.getString(AppConstants.LOGIN_FROM_SCREEN);
+        }
         return fragment;
     }
 
@@ -133,6 +139,9 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
                 UserDataModel user = new UserDataModel();
                 user.setEmail(loginEmail.getText().toString());
                 CloudCommerceSessionData.getSessionDataInstance().setUserJsonData(user);
+                //close keyboard
+                hideKeyBoard(currentSelectedView);
+                sendResultBack(fromScreen);
             } else {
                 //show error msg saying to enter valid email
                 loginEmail.setError(getResources().getString(R.string.valid_email_error_msg));
@@ -147,4 +156,13 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
             }
         }
     }
+
+    private void sendResultBack(String fromScreen) {
+        Intent intent = new Intent();
+        intent.putExtra(AppConstants.LOGIN_FROM_SCREEN, fromScreen);
+        getActivity().setResult(Activity.RESULT_OK, intent);
+        getActivity().finish();
+    }
+
+
 }

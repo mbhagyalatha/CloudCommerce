@@ -1,8 +1,10 @@
 package com.cloudcommerce.app.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.TextView;
 
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.activities.LoginActivity;
+import com.cloudcommerce.app.activities.SelectAddressActivity;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.datamodels.SubServiceDataModel;
 import com.cloudcommerce.app.datamodels.UserDataModel;
@@ -88,16 +91,33 @@ public class ServiceDetailsFragment extends BaseFragment implements View.OnClick
                 UserDataModel user = CloudCommerceSessionData.getSessionDataInstance().getUserData();
                 if (user != null) {
                     //show address selection page
+                    launchAddressSelectionScreen();
                 } else {
                     //user is not logged in. show login page.
-                    launchloginScreenScreen();
+                    launchloginScreen();
                 }
                 break;
         }
     }
 
-    private void launchloginScreenScreen() {
+    private void launchloginScreen() {
         Intent serviceDescIntent = new Intent(getActivity(), LoginActivity.class);
+        serviceDescIntent.putExtra(AppConstants.LOGIN_FROM_SCREEN, AppConstants.LOGIN_FROM_SERVICE_DETAILS);
+        startActivityForResult(serviceDescIntent, AppConstants.LOGIN_FROM_SERVICE_DETAILS_REQ_ID);
+    }
+
+    private void launchAddressSelectionScreen() {
+        Intent serviceDescIntent = new Intent(getActivity(), SelectAddressActivity.class);
         startActivity(serviceDescIntent);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG," onActivityResult called");
+        if (requestCode == AppConstants.LOGIN_FROM_SERVICE_DETAILS_REQ_ID && resultCode == Activity.RESULT_OK) {
+            //launch address selection screen
+            launchAddressSelectionScreen();
+        }
     }
 }
