@@ -19,6 +19,7 @@ public class CloudCommerceSessionData {
     public static boolean isFirstlaunch;
     public static String selectedMenuTitle;
     public static String SHPREF_KEY_SELECTED_MENU_TITLE = "SHPREF_KEY_SELECTED_MENU_TITLE";
+    public static String SHPREF_KEY_ACCESS_TOKEN = "SHPREF_KEY_ACCESS_TOKEN";
 
     public static CloudCommerceSessionData getSessionDataInstance() {
         if (sessionData == null) {
