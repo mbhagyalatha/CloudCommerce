@@ -73,4 +73,9 @@
     <string name="summary_total">Total</string>
     <string name="summary_delivery_charges">Delivery Charges</string>
     <string name="summary_grand_total">Grand Total</string>
+
+    <!--Network related strings-->
+    <string name="no_internet_access">Please check your internet connection.</string>
+    <string name="net_error">We are experiencing system issues,Please try again later.</string>
+    <string name="net_error_host_exp">UnKnown HostException</string>
 </resources>

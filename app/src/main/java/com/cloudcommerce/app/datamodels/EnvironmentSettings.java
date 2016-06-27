@@ -12,6 +12,8 @@ public class EnvironmentSettings implements Serializable {
     private String protocall;
     @SerializedName("crittercism_api_key")
     private String crittercismApiKey;
+    @SerializedName("base_url")
+    private String baseUrl;
 
     public String getProtocall() {
         return protocall;
@@ -29,4 +31,11 @@ public class EnvironmentSettings implements Serializable {
         this.crittercismApiKey = crittercismApiKey;
     }
 
+    public String getBaseUrl() {
+        return baseUrl;
+    }
+
+    public void setBaseUrl(String baseUrl) {
+        this.baseUrl = baseUrl;
+    }
 }
