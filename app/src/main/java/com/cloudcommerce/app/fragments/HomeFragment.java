@@ -102,7 +102,11 @@ public class HomeFragment extends BaseFragment {
 
     private void launchSubservicesScreen(String serviceName) {
         Intent subServicesIntent = new Intent(getActivity(), ServicesListActivity.class);
-        subServicesIntent.putExtra(AppConstants.SERVICENAME,serviceName);
+        subServicesIntent.putExtra(AppConstants.SERVICENAME, serviceName);
         startActivity(subServicesIntent);
+    }
+
+    public void updateServiceCategories(List<ServiceDataModel> serviceCategoriesList) {
+
     }
 }
