@@ -1,6 +1,7 @@
 package com.cloudcommerce.app.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.activities.CartSummaryActivity;
 import com.cloudcommerce.app.utils.Utils;
 
 
@@ -106,6 +108,9 @@ public class AddAddressFragment extends BaseFragment implements View.OnClickList
             if ((phoneNo.getText().toString().trim().length() >= 10) && (pincode.getText().toString().trim().length() >= 6 && pincode.getText().toString().trim().length() <= 9)) {
                 //send addaddress request
                 Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
+                //send add address service
+                //launch cart screen
+                launchcartSummaryScreen();
             } else {
                 if (phoneNo.getText().toString().trim().length() < 10)
                     phoneNo.setError(getResources().getString(R.string.valid_phone_number_msg));
@@ -136,5 +141,11 @@ public class AddAddressFragment extends BaseFragment implements View.OnClickList
 
     public EditText getCurrentFocussedEditText() {
         return currentSelectedView;
+    }
+
+    private void launchcartSummaryScreen() {
+        Intent intent = new Intent(getActivity(), CartSummaryActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 }

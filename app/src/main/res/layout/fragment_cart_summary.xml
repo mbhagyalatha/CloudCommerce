@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -14,24 +14,30 @@
         android:orientation="vertical"
         android:paddingBottom="@dimen/summary_confirm_btn_bottom_spacing">
 
-        <TextView
-            android:id="@+id/cart_summary_txt"
-            style="@style/roboto_bold"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/cart_summary_title"
-            android:textColor="@color/cart_summary_text_colors"
-            android:textSize="@dimen/cart_summary_txt_size" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/summary_items_count_txt"
-            style="@style/roboto_regular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/summary_items_count_top_spacing"
-            android:text="@string/summary_item_count"
-            android:textColor="@color/cart_summary_text_colors"
-            android:textSize="@dimen/summary_info_txt_size" />
+            <TextView
+                android:id="@+id/cart_summary_txt"
+                style="@style/roboto_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cart_summary_title"
+                android:textColor="@color/cart_summary_text_colors"
+                android:layout_toLeftOf="@+id/summary_items_count_txt"
+                android:textSize="@dimen/cart_summary_txt_size" />
+
+            <TextView
+                android:id="@+id/summary_items_count_txt"
+                style="@style/roboto_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/summary_item_count"
+                android:textColor="@color/cart_summary_text_colors"
+                android:textSize="@dimen/summary_info_txt_size" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -169,13 +175,13 @@
                 android:layout_height="@dimen/button_height"
                 android:layout_gravity="bottom"
                 android:background="@color/btn_bg_color"
+                android:gravity="center"
                 android:text="@string/continue_text"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:gravity="center"
                 android:textSize="@dimen/btn_text_size" />
         </LinearLayout>
     </LinearLayout>
 
 
-</FrameLayout>
+</LinearLayout>
