@@ -73,6 +73,10 @@
     <string name="summary_total">Total</string>
     <string name="summary_delivery_charges">Delivery Charges</string>
     <string name="summary_grand_total">Grand Total</string>
+    <string name="payment">Payment</string>
+    <string name="pay_by_cash_on_delivery">Pay by Cash on Delivery</string>
+    <string name="shipping_address">Shipping address</string>
+
 
     <!--Network related strings-->
     <string name="no_internet_access">Please check your internet connection.</string>

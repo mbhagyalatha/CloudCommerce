@@ -1,10 +1,14 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/app_bg_color"
     tools:context="com.cloudcommerce.app.fragments.CartSummaryFragment">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_continue">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -165,23 +169,105 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_payment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/space_btwn_cart_payment">
 
-            <Button
+            <TextView
+                android:id="@+id/payment"
+                style="@style/roboto_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/payment"
+                android:textColor="@color/cart_summary_text_colors"
+                android:textSize="@dimen/cart_summary_txt_size" />
+
+            <TextView
+                android:id="@+id/pay_by_cash_on_delivery"
                 style="@style/roboto_regular"
-                android:layout_width="@dimen/select_addr_btn_width"
-                android:layout_height="@dimen/button_height"
-                android:layout_gravity="bottom"
-                android:background="@color/btn_bg_color"
-                android:gravity="center"
-                android:text="@string/continue_text"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="@dimen/btn_text_size" />
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/summary_delivery_charges_top_spacing"
+                android:text="@string/pay_by_cash_on_delivery"
+                android:textColor="@color/cart_summary_text_colors"
+                android:textSize="@dimen/summary_info_txt_size" />
+
+            <TextView
+                android:id="@+id/shipping_address"
+                style="@style/roboto_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/summary_items_count_top_spacing"
+                android:text="@string/shipping_address"
+                android:textColor="@color/cart_summary_text_colors"
+                android:textSize="@dimen/cart_summary_txt_size" />
+
+            <TextView
+                android:id="@+id/username"
+                style="@style/roboto_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/summary_items_count_top_spacing"
+                android:text="John smith"
+                android:textColor="@color/cart_summary_text_colors"
+                android:textSize="@dimen/summary_info_txt_size" />
+
+            <TextView
+                android:id="@+id/street"
+                style="@style/roboto_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/summary_delivery_charges_top_spacing"
+                android:text="350 Avenue,"
+                android:textColor="@color/cart_summary_text_colors"
+                android:textSize="@dimen/summary_info_txt_size" />
+
+            <TextView
+                android:id="@+id/city_state"
+                style="@style/roboto_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/summary_delivery_charges_top_spacing"
+                android:text="34th floor,New York"
+                android:textColor="@color/cart_summary_text_colors"
+                android:textSize="@dimen/summary_info_txt_size" />
+
+            <TextView
+                android:id="@+id/phone_number"
+                style="@style/roboto_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/summary_delivery_charges_top_spacing"
+                android:text="1050774886"
+                android:textColor="@color/cart_summary_text_colors"
+                android:textSize="@dimen/summary_info_txt_size" />
+
         </LinearLayout>
+
+    </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_continue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:layout_marginBottom="@dimen/summary_confirm_btn_bottom_spacing">
+
+        <Button
+            style="@style/roboto_regular"
+            android:layout_width="@dimen/select_addr_btn_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_gravity="bottom"
+            android:background="@color/btn_bg_color"
+            android:gravity="center"
+            android:text="@string/continue_text"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="@dimen/btn_text_size" />
     </LinearLayout>
 
-
-</LinearLayout>
+</RelativeLayout>
