@@ -51,6 +51,7 @@ public class SelectAddressActivity extends BaseActivity {
             case android.R.id.home:
                 //finish activity
                 finish();
+                break;
             case R.id.add_address:
                 //navigate user to add address screen
                 launchAddAddressScreen();
