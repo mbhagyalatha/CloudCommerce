@@ -1,5 +1,6 @@
 package com.cloudcommerce.app.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.activities.ServicesListActivity;
 import com.cloudcommerce.app.adapters.ServiceAdapter;
 import com.cloudcommerce.app.datamodels.ServiceDataModel;
+import com.cloudcommerce.app.interfaces.HomeInterface;
 import com.cloudcommerce.app.utils.AppConstants;
 
 import java.util.List;
@@ -24,6 +26,7 @@ public class HomeFragment extends BaseFragment {
     private ServiceAdapter serviceAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private List<ServiceDataModel> servicesList;
+    private HomeInterface homeInterface;
 
 
     public HomeFragment() {
@@ -87,17 +90,24 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void setDataToControls() {
-
+        sendServiceCategoriesRequest();
     }
 
     @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            homeInterface = (HomeInterface) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        homeInterface = null;
     }
 
     private void launchSubservicesScreen(String serviceName) {
@@ -108,5 +118,9 @@ public class HomeFragment extends BaseFragment {
 
     public void updateServiceCategories(List<ServiceDataModel> serviceCategoriesList) {
 
+    }
+
+    private void sendServiceCategoriesRequest() {
+        homeInterface.getServiceCategoriesList();
     }
 }

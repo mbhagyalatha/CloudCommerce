@@ -10,6 +10,7 @@ import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.network.webservices.AuthenticationWsImpl;
 import com.cloudcommerce.app.network.webservices.BaseWsImpl;
+import com.cloudcommerce.app.network.webservices.ServicecategoriesWsImpl;
 import com.cloudcommerce.app.utils.AppConstants;
 import com.google.gson.stream.JsonReader;
 
@@ -31,8 +32,8 @@ public class ServiceCategoriesService extends BaseCloudCommerceService implement
 
 
     public void getAllServiceCategories() {
-        AuthenticationWsImpl authenticationWs = new AuthenticationWsImpl(AppConstants.GET_ALL_SERVICE_CATEGORIES_REQUEST_ID, this);
-        authenticationWs.sendRegisterRequest();
+        ServicecategoriesWsImpl serviceCategoriesWs = new ServicecategoriesWsImpl(AppConstants.GET_ALL_SERVICE_CATEGORIES_REQUEST_ID, this);
+        serviceCategoriesWs.getAllServiceCategoriesRequest();
     }
 
 

@@ -116,8 +116,9 @@ public abstract class BaseWsImpl {
 
     public Map<String, String> setHeaders() {
         HashMap<String, String> headers = new HashMap<String, String>();
-        headers.put("Authorization", "Bearer " + setAccessToken(CloudCommerceApplication.getAppContext()));
-        Log.d("Authorization", "Bearer " + setAccessToken(CloudCommerceApplication.getAppContext()));
+        //headers.put("Authorization",  setAccessToken(CloudCommerceApplication.getAppContext()));
+        headers.put("API_KEY", WsUrlConstants.API_KEY);
+        Log.d("API_KEY ", WsUrlConstants.API_KEY);
         headers.put("Content-Type", "application/json");
         headers.put("Accept", "application/json");
         return headers;
@@ -153,8 +154,7 @@ public abstract class BaseWsImpl {
         queue.add(reqs);
     }
 
-    public void sendGetRequest(String endPointUrl) {
-        String url = WsUrlConstants.getUrl(endPointUrl);
+    public void sendGetRequest(String url) {
         Log.d("final url", url);
         JsonObjectRequest reqs = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {

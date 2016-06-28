@@ -12,10 +12,11 @@ import android.util.Log;
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.fragments.HomeFragment;
+import com.cloudcommerce.app.interfaces.HomeInterface;
 import com.cloudcommerce.app.network.ServiceCategoriesService;
 import com.cloudcommerce.app.utils.AppConstants;
 
-public class HomeActivity extends BaseNavigationActivity {
+public class HomeActivity extends BaseNavigationActivity implements HomeInterface {
     private static final String TAG = "HomeActivity";
     HomeFragment homeFragment;
     private String menuTitle;
@@ -32,7 +33,12 @@ public class HomeActivity extends BaseNavigationActivity {
         loadFragment(homeFragment, R.id.container_body, "Home");
     }
 
-    public void registerAllServiceCategoriesService(String status, int pageNumber) {
+    @Override
+    public void getServiceCategoriesList() {
+        registerGetAllServiceCategories();
+    }
+
+    public void registerGetAllServiceCategories() {
         IntentFilter intentFilter = new IntentFilter(AppConstants.GET_ALL_SERVICE_CATEGORIES);
         allServiceCategoriesResultReceiver = new AllServiceCategoriesResultReceiver();
         LocalBroadcastManager.getInstance(getBaseContext()).registerReceiver(allServiceCategoriesResultReceiver, intentFilter);

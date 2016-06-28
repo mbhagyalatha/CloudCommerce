@@ -32,7 +32,7 @@ public class EnvironmentSettings implements Serializable {
     }
 
     public String getBaseUrl() {
-        return baseUrl;
+        return protocall + "" + baseUrl;
     }
 
     public void setBaseUrl(String baseUrl) {
