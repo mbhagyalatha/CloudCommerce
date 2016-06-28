@@ -48,7 +48,8 @@
                     android:text="20% off"
                     android:textColor="@color/white"
                     android:textSize="@dimen/service_info_txt_size"
-                    android:layout_marginRight="@dimen/service_info_spacing"/>
+                    android:layout_marginRight="@dimen/service_info_spacing"
+                    android:visibility="gone"/>
 
             </RelativeLayout>
         </FrameLayout>
