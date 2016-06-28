@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".CloudCommerceApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -18,23 +19,45 @@
             android:name=".activities.HomeActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activities.LoginActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".activities.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".activities.GuestLoginActivity"
-            android:screenOrientation="portrait"></activity>
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ForgotpasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ServicesListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.HelpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ServiceDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AddAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.SelectAddressActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CartSummaryActivity"
+            android:screenOrientation="portrait"/>
+
     </application>
 
 </manifest>

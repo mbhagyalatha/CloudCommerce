@@ -1,0 +1,29 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cloudcommerce.app.fragments.SelectAddressFragment"
+    android:paddingBottom="@dimen/select_addr_padding_bottom">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/addresses_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/service_card_spacing"
+        android:layout_above="@+id/continue_btn"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/continue_btn"
+        style="@style/roboto_regular"
+        android:layout_width="@dimen/select_addr_btn_width"
+        android:layout_height="@dimen/button_height"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@color/btn_bg_color"
+        android:text="@string/continue_text"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/btn_text_size" />
+
+</RelativeLayout>

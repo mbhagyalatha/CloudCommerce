@@ -3,11 +3,11 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="transparent">#00000000</color>
 
     <!--Navigation menu,toolbar and statusbar colors -->
-    <color name="navigation_header_bg_color">#014785</color>
-    <color name="navigation_item_bg_color">#024079</color>
-    <color name="navigation_item_selected_bg_color">#01396a</color>
+    <color name="navigation_item_bg_color">#0782d9</color>
+    <color name="navigation_item_selected_bg_color">#057bce</color>
     <color name="toolbar_bg_color">#014785</color>
     <color name="statusbar_bg_color">#014076</color>
     <color name="remaining_time_text_color">#d9534f</color>
@@ -26,4 +26,22 @@
 
     <!-- screens bg color -->
     <color name="app_bg_color">#ececec</color>
+
+    <!-- service  screen colors -->
+    <color name="service_info_lyt_bg_color">#80313131</color>
+    <color name="card_border_color">#686868</color>
+
+    <!-- sub service screen colors -->
+    <color name="sub_service_name_txt_color">#636262</color>
+    <color name="sub_service_desc_txt_color">#8f8e8e</color>
+
+    <!-- sub service description screen colors -->
+    <color name="sub_service_dec_seperator_color">#767676</color>
+    <color name="service_charge_txt_color">#fc5656</color>
+    <color name="add_to_card_btn_bg_color">#545454</color>
+    <color name="select_addr_seperator_line_color">#9d9d9d</color>
+
+    <!-- cart summary screen colors -->
+    <color name="cart_summary_text_colors">#636262</color>
+
 </resources>

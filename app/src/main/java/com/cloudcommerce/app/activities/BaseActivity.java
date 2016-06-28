@@ -44,7 +44,7 @@ public class BaseActivity extends AppCompatActivity {
     public String mImageUrl;
     public String mEmailAddress, fromScreen;
     private static final String TAG = "BaseActivity";
-    public ProgressDialog progressDialog;
+    public ProgressDialog progressDlg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,9 @@ public class BaseActivity extends AppCompatActivity {
         inflater = LayoutInflater.from(getBaseContext());
         try {
             setColorToStatusBar();
+            progressDlg = new ProgressDialog(this, R.style.dialogTheme);
+            progressDlg.setProgressStyle(android.R.style.Widget_ProgressBar_Small);
+            progressDlg.setCancelable(false);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -155,10 +158,15 @@ public class BaseActivity extends AppCompatActivity {
         //Log.d(TAG, "OnStop called");
     }
 
-    public void cancelSignInDialog() {
-        if (progressDialog != null) {
-            if (progressDialog.isShowing()) {
-                progressDialog.dismiss();
+    protected void showProgressDialog() {
+        progressDlg.show();
+        progressDlg.setContentView(R.layout.progress_bar);
+    }
+
+    public void cancelProgressDialog() {
+        if (progressDlg != null) {
+            if (progressDlg.isShowing()) {
+                progressDlg.dismiss();
             }
         }
     }

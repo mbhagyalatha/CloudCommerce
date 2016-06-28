@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.cloudcommerce.app.fragments.AddAddressFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/add_address_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/login_left_right_spacing"
+            android:layout_marginRight="@dimen/login_left_right_spacing"
+            android:paddingBottom="@dimen/login_btn_top_spacing"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/name"
+                style="@style/roboto_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_edittext_top_spacing"
+                android:hint="@string/name_hint_txt"
+                android:singleLine="true"
+                android:textColor="@color/edittext_text_color"
+                android:textSize="@dimen/edittext_text_size" />
+
+            <EditText
+                android:id="@+id/address"
+                style="@style/roboto_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_edittext_top_spacing"
+                android:hint="@string/address_hint_text"
+                android:singleLine="true"
+                android:textColor="@color/edittext_text_color"
+                android:textSize="@dimen/edittext_text_size" />
+
+            <EditText
+                android:id="@+id/pincode"
+                style="@style/roboto_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_edittext_top_spacing"
+                android:hint="@string/pincode_hint_text"
+                android:inputType="number"
+                android:maxLength="@integer/pincode_maxlength"
+                android:singleLine="true"
+                android:textColor="@color/edittext_text_color"
+                android:textSize="@dimen/edittext_text_size" />
+
+            <EditText
+                android:id="@+id/city"
+                style="@style/roboto_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_edittext_top_spacing"
+                android:hint="@string/city_hint_text"
+                android:singleLine="true"
+                android:textColor="@color/edittext_text_color"
+                android:textSize="@dimen/edittext_text_size" />
+
+            <EditText
+                android:id="@+id/state"
+                style="@style/roboto_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_edittext_top_spacing"
+                android:hint="@string/state_hint_text"
+                android:singleLine="true"
+                android:textColor="@color/edittext_text_color"
+                android:textSize="@dimen/edittext_text_size" />
+
+            <EditText
+                android:id="@+id/phone_no"
+                style="@style/roboto_light"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/login_edittext_top_spacing"
+                android:hint="@string/mobile_no_hint_text"
+                android:inputType="number"
+                android:singleLine="true"
+                android:maxLength="@integer/phone_no_maxlength"
+                android:textColor="@color/edittext_text_color"
+                android:textSize="@dimen/edittext_text_size" />
+
+            <Button
+                android:id="@+id/continue_btn"
+                style="@style/roboto_regular"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="@dimen/login_btn_top_spacing"
+                android:background="@color/btn_bg_color"
+                android:text="@string/continue_text"
+                android:textColor="@color/white"
+                android:textSize="@dimen/btn_text_size" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

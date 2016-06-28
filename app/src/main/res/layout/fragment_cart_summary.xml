@@ -1,0 +1,187 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_bg_color"
+    tools:context="com.cloudcommerce.app.fragments.CartSummaryFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/cart_summary_screen_spacings"
+        android:layout_marginRight="@dimen/cart_summary_screen_spacings"
+        android:layout_marginTop="@dimen/cart_summary_txt_top_spacing"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/summary_confirm_btn_bottom_spacing">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/cart_summary_txt"
+                style="@style/roboto_bold"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cart_summary_title"
+                android:textColor="@color/cart_summary_text_colors"
+                android:layout_toLeftOf="@+id/summary_items_count_txt"
+                android:textSize="@dimen/cart_summary_txt_size" />
+
+            <TextView
+                android:id="@+id/summary_items_count_txt"
+                style="@style/roboto_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="@string/summary_item_count"
+                android:textColor="@color/cart_summary_text_colors"
+                android:textSize="@dimen/summary_info_txt_size" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/summary_servicename_top_spacing">
+
+            <TextView
+                android:id="@+id/item_id"
+                style="@style/roboto_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/summary_items_count_top_spacing"
+                android:text="1."
+                android:textColor="@color/cart_summary_text_colors"
+                android:textSize="@dimen/summary_info_txt_size" />
+
+            <TextView
+                android:id="@+id/summary_service_name"
+                style="@style/roboto_regular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/summary_service_name_left_spacing"
+                android:layout_marginTop="@dimen/summary_items_count_top_spacing"
+                android:layout_toLeftOf="@+id/summary_service_price"
+                android:layout_toRightOf="@+id/item_id"
+                android:text="Service Name"
+                android:textColor="@color/cart_summary_text_colors"
+                android:textSize="@dimen/summary_info_txt_size" />
+
+            <TextView
+                android:id="@+id/summary_service_price"
+                style="@style/roboto_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/summary_items_count_top_spacing"
+                android:text="230"
+                android:textColor="@color/cart_summary_text_colors"
+                android:textSize="@dimen/summary_info_txt_size" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/summary_total_price_left_spacing"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/summary_total_price_top_spacing">
+
+                <TextView
+                    android:id="@+id/summary_total_txt"
+                    style="@style/roboto_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/summary_total_price"
+                    android:text="@string/summary_total"
+                    android:textColor="@color/cart_summary_text_colors"
+                    android:textSize="@dimen/summary_info_txt_size" />
+
+                <TextView
+                    android:id="@+id/summary_total_price"
+                    style="@style/roboto_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="230"
+                    android:textColor="@color/cart_summary_text_colors"
+                    android:textSize="@dimen/summary_info_txt_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/summary_delivery_charges_top_spacing">
+
+                <TextView
+                    android:id="@+id/delivery_charges_txt"
+                    style="@style/roboto_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/delivery_charges_price"
+                    android:text="@string/summary_delivery_charges"
+                    android:textColor="@color/cart_summary_text_colors"
+                    android:textSize="@dimen/summary_info_txt_size" />
+
+                <TextView
+                    android:id="@+id/delivery_charges_price"
+                    style="@style/roboto_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="50"
+                    android:textColor="@color/cart_summary_text_colors"
+                    android:textSize="@dimen/summary_info_txt_size" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/summary_grand_total_top_spacing">
+
+                <TextView
+                    android:id="@+id/grand_total_txt"
+                    style="@style/roboto_regular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/grand_total_price"
+                    android:text="@string/summary_grand_total"
+                    android:textColor="@color/cart_summary_text_colors"
+                    android:textSize="@dimen/summary_info_txt_size" />
+
+                <TextView
+                    android:id="@+id/grand_total_price"
+                    style="@style/roboto_regular"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="280"
+                    android:textColor="@color/cart_summary_text_colors"
+                    android:textSize="@dimen/summary_info_txt_size" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                style="@style/roboto_regular"
+                android:layout_width="@dimen/select_addr_btn_width"
+                android:layout_height="@dimen/button_height"
+                android:layout_gravity="bottom"
+                android:background="@color/btn_bg_color"
+                android:gravity="center"
+                android:text="@string/continue_text"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/btn_text_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

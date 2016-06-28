@@ -1,4 +1,5 @@
 {
-  "protocall": "https://",
-  "crittercism_api_key": "de462530811347909780210fa4ccbc9f00555300"
+  "protocall": "http://",
+  "crittercism_api_key": "de462530811347909780210fa4ccbc9f00555300",
+  "base_url": "192.168.1.105:3000/api/0/"
 }

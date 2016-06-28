@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="@dimen/select_addr_item_spacing"
+    android:layout_marginRight="@dimen/select_addr_item_spacing"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_marginTop="@dimen/select_addr_top_spacing"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:id="@+id/radio_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/custom_radiobtn_design"
+            android:checked="false"
+            android:tag="UnChecked" />
+        <!--android:button="@drawable/custom_radiobtn_design"-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/select_addr_name_left_spacing"
+            android:layout_toLeftOf="@+id/edit_address"
+            android:layout_toRightOf="@+id/radio_btn"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/select_addr_txt_top_spacing"
+                android:text="" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/edit_address"
+            android:layout_width="@dimen/edit_icon_dimens"
+            android:layout_height="@dimen/edit_icon_dimens"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_edit" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/border_width"
+        android:layout_marginTop="@dimen/address_txt_bottom_padding"
+        android:background="@color/select_addr_seperator_line_color" />
+
+</LinearLayout>

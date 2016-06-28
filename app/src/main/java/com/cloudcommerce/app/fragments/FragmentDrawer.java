@@ -1,5 +1,6 @@
 package com.cloudcommerce.app.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,20 +9,27 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
 import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.activities.LoginActivity;
 import com.cloudcommerce.app.adapters.NavigationDrawerAdapter;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.datamodels.NavigationItem;
+import com.cloudcommerce.app.datamodels.UserDataModel;
+import com.cloudcommerce.app.utils.AppConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +37,7 @@ import java.util.List;
 /**
  * Created by bhagya .
  */
-public class FragmentDrawer extends BaseFragment {
+public class FragmentDrawer extends BaseFragment implements OnClickListener {
 
     private static String TAG = FragmentDrawer.class.getSimpleName();
 
@@ -42,9 +50,12 @@ public class FragmentDrawer extends BaseFragment {
     private FragmentDrawerListener drawerListener;
     private static ArrayList<NavigationItem> navigationItemsArrayList;
     private String notification;
-    private TextView userName, userEmail;
-    private ImageView userImg, arrowImage;
+    private TextView userName, userEmail, welcomeMsg;
+    private ImageView userImg;
     private TextView[] textViewArray;
+    private UserDataModel currentUser;
+    private RelativeLayout signInRequiredLyt, signedInUserLyt;
+    private Button signInBtn, signOutBtn;
 
     public FragmentDrawer() {
 
@@ -71,10 +82,17 @@ public class FragmentDrawer extends BaseFragment {
         // Inflating view layout
         View layout = inflater.inflate(R.layout.fragment_navigation_drawer, container, false);
         nav_header_container = (View) layout.findViewById(R.id.nav_header_container);
-        nav_header_container.setBackgroundColor(getResources().getColor(R.color.navigation_header_bg_color));
+        nav_header_container.setBackgroundColor(getResources().getColor(R.color.menu_header_bg_color));
 
         userName = (TextView) layout.findViewById(R.id.username);
         userEmail = (TextView) layout.findViewById(R.id.email_text);
+        signInRequiredLyt = (RelativeLayout) layout.findViewById(R.id.signin_required_user_info);
+        signedInUserLyt = (RelativeLayout) layout.findViewById(R.id.signed_in_user_info);
+        welcomeMsg = (TextView) layout.findViewById(R.id.welcome_msg);
+        signInBtn = (Button) layout.findViewById(R.id.signin_btn);
+        signOutBtn = (Button) layout.findViewById(R.id.signout_btn);
+        signInBtn.setOnClickListener(this);
+        signOutBtn.setOnClickListener(this);
 
         TextView[] textViewArray = {userName, userEmail};
 
@@ -98,7 +116,7 @@ public class FragmentDrawer extends BaseFragment {
             }
         }));
         setUserData(textViewArray);
-        nav_header_container.setOnClickListener(new View.OnClickListener() {
+        nav_header_container.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 //close navigation drawer
@@ -119,21 +137,20 @@ public class FragmentDrawer extends BaseFragment {
     }
 
     private void setUserData(TextView[] textViewArray) {
-     /*TODO need to show logged in user details*/
-       /* currentUser = CloudCommerceSessionData.getSessionDataInstance().getUserData();
+        //TODO need to show logged in user details
+        currentUser = CloudCommerceSessionData.getSessionDataInstance().getUserData();
         //get logged in user data from shared prefernces
         if (currentUser != null) {
-            arrowImage.setVisibility(View.VISIBLE);
-            userName.setText(currentUser.getUserName());
+            signInRequiredLyt.setVisibility(View.GONE);
+            signedInUserLyt.setVisibility(View.VISIBLE);
+            //userName.setText(currentUser.getUserName());
             userEmail.setText(currentUser.getEmail());
         } else {
-            arrowImage.setVisibility(View.GONE);
-            userName.setText("");
-            userEmail.setText("");
+            signedInUserLyt.setVisibility(View.GONE);
+            signInRequiredLyt.setVisibility(View.VISIBLE);
         }
         for (TextView textView : textViewArray)
             textView.setTextColor(getResources().getColor(R.color.white));
-*/
     }
 
     public void setUp(int fragmentId, DrawerLayout drawerLayout, final Toolbar toolbar) {
@@ -156,7 +173,7 @@ public class FragmentDrawer extends BaseFragment {
             @Override
             public void onDrawerClosed(View drawerView) {
                 super.onDrawerClosed(drawerView);
-//                getActivity().invalidateOptionsMenu();
+                //getActivity().invalidateOptionsMenu();
             }
 
             @Override
@@ -174,6 +191,24 @@ public class FragmentDrawer extends BaseFragment {
             }
         });
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.signin_btn:
+                //close drawer
+                mDrawerLayout.closeDrawer(containerView);
+                //load signin screen
+                launchloginScreenScreen();
+                break;
+            case R.id.signout_btn:
+                //signout user
+                signedInUserLyt.setVisibility(View.GONE);
+                signInRequiredLyt.setVisibility(View.VISIBLE);
+                CloudCommerceSessionData.getSessionDataInstance().clearData();
+                break;
+        }
     }
 
     public static interface ClickListener {
@@ -253,5 +288,20 @@ public class FragmentDrawer extends BaseFragment {
         navigationNotificationsItems.setName(getResources().getString(R.string.menu_help));
         navigationNotificationsItems.setIcon(R.drawable.ic_menu_help);
         navigationItemsArrayList.add(navigationNotificationsItems);
+    }
+
+    private void launchloginScreenScreen() {
+        Intent serviceDescIntent = new Intent(getActivity(), LoginActivity.class);
+        serviceDescIntent.putExtra(AppConstants.LOGIN_FROM_SCREEN, AppConstants.LOGIN_FROM_MENU);
+        startActivityForResult(serviceDescIntent, AppConstants.LOGIN_FROM_MENU_REQ_ID);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d(TAG," onActivityResult called");
+        if (requestCode == AppConstants.LOGIN_FROM_MENU_REQ_ID && resultCode == Activity.RESULT_OK) {
+            //do nothing
+        }
     }
 }

@@ -79,4 +79,58 @@
     <!-- guest login dimensions-->
     <dimen name="guest_title_top_spacing">100dp</dimen>
 
+    <!-- forgot password dimensions -->
+    <dimen name="forgot_pwd_title_top_spacing">120dp</dimen>
+    <dimen name="forgot_pwd_info_txt_top_spacing">36dp</dimen>
+    <dimen name="forgot_pwd_info_txt_size">12sp</dimen>
+
+    <!-- services screen dimens-->
+    <dimen name="service_image_height">139dp</dimen>
+    <dimen name="service_info_lyt_height">44dp</dimen>
+    <dimen name="service_card_spacing">8dp</dimen>
+    <dimen name="service_info_spacing">9dp</dimen>
+    <dimen name="service_info_txt_size">12sp</dimen>
+
+    <!-- sub service screen dimens -->
+    <dimen name="sub_service_image_height">140dp</dimen>
+    <dimen name="sub_service_spacing">13dp</dimen>
+    <dimen name="sub_service_desc_top_spacing">9dp</dimen>
+    <dimen name="sub_service_right_arrow_bottom_padding">7dp</dimen>
+    <dimen name="arrow_dimens">20dp</dimen>
+    <dimen name="sub_service_name_txt_size">15sp</dimen>
+    <dimen name="sub_service_desc_txt_size">13sp</dimen>
+    <dimen name="sub_service_desc_bottom_spacing">17dp</dimen>
+    <dimen name="card_shadow_elevation">2dp</dimen>
+
+    <!-- sub service desc dimens -->
+    <dimen name="service_desc_visit_charge_txt_size">14sp</dimen>
+    <dimen name="service_desc_charge_txt_size">21sp</dimen>
+    <dimen name="order_lyt_spacing">8dp</dimen>
+    <integer name="phone_no_maxlength">10</integer>
+    <integer name="pincode_maxlength">9</integer>
+
+    <!-- select Address item dimensions-->
+    <dimen name="select_addr_item_spacing">22dp</dimen>
+    <dimen name="select_addr_top_spacing">27dp</dimen>
+    <dimen name="select_addr_name_left_spacing">21dp</dimen>
+    <dimen name="select_addr_txt_top_spacing">19dp</dimen>
+    <dimen name="edit_icon_dimens">16dp</dimen>
+    <dimen name="address_txt_bottom_padding">15dp</dimen>
+    <dimen name="select_addr_padding_bottom">10dp</dimen>
+    <dimen name="select_addr_btn_width">150dp</dimen>
+
+    <!-- cart summary -->
+    <dimen name="cart_summary_screen_spacings">14dp</dimen>
+    <dimen name="cart_summary_txt_size">14sp</dimen>
+    <dimen name="cart_summary_txt_top_spacing">27dp</dimen>
+    <dimen name="summary_items_count_top_spacing">22dp</dimen>
+    <dimen name="summary_service_name_left_spacing">4dp</dimen>
+    <dimen name="summary_servicename_top_spacing">26dp</dimen>
+    <dimen name="summary_total_price_top_spacing">32dp</dimen>
+    <dimen name="summary_total_price_left_spacing">73dp</dimen>
+    <dimen name="summary_delivery_charges_top_spacing">12dp</dimen>
+    <dimen name="summary_grand_total_top_spacing">17dp</dimen>
+    <dimen name="summary_info_txt_size">14sp</dimen>
+    <dimen name="summary_confirm_btn_bottom_spacing">19dp</dimen>
+
 </resources>

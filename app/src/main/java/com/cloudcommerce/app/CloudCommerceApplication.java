@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.util.Log;
 
+import com.cloudcommerce.app.datamodels.CloudCommerceTestData;
 import com.cloudcommerce.app.datamodels.EnvironmentSettings;
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -27,6 +28,7 @@ public class CloudCommerceApplication extends Application {
     public static int env = STAGE;
     private static EnvironmentSettings envSettings;
     public static String environment;
+    private static CloudCommerceTestData testData;
 
     @Override
     public void onCreate() {
@@ -35,6 +37,7 @@ public class CloudCommerceApplication extends Application {
         appContext = getApplicationContext();
         setAppContext(getApplicationContext());
         loadEnvironmentValues();
+        loadTestData();
         try {
             PackageInfo pInfo = this.getPackageManager().getPackageInfo(getPackageName(), 0);
             version = pInfo.versionName;
@@ -86,4 +89,23 @@ public class CloudCommerceApplication extends Application {
     public static EnvironmentSettings getEnvSettings() {
         return envSettings;
     }
+
+    private void loadTestData() {
+        InputStream inputStream = null;
+        try {
+            inputStream = this.getAssets().open("test_data.json");
+            JsonReader jsonReader = new JsonReader(new InputStreamReader(inputStream));
+            Gson gson = new Gson();
+            testData = gson.fromJson(jsonReader, CloudCommerceTestData.class);
+            Log.d("TAG", "Test data " + testData.getServicesList().size());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static CloudCommerceTestData getTestData() {
+        return testData;
+    }
+
 }
