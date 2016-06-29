@@ -27,7 +27,8 @@
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
                 android:hint="@string/name_hint_txt"
                 android:singleLine="true"
-                android:textColor="@color/edittext_text_color"
+                android:inputType="textPersonName|textCapWords"
+                android:textColorHint="@color/edittext_hint_text_color"
                 android:textSize="@dimen/edittext_text_size" />
 
             <EditText
@@ -38,7 +39,8 @@
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
                 android:hint="@string/address_hint_text"
                 android:singleLine="true"
-                android:textColor="@color/edittext_text_color"
+                android:inputType="textCapWords"
+                android:textColorHint="@color/edittext_hint_text_color"
                 android:textSize="@dimen/edittext_text_size" />
 
             <EditText
@@ -51,7 +53,7 @@
                 android:inputType="number"
                 android:maxLength="@integer/pincode_maxlength"
                 android:singleLine="true"
-                android:textColor="@color/edittext_text_color"
+                android:textColorHint="@color/edittext_hint_text_color"
                 android:textSize="@dimen/edittext_text_size" />
 
             <EditText
@@ -62,7 +64,8 @@
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
                 android:hint="@string/city_hint_text"
                 android:singleLine="true"
-                android:textColor="@color/edittext_text_color"
+                android:inputType="textCapWords"
+                android:textColorHint="@color/edittext_hint_text_color"
                 android:textSize="@dimen/edittext_text_size" />
 
             <EditText
@@ -73,7 +76,8 @@
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
                 android:hint="@string/state_hint_text"
                 android:singleLine="true"
-                android:textColor="@color/edittext_text_color"
+                android:inputType="textCapWords"
+                android:textColorHint="@color/edittext_hint_text_color"
                 android:textSize="@dimen/edittext_text_size" />
 
             <EditText
@@ -86,7 +90,7 @@
                 android:inputType="number"
                 android:singleLine="true"
                 android:maxLength="@integer/phone_no_maxlength"
-                android:textColor="@color/edittext_text_color"
+                android:textColorHint="@color/edittext_hint_text_color"
                 android:textSize="@dimen/edittext_text_size" />
 
             <Button
