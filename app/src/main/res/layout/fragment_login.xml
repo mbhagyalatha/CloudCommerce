@@ -61,6 +61,7 @@
                 android:background="@color/btn_bg_color"
                 android:text="@string/login_title"
                 android:textColor="@color/white"
+                android:textAllCaps="true"
                 android:textSize="@dimen/btn_text_size" />
 
             <TextView
@@ -101,7 +102,6 @@
                     android:layout_weight="1"
                     android:background="@drawable/blue_transparent_background"
                     android:text="@string/register_now_txt"
-                    android:textAllCaps="false"
                     android:textColor="@color/register_now_btn_border_color"
                     android:textSize="@dimen/register_now_txt_size" />
             </LinearLayout>

@@ -102,6 +102,7 @@
                 android:background="@color/btn_bg_color"
                 android:text="@string/continue_text"
                 android:textColor="@color/white"
+                android:textAllCaps="true"
                 android:textSize="@dimen/btn_text_size" />
         </LinearLayout>
     </ScrollView>
