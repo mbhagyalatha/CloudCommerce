@@ -69,6 +69,7 @@ public class ServiceDetailsFragment extends BaseFragment implements View.OnClick
     private void setDataToControls() {
         serviceName.setText(selectedService.getSubServiceName());
         serviceDesc.setText(selectedService.getSubServiceDesc());
+        serviceCharge.setText(getResources().getString(R.string.rupee_symbol)+" "+"216");
     }
 
     @Override
