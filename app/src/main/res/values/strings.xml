@@ -20,7 +20,7 @@
     <string name="login_title">Log In</string>
     <string name="email_hint_txt">Enter Email</string>
     <string name="pwd_hint_txt">Password</string>
-    <string name="forgot_pwd_txt">Forgot password</string>
+    <string name="forgot_pwd_txt">Forgot Password</string>
     <string name="not_member_yet_txt">Not a member yet</string>
     <string name="register_now_txt">Register Now!</string>
     <string name="login_as_guest_txt">Log In as guest</string>
