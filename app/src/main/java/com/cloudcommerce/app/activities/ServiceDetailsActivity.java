@@ -9,13 +9,13 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.cloudcommerce.app.R;
-import com.cloudcommerce.app.datamodels.SubServiceDataModel;
+import com.cloudcommerce.app.datamodels.SubCategoryListDataModel;
 import com.cloudcommerce.app.fragments.ServiceDetailsFragment;
 import com.cloudcommerce.app.utils.AppConstants;
 
 public class ServiceDetailsActivity extends BaseActivity {
     private ServiceDetailsFragment descriptionFragment;
-    private SubServiceDataModel selectedService;
+    private SubCategoryListDataModel selectedService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,7 @@ public class ServiceDetailsActivity extends BaseActivity {
         //get service data
         Intent intent = getIntent();
         if (intent.hasExtra(AppConstants.SELECTED_SERVICE)) {
-            selectedService = (SubServiceDataModel) intent.getSerializableExtra(AppConstants.SELECTED_SERVICE);
+            selectedService = (SubCategoryListDataModel) intent.getSerializableExtra(AppConstants.SELECTED_SERVICE);
         }
         //load fragment
         descriptionFragment = ServiceDetailsFragment.newInstance();

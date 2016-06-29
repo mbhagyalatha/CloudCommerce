@@ -10,7 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cloudcommerce.app.R;
-import com.cloudcommerce.app.datamodels.SubServiceDataModel;
+import com.cloudcommerce.app.datamodels.SubCategoryListDataModel;
+import com.cloudcommerce.app.utils.Utils;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,11 +20,11 @@ import java.util.List;
  * Created by bhagya on 6/21/2015.
  */
 public class SubServiceAdapter extends RecyclerView.Adapter<SubServiceAdapter.ServiceHolder> {
-    public List<SubServiceDataModel> subServicesList = Collections.emptyList();
+    public List<SubCategoryListDataModel> subServicesList = Collections.emptyList();
     private LayoutInflater inflater;
     private Context context;
 
-    public SubServiceAdapter(Context context, List<SubServiceDataModel> subServicesList) {
+    public SubServiceAdapter(Context context, List<SubCategoryListDataModel> subServicesList) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.subServicesList = subServicesList;
@@ -38,12 +39,11 @@ public class SubServiceAdapter extends RecyclerView.Adapter<SubServiceAdapter.Se
 
     @Override
     public void onBindViewHolder(ServiceHolder holder, int position) {
-        SubServiceDataModel subServiceItem = subServicesList.get(position);
-        holder.subServiceName.setText(subServiceItem.getSubServiceName());
-        holder.subServiceDesc.setText(subServiceItem.getSubServiceDesc());
-        Log.d("sub Service Info", " " + subServiceItem.getSubServiceName());
+        SubCategoryListDataModel subServiceItem = subServicesList.get(position);
+        holder.subServiceName.setText(subServiceItem.getSub_cat_name());
+        holder.subServiceDesc.setText(subServiceItem.getSub_description());
         //set image to imageview using glide
-
+        Utils.loadImage(context,subServiceItem.getSub_image_url(),holder.subServiceImage);
     }
 
     @Override
@@ -55,7 +55,6 @@ public class SubServiceAdapter extends RecyclerView.Adapter<SubServiceAdapter.Se
     class ServiceHolder extends RecyclerView.ViewHolder {
         TextView subServiceName, subServiceDesc;
         ImageView subServiceImage;
-
 
         public ServiceHolder(View itemView) {
             super(itemView);

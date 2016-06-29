@@ -1,6 +1,7 @@
 package com.cloudcommerce.app.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,18 +11,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 
 import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.activities.CartSummaryActivity;
 import com.cloudcommerce.app.adapters.AddressesAdapter;
 import com.cloudcommerce.app.adapters.SubServiceAdapter;
 import com.cloudcommerce.app.datamodels.Address;
+import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 
 import java.util.List;
 
 public class SelectAddressFragment extends BaseFragment implements View.OnClickListener {
+    private Button continueBtn;
     private RadioButton radioBtn;
     private RecyclerView addressesRecyclerview;
     private List<Address> addressesList;
@@ -51,6 +56,7 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
     }
 
     private void initializeControls(View selectAddressView) {
+        continueBtn = (Button)selectAddressView.findViewById(R.id.continue_btn);
         addressesRecyclerview = (RecyclerView) selectAddressView.findViewById(R.id.addresses_recyclerview);
         //layout manager to position its items
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
@@ -60,23 +66,7 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
         addressesAdapter = new AddressesAdapter(getActivity(), addressesList);
         addressesAdapter.setListener(this);
         addressesRecyclerview.setAdapter(addressesAdapter);
-       /* radioBtn = (RadioButton) selectAddressView.findViewById(R.id.radio_btn);
-
-        radioBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //boolean checked = ((RadioButton) v).isChecked();
-                String isBtnChecked = v.getTag().toString();
-                Log.d(TAG, "OnClickListener called " + isBtnChecked);
-                if (isBtnChecked.equals("Checked")) {
-                    radioBtn.setChecked(false);
-                    radioBtn.setTag("UnChecked");
-                } else {
-                    radioBtn.setChecked(true);
-                    radioBtn.setTag("Checked");
-                }
-            }
-        });*/
+        continueBtn.setOnClickListener(this);
     }
 
     @Override
@@ -93,7 +83,7 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.radio_btn:
-                radioBtn = (RadioButton) v;
+                /*radioBtn = (RadioButton) v;
                 String isBtnChecked = v.getTag().toString();
                 Log.d(TAG, "OnClickListener called " + isBtnChecked);
                 if (isBtnChecked.equals("Checked")) {
@@ -102,8 +92,17 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
                 } else {
                     radioBtn.setChecked(true);
                     radioBtn.setTag("Checked");
-                }
+                    CloudCommerceSessionData.address = addressesList.get(0);
+                }*/
                 break;
+            case R.id.continue_btn:
+                 launchcartSummaryScreen();
+                 break;
         }
+    }
+    private void launchcartSummaryScreen() {
+        Intent intent = new Intent(getActivity(), CartSummaryActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 }

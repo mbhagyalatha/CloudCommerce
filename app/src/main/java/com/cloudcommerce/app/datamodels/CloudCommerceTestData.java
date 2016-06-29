@@ -11,25 +11,25 @@ import java.util.List;
 public class CloudCommerceTestData implements Serializable {
 
     @SerializedName("services_list")
-    private List<ServiceDataModel> servicesList;
+    private List<CategoryListDataModel> servicesList;
     @SerializedName("sub_services_list")
-    private List<SubServiceDataModel> subServicesList;
+    private List<SubCategoryListDataModel> subServicesList;
     @SerializedName("address_list")
     private List<Address> addressList;
 
-    public List<ServiceDataModel> getServicesList() {
+    public List<CategoryListDataModel> getServicesList() {
         return servicesList;
     }
 
-    public void setServicesList(List<ServiceDataModel> servicesList) {
+    public void setServicesList(List<CategoryListDataModel> servicesList) {
         this.servicesList = servicesList;
     }
 
-    public List<SubServiceDataModel> getSubServicesList() {
+    public List<SubCategoryListDataModel> getSubServicesList() {
         return subServicesList;
     }
 
-    public void setSubServicesList(List<SubServiceDataModel> subServicesList) {
+    public void setSubServicesList(List<SubCategoryListDataModel> subServicesList) {
         this.subServicesList = subServicesList;
     }
 

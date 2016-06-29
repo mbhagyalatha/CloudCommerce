@@ -4,6 +4,7 @@ package com.cloudcommerce.app.utils;
  * Created by developer on 22/06/16.
  */
 public class AppConstants {
+    public static final String CAT_ID = "cat_id";
     public static final String SERVICENAME = "serviceName";
     public static final String SELECTED_SERVICE = "selectedService";
     public static final String INVALID_GRANT = "invalid_grant";
@@ -19,6 +20,7 @@ public class AppConstants {
     public static final int LOGIN_REQUEST_ID = 2;
     public static final int GUEST_LOGIN_REQUEST_ID = 3;
     public static final int GET_ALL_SERVICE_CATEGORIES_REQUEST_ID = 4;
+    public static final int GET_ALL_SUB_SERVICE_CATEGORIES_REQUEST_ID = 5;
 
     /* Service constants*/
     public static final String SUCCESS_TEXT = "SUCCESS";

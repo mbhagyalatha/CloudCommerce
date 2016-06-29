@@ -4,11 +4,13 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 
 public class CartSummaryFragment extends BaseFragment {
 
@@ -31,10 +33,9 @@ public class CartSummaryFragment extends BaseFragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View cartSummaryView = inflater.inflate(R.layout.fragment_cart_summary, container, false);
+        Log.d("address","<>"+ CloudCommerceSessionData.getSessionDataInstance().getAddress().getCity());
         return cartSummaryView;
     }
-
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
