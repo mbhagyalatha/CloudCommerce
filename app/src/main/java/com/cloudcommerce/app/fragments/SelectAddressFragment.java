@@ -1,6 +1,7 @@
 package com.cloudcommerce.app.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,11 +11,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.activities.CartSummaryActivity;
 import com.cloudcommerce.app.adapters.AddressesAdapter;
 import com.cloudcommerce.app.adapters.SubServiceAdapter;
 import com.cloudcommerce.app.datamodels.Address;
@@ -26,6 +30,8 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
     private RecyclerView addressesRecyclerview;
     private List<Address> addressesList;
     private AddressesAdapter addressesAdapter;
+    private boolean isAddressselected;
+    private Button continueBtn;
 
     public SelectAddressFragment() {
         // Required empty public constructor
@@ -77,6 +83,8 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
                 }
             }
         });*/
+        continueBtn = (Button)selectAddressView.findViewById(R.id.continue_btn);
+        continueBtn.setOnClickListener(this);
     }
 
     @Override
@@ -97,13 +105,28 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
                 String isBtnChecked = v.getTag().toString();
                 Log.d(TAG, "OnClickListener called " + isBtnChecked);
                 if (isBtnChecked.equals("Checked")) {
+                    isAddressselected = false;
                     radioBtn.setChecked(false);
                     radioBtn.setTag("UnChecked");
                 } else {
+                    isAddressselected = true;
                     radioBtn.setChecked(true);
                     radioBtn.setTag("Checked");
                 }
                 break;
+            case R.id.continue_btn:
+                if(isAddressselected) {
+                    launchcartSummaryScreen();
+                }else{
+                    Toast.makeText(getActivity(),"Please select address ",Toast.LENGTH_LONG).show();
+                }
+                break;
         }
+    }
+
+    private void launchcartSummaryScreen() {
+        Intent intent = new Intent(getActivity(), CartSummaryActivity.class);
+        startActivity(intent);
+        getActivity().finish();
     }
 }
