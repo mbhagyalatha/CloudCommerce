@@ -35,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
                 android:hint="@string/first_name_hint_txt"
-                android:textColor="@color/edittext_text_color"
+                android:inputType="textPersonName|textCapWords"
+                android:textColorHint="@color/edittext_hint_text_color"
                 android:singleLine="true"
                 android:textSize="@dimen/edittext_text_size" />
 
@@ -47,7 +48,8 @@
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
                 android:hint="@string/last_name_hint_txt"
                 android:singleLine="true"
-                android:textColor="@color/edittext_text_color"
+                android:inputType="textPersonName|textCapWords"
+                android:textColorHint="@color/edittext_hint_text_color"
                 android:textSize="@dimen/edittext_text_size" />
 
             <EditText
@@ -58,7 +60,7 @@
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
                 android:hint="@string/email_hint_txt"
                 android:inputType="textEmailAddress"
-                android:textColor="@color/edittext_text_color"
+                android:textColorHint="@color/edittext_hint_text_color"
                 android:singleLine="true"
                 android:textSize="@dimen/edittext_text_size" />
 
@@ -72,6 +74,7 @@
                 android:background="@color/btn_bg_color"
                 android:text="@string/register_title"
                 android:textColor="@color/white"
+                android:textAllCaps="true"
                 android:textSize="@dimen/btn_text_size" />
 
             <LinearLayout
@@ -100,7 +103,6 @@
                     android:layout_weight="1"
                     android:background="@drawable/blue_transparent_background"
                     android:text="@string/login_title"
-                    android:textAllCaps="false"
                     android:textColor="@color/register_now_btn_border_color"
                     android:textSize="@dimen/register_now_txt_size" />
             </LinearLayout>
@@ -114,7 +116,8 @@
                 android:gravity="center_horizontal"
                 android:text="@string/login_as_guest_txt"
                 android:textColor="@color/title_text_color"
-                android:textSize="@dimen/register_now_txt_size" />
+                android:textSize="@dimen/register_now_txt_size"
+                android:visibility="gone"/>
         </LinearLayout>
     </ScrollView>
 

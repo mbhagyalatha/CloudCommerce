@@ -21,12 +21,12 @@ public class ServiceDetailsActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service_details);
-        initialiseToolbar();
         //get service data
         Intent intent = getIntent();
         if (intent.hasExtra(AppConstants.SELECTED_SERVICE)) {
             selectedService = (SubServiceDataModel) intent.getSerializableExtra(AppConstants.SELECTED_SERVICE);
         }
+        initialiseToolbar();
         //load fragment
         descriptionFragment = ServiceDetailsFragment.newInstance();
         Bundle bundle = new Bundle();
@@ -40,6 +40,7 @@ public class ServiceDetailsActivity extends BaseActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar_top);
         toolbar.setBackgroundColor(getResources().getColor(R.color.toolbar_bg_color));
         mTitle = (TextView) toolBarLayout.findViewById(R.id.toolbar_title);
+        mTitle.setText(selectedService.getSubServiceName());
         mTitle.setTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

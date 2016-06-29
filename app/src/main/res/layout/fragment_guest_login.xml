@@ -33,9 +33,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/login_edittext_top_spacing"
                 android:hint="@string/name_hint_txt"
-                android:inputType="textPersonName"
+                android:inputType="textPersonName|textCapWords"
                 android:singleLine="true"
-                android:textColor="@color/edittext_text_color"
+                android:textColorHint="@color/edittext_hint_text_color"
                 android:textSize="@dimen/edittext_text_size" />
 
             <EditText
@@ -47,7 +47,7 @@
                 android:hint="@string/email_hint_txt"
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
-                android:textColor="@color/edittext_text_color"
+                android:textColorHint="@color/edittext_hint_text_color"
                 android:textSize="@dimen/edittext_text_size" />
 
             <EditText
@@ -59,7 +59,7 @@
                 android:hint="@string/pwd_hint_txt"
                 android:inputType="textPassword"
                 android:singleLine="true"
-                android:textColor="@color/edittext_text_color"
+                android:textColorHint="@color/edittext_hint_text_color"
                 android:textSize="@dimen/edittext_text_size" />
 
             <Button
@@ -71,6 +71,7 @@
                 android:background="@color/btn_bg_color"
                 android:text="@string/continue_text"
                 android:textColor="@color/white"
+                android:textAllCaps="true"
                 android:textSize="@dimen/btn_text_size" />
         </LinearLayout>
     </ScrollView>
