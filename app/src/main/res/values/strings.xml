@@ -23,7 +23,7 @@
     <string name="forgot_pwd_txt">Forgot Password</string>
     <string name="not_member_yet_txt">Not a member yet</string>
     <string name="register_now_txt">Register Now!</string>
-    <string name="login_as_guest_txt">Log In as guest</string>
+    <string name="login_as_guest_txt">Log In as Guest</string>
 
     <!-- Register Strings -->
     <string name="register_title">Register</string>
