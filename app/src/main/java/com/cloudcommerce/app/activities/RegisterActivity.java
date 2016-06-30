@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.fragments.LoginFragment;
 import com.cloudcommerce.app.fragments.RegisterFragment;
 import com.cloudcommerce.app.interfaces.RegisterInterface;
@@ -22,6 +23,9 @@ import com.cloudcommerce.app.network.AuthenticationService;
 import com.cloudcommerce.app.network.ServiceCategoriesService;
 import com.cloudcommerce.app.utils.AppConstants;
 import com.cloudcommerce.app.utils.ConnectionDetector;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class RegisterActivity extends BaseActivity implements RegisterInterface{
     private static final String TAG = "RegisterActivity";
@@ -91,6 +95,30 @@ public class RegisterActivity extends BaseActivity implements RegisterInterface{
             if (intent.getBooleanExtra(AppConstants.SUCCESS_TEXT, false)) {
                 System.out.println("Stats receiver");
                 //save login details
+                try{
+                    JSONObject jsonObject = new JSONObject(CloudCommerceSessionData.getSessionDataInstance().getRegisterResponse());
+                    if(jsonObject.getBoolean(AppConstants.SUCCESS)){
+                        JSONArray jsonArray = jsonObject.getJSONArray(AppConstants.MESSAGES);
+                        for(int i=0;i<jsonArray.length();i++){
+                                JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                                jsonObject1.getInt(AppConstants.CODE);
+                                jsonObject1.getString(AppConstants.MESSAGE);
+                            }
+                            JSONObject jsonObject2=jsonObject.getJSONObject(AppConstants.USERID_OBJ);
+                            CloudCommerceSessionData.getSessionDataInstance().setUserid(jsonObject2.getString(AppConstants.USERID));
+                            Log.d("user id is", "<>" + jsonObject2.getString(AppConstants.USERID));
+                            launchAddressSelectionScreen();
+                        }else{
+                        JSONArray jsonArray = jsonObject.getJSONArray(AppConstants.ERRORS);
+                        for(int i=0;i<jsonArray.length();i++){
+                            JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                            jsonObject1.getInt(AppConstants.CODE);
+                            showErrorDialog(jsonObject1.getString(AppConstants.MESSAGE),AppConstants.ERROR_DIALOG_TITLE);
+                        }
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
             } else {
                 Log.v(TAG, "ResultReceiver redemptions");
                 String error = intent.getStringExtra(AppConstants.ERROR_TEXT);
@@ -112,5 +140,10 @@ public class RegisterActivity extends BaseActivity implements RegisterInterface{
             LocalBroadcastManager.getInstance(getBaseContext()).unregisterReceiver(registerServiceResultReceiver);
             registerServiceResultReceiver = null;
         }
+    }
+    private void launchAddressSelectionScreen() {
+        Intent serviceDescIntent = new Intent(this, SelectAddressActivity.class);
+        startActivity(serviceDescIntent);
+        finish();
     }
 }

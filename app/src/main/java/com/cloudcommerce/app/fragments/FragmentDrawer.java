@@ -24,6 +24,7 @@ import android.widget.TextView;
 
 import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.activities.HomeActivity;
 import com.cloudcommerce.app.activities.LoginActivity;
 import com.cloudcommerce.app.adapters.NavigationDrawerAdapter;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
@@ -138,17 +139,22 @@ public class FragmentDrawer extends BaseFragment implements OnClickListener {
 
     private void setUserData(TextView[] textViewArray) {
         //TODO need to show logged in user details
-        currentUser = CloudCommerceSessionData.getSessionDataInstance().getUserData();
         //get logged in user data from shared prefernces
-        if (currentUser != null) {
-            signInRequiredLyt.setVisibility(View.GONE);
-            signedInUserLyt.setVisibility(View.VISIBLE);
-            //userName.setText(currentUser.getUserName());
-            userEmail.setText(currentUser.getEmail());
-        } else {
-            signedInUserLyt.setVisibility(View.GONE);
-            signInRequiredLyt.setVisibility(View.VISIBLE);
+        try{
+            if (CloudCommerceSessionData.getSessionDataInstance().getUserid() != null&& CloudCommerceSessionData.getSessionDataInstance().getUserid()!=""
+                    &&CloudCommerceSessionData.getSessionDataInstance().getUserid()!="0") {
+                signInRequiredLyt.setVisibility(View.GONE);
+                signedInUserLyt.setVisibility(View.VISIBLE);
+                //userName.setText(currentUser.getUserName());
+                userEmail.setText(currentUser.getEmail());
+            } else {
+                signedInUserLyt.setVisibility(View.GONE);
+                signInRequiredLyt.setVisibility(View.VISIBLE);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
         }
+
         for (TextView textView : textViewArray)
             textView.setTextColor(getResources().getColor(R.color.white));
     }
@@ -207,6 +213,7 @@ public class FragmentDrawer extends BaseFragment implements OnClickListener {
                 signedInUserLyt.setVisibility(View.GONE);
                 signInRequiredLyt.setVisibility(View.VISIBLE);
                 CloudCommerceSessionData.getSessionDataInstance().clearData();
+                mDrawerLayout.closeDrawer(containerView);
                 break;
         }
     }
@@ -292,8 +299,7 @@ public class FragmentDrawer extends BaseFragment implements OnClickListener {
 
     private void launchloginScreenScreen() {
         Intent serviceDescIntent = new Intent(getActivity(), LoginActivity.class);
-        serviceDescIntent.putExtra(AppConstants.LOGIN_FROM_SCREEN, AppConstants.LOGIN_FROM_MENU);
-        startActivityForResult(serviceDescIntent, AppConstants.LOGIN_FROM_MENU_REQ_ID);
+        startActivity(serviceDescIntent);
     }
 
     @Override

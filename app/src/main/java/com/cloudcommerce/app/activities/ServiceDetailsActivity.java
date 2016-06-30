@@ -40,7 +40,7 @@ public class ServiceDetailsActivity extends BaseActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar_top);
         toolbar.setBackgroundColor(getResources().getColor(R.color.toolbar_bg_color));
         mTitle = (TextView) toolBarLayout.findViewById(R.id.toolbar_title);
-        mTitle.setText(selectedService.getSubServiceName());
+        mTitle.setText(selectedService.getSub_cat_name());
         mTitle.setTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

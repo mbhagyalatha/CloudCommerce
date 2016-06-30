@@ -2,34 +2,28 @@ package com.cloudcommerce.app.fragments;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.activities.CartSummaryActivity;
 import com.cloudcommerce.app.adapters.AddressesAdapter;
-import com.cloudcommerce.app.adapters.SubServiceAdapter;
-import com.cloudcommerce.app.datamodels.Address;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
+import com.cloudcommerce.app.datamodels.UserAddresses;
 
 import java.util.List;
 
 public class SelectAddressFragment extends BaseFragment implements View.OnClickListener {
     private RadioButton radioBtn;
     private RecyclerView addressesRecyclerview;
-    private List<Address> addressesList;
+    private List<UserAddresses> addressesList;
     private AddressesAdapter addressesAdapter;
     private boolean isAddressselected;
     private Button continueBtn;
@@ -63,7 +57,8 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
         //layout manager to position its items
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         addressesRecyclerview.setLayoutManager(llm);
-        addressesList = CloudCommerceApplication.getTestData().getAddressList();
+        //addressesList = CloudCommerceApplication.getTestData().getAddressList();
+        addressesList = CloudCommerceSessionData.getSessionDataInstance().getUserAddressesList();
         //set adapter
         addressesAdapter = new AddressesAdapter(getActivity(), addressesList);
         addressesAdapter.setListener(this);
@@ -118,8 +113,9 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
                 }*/
                 break;
             case R.id.continue_btn:
-                if(isAddressselected) {
+                if(CloudCommerceSessionData.getSessionDataInstance().isaddressSelected){
                     launchcartSummaryScreen();
+                    CloudCommerceSessionData.getSessionDataInstance().isaddressSelected=false;
                 }else{
                     Toast.makeText(getActivity(),"Please select address ",Toast.LENGTH_LONG).show();
                 }

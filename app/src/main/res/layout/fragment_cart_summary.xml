@@ -258,6 +258,7 @@
         android:layout_marginBottom="@dimen/summary_confirm_btn_bottom_spacing">
 
         <Button
+            android:id="@+id/cart_continue_btn"
             style="@style/roboto_regular"
             android:layout_width="@dimen/select_addr_btn_width"
             android:layout_height="@dimen/button_height"

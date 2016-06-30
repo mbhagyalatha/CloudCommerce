@@ -19,12 +19,14 @@ import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.datamodels.SubCategoryListDataModel;
 import com.cloudcommerce.app.datamodels.UserDataModel;
 import com.cloudcommerce.app.utils.AppConstants;
+import com.cloudcommerce.app.utils.Utils;
 
 public class ServiceDetailsFragment extends BaseFragment implements View.OnClickListener {
     private SubCategoryListDataModel selectedService;
     TextView serviceName, serviceDesc, serviceCharge;
     ImageView serviceImage;
     Button addToCartBtn, orderNowBtn;
+    String userid="";
 
 
     public ServiceDetailsFragment() {
@@ -67,9 +69,10 @@ public class ServiceDetailsFragment extends BaseFragment implements View.OnClick
     }
 
     private void setDataToControls() {
-        serviceName.setText(selectedService.getSubServiceName());
-        serviceDesc.setText(selectedService.getSubServiceDesc());
+        serviceName.setText(selectedService.getSub_cat_name());
+        serviceDesc.setText(selectedService.getSub_description());
         serviceCharge.setText(getResources().getString(R.string.rupee_symbol)+" "+"216");
+        Utils.loadImage(getActivity(),selectedService.getSub_image_url(),serviceImage);
     }
 
     @Override
@@ -89,8 +92,8 @@ public class ServiceDetailsFragment extends BaseFragment implements View.OnClick
                 break;
             case R.id.order_now_btn:
                 //check weather user is logged in or not.If already logged in show address selection page if not show login page
-                UserDataModel user = CloudCommerceSessionData.getSessionDataInstance().getUserData();
-                if (user != null) {
+                userid = CloudCommerceSessionData.getSessionDataInstance().getUserid();
+                if(userid!=null && userid != ""&& userid!="0"){
                     //show address selection page
                     launchAddressSelectionScreen();
                 } else {

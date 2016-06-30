@@ -2,7 +2,6 @@ package com.cloudcommerce.app.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +10,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.cloudcommerce.app.R;
-import com.cloudcommerce.app.datamodels.Address;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
+import com.cloudcommerce.app.datamodels.UserAddresses;
 
 import java.util.Collections;
 import java.util.List;
@@ -22,14 +21,14 @@ import java.util.List;
  */
 public class AddressesAdapter extends RecyclerView.Adapter<AddressesAdapter.AddressHolder> {
     private static final String TAG = "AddressesAdapter";
-    public List<Address> addressesList = Collections.emptyList();
+    public List<UserAddresses> addressesList = Collections.emptyList();
     private LayoutInflater inflater;
     private Context context;
     private View.OnClickListener listener;
     private static RadioButton lastChecked = null;
     private static int lastCheckedPos = 0;
 
-    public AddressesAdapter(Context context, List<Address> addressesList) {
+    public AddressesAdapter(Context context, List<UserAddresses> addressesList) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.addressesList = addressesList;
@@ -52,10 +51,9 @@ public class AddressesAdapter extends RecyclerView.Adapter<AddressesAdapter.Addr
 
     @Override
     public void onBindViewHolder(final AddressHolder holder, final int position) {
-        Address addressItem = addressesList.get(position);
-        holder.userName.setText(addressItem.getUserName());
-        holder.address.setText(addressItem.getStreet() + "\n" + addressItem.getCity() + ", " + addressItem.getState() + "\n" + addressItem.getPhone_no());
-        Log.d("Address Info", " " + addressItem.getUserName());
+        UserAddresses addressItem = addressesList.get(position);
+        holder.userName.setText(addressItem.getName());
+        holder.address.setText(addressItem.getStreet() + "\n" + addressItem.getCity() + ", " + addressItem.getState() + "\n" + addressItem.getPhone_number());
         //set image to imageview using glide
 
         holder.addrSelectionRadioBtn.setChecked(addressesList.get(position).isSelected());
@@ -83,7 +81,8 @@ public class AddressesAdapter extends RecyclerView.Adapter<AddressesAdapter.Addr
                 } else
                     lastChecked = null;
                 addressesList.get(clickedPos).setSelected(cb.isChecked());
-                CloudCommerceSessionData.address = addressesList.get(position);
+                CloudCommerceSessionData.isaddressSelected = true;
+                CloudCommerceSessionData.userAddresses = addressesList.get(position);
             }
         });
     }

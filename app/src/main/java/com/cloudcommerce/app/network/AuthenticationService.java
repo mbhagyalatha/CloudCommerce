@@ -11,6 +11,7 @@ import android.util.Log;
 import com.android.volley.VolleyError;
 import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.datamodels.UserDataModel;
 import com.cloudcommerce.app.network.webservices.AuthenticationWsImpl;
 import com.cloudcommerce.app.network.webservices.BaseWsImpl;
@@ -33,7 +34,7 @@ import java.util.Map;
  */
 public class AuthenticationService extends BaseCloudCommerceService implements WebServiceResultListener {
 
-    private Intent broadcastIntent = new Intent(AppConstants.LOGIN_SERVICE);
+    private Intent broadcastIntent ;
 
 
     public AuthenticationService(Context context) {
@@ -65,9 +66,11 @@ public class AuthenticationService extends BaseCloudCommerceService implements W
                 case AppConstants.REGISTER_REQUEST_ID:
                     //broad cast message
                     //save auth token in session data
+                    broadcastIntent =  new Intent(AppConstants.REGISTER_SERVICE);
                     parseRegisterResponse(response.toString());
                     break;
                 case AppConstants.LOGIN_REQUEST_ID:
+                    broadcastIntent =  new Intent(AppConstants.LOGIN_SERVICE);
                     parseLoginResponse(response.toString());
                     break;
                 case AppConstants.GUEST_LOGIN_REQUEST_ID:
@@ -104,27 +107,29 @@ public class AuthenticationService extends BaseCloudCommerceService implements W
         try {
             JSONObject jsonObject = new JSONObject(response);
             //save auth token in session data  --TODO
-            if(jsonObject.getBoolean(AppConstants.SUCCESS)){
+            /*if(jsonObject.getBoolean(AppConstants.SUCCESS)){
 
             }else {
 
-            }
+            }*/
         } catch (Exception e) {
             e.printStackTrace();
         }
+        CloudCommerceSessionData.setRegisterResponse(response);
         sendResponse(response);
     }
 
-    private void parseLoginResponse(Object response) {
+    private void parseLoginResponse(String response) {
         //JsonReader jsonReader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(response.toString().getBytes())));
 
-        try {
-            JSONObject obj = new JSONObject(response.toString());
-            //save user data in session data --TODO (user details, addres)
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        try {
+//            JSONObject obj = new JSONObject(response.toString());
+//            //save user data in session data --TODO (user details, addres)
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        CloudCommerceSessionData.getSessionDataInstance().setLoginResponse(response);
         sendResponse(response);
     }
 
@@ -135,7 +140,7 @@ public class AuthenticationService extends BaseCloudCommerceService implements W
         LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
     }
 
-    private void sendResponse(Object response) {
+    private void sendResponse(String response) {
         broadcastIntent.putExtra(AppConstants.SUCCESS_TEXT, true);
         LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
     }

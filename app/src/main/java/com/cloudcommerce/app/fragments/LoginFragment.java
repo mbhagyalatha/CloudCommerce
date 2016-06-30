@@ -151,7 +151,7 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
                 //CloudCommerceSessionData.getSessionDataInstance().setUserJsonData(user);
                 //close keyboard
                 hideKeyBoard(currentSelectedView);
-                sendResultBack(fromScreen);
+                //sendResultBack(fromScreen);
                 sendLoginService();
             } else {
                 //show error msg saying to enter valid email
@@ -178,6 +178,4 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
         getActivity().setResult(Activity.RESULT_OK, intent);
         getActivity().finish();
     }
-
-
 }

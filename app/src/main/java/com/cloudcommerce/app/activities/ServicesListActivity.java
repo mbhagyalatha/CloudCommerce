@@ -77,7 +77,7 @@ public class ServicesListActivity extends BaseActivity implements SubCategoryInt
     }
 
     public void registerGetAllSubServiceCategories() {
-        IntentFilter intentFilter = new IntentFilter(AppConstants.GET_ALL_SERVICE_CATEGORIES);
+        IntentFilter intentFilter = new IntentFilter(AppConstants.GET_ALL_SUB_SERVICE_CATEGORIES);
         allSubServiceCategoriesResultReceiver = new AllSubServiceCategoriesResultReceiver();
         LocalBroadcastManager.getInstance(getBaseContext()).registerReceiver(allSubServiceCategoriesResultReceiver, intentFilter);
         //Show progress dialog -- TODO

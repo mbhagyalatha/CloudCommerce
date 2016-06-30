@@ -1,11 +1,13 @@
 package com.cloudcommerce.app.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +19,9 @@ import android.widget.Toast;
 
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.activities.CartSummaryActivity;
+import com.cloudcommerce.app.datamodels.Address;
+import com.cloudcommerce.app.interfaces.AddAddressInterface;
+import com.cloudcommerce.app.interfaces.RegisterInterface;
 import com.cloudcommerce.app.utils.Utils;
 
 
@@ -24,6 +29,8 @@ public class AddAddressFragment extends BaseFragment implements View.OnClickList
     private EditText name, address, pincode, city, state, phoneNo, currentSelectedView;
     private Button continueBtn;
     private LinearLayout addAddressLyt;
+    private AddAddressInterface addAddressInterface;
+    Address address_;
 
     public AddAddressFragment() {
         // Required empty public constructor
@@ -75,15 +82,15 @@ public class AddAddressFragment extends BaseFragment implements View.OnClickList
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Activity context) {
         super.onAttach(context);
+        try {
+            addAddressInterface = (AddAddressInterface) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -98,6 +105,16 @@ public class AddAddressFragment extends BaseFragment implements View.OnClickList
     }
 
     @Override
+    public void onDetach() {
+        super.onDetach();
+        addAddressInterface=null;
+    }
+    private void submitAddress(Address address) {
+        Log.d("username","<>"+address.getUserName());
+        addAddressInterface.submitAddress(address);
+    }
+
+    @Override
     public void onFocusChange(View v, boolean hasFocus) {
         currentSelectedView = (EditText) v;
     }
@@ -107,10 +124,17 @@ public class AddAddressFragment extends BaseFragment implements View.OnClickList
 
             if ((phoneNo.getText().toString().trim().length() >= 10) && (pincode.getText().toString().trim().length() >= 6 && pincode.getText().toString().trim().length() <= 9)) {
                 //send addaddress request
-                Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
                 //send add address service
                 //launch cart screen
-                launchcartSummaryScreen();
+
+                address_ = new Address();
+                address_.setUserName(name.getText().toString());
+                address_.setStreet(address.getText().toString());
+                address_.setCity(city.getText().toString());
+                address_.setState(state.getText().toString());
+                address_.setPhone_no(phoneNo.getText().toString());
+                address_.setZipcode(pincode.getText().toString());
+                submitAddress(address_);
             } else {
                 if (phoneNo.getText().toString().trim().length() < 10)
                     phoneNo.setError(getResources().getString(R.string.valid_phone_number_msg));

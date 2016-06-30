@@ -21,6 +21,8 @@ public class AppConstants {
     public static final int GUEST_LOGIN_REQUEST_ID = 3;
     public static final int GET_ALL_SERVICE_CATEGORIES_REQUEST_ID = 4;
     public static final int GET_ALL_SUB_SERVICE_CATEGORIES_REQUEST_ID = 5;
+    public static final int ADD_ADDRESS = 6;
+    public static final int SERVICE_CONFIRMATION_ID = 7;
 
     /* Service constants*/
     public static final String SUCCESS_TEXT = "SUCCESS";
@@ -28,8 +30,20 @@ public class AppConstants {
     public static final String UNKNOWNHOST_TEXT = "UnknownHost";
     public static final String ERROR_DIALOG_TITLE = "Oops!";
     public static final String GET_ALL_SERVICE_CATEGORIES = "getAllServiceCategories";
+    public static final String GET_ALL_SUB_SERVICE_CATEGORIES = "getAllSubServiceCategories";
     public static final String LOGIN_SERVICE = "loginService";
     public static final String REGISTER_SERVICE = "registerService";
+    public static final String ADD_ADDRESS_SERVICE = "addressService";
+    public static final String SERVICE_CONFIRMATION = "serviceConfirmation";
 
     public static final String SUCCESS ="success";
+    public static final String ERRORS ="errors";
+    public static final String CODE ="code";
+    public static final String MESSAGE ="message";
+    public static final String USERID_OBJ ="user_id";
+    public static final String MESSAGES ="messages";
+    public static final String USERID ="$oid";
+    public static final String USER_ADDRESS_ID ="user_address_id";
+    public static final String USER_ADDRESSES ="user_addresses";
+
 }
