@@ -115,8 +115,7 @@
                 android:gravity="center_horizontal"
                 android:text="@string/login_as_guest_txt"
                 android:textColor="@color/title_text_color"
-                android:textSize="@dimen/register_now_txt_size"
-                android:visibility="gone"/>
+                android:textSize="@dimen/register_now_txt_size"/>
         </LinearLayout>
     </ScrollView>
     l

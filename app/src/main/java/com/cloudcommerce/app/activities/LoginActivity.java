@@ -13,23 +13,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.fragments.LoginFragment;
+import com.cloudcommerce.app.interfaces.LoginInterface;
 import com.cloudcommerce.app.network.AuthenticationService;
 import com.cloudcommerce.app.network.ServiceCategoriesService;
 import com.cloudcommerce.app.utils.AppConstants;
+import com.cloudcommerce.app.utils.ConnectionDetector;
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity implements LoginInterface{
     LoginFragment loginFragment;
     private LoginServiceResultReceiver loginServiceResultReceiver;
     private static final String TAG = "LoginActivity";
+    ConnectionDetector connectionDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         initialiseToolbar();
+        connectionDetector= new ConnectionDetector(this);
         Bundle bundle = new Bundle();
         bundle.putString(AppConstants.LOGIN_FROM_SCREEN, getIntent().getStringExtra(AppConstants.LOGIN_FROM_SCREEN));
         loginFragment = LoginFragment.newInstance();
@@ -63,14 +68,23 @@ public class LoginActivity extends BaseActivity {
         return true;
     }
 
-    public void registerLoginService(String status, int pageNumber) {
+    public void registerLoginService(String email, String password) {
         IntentFilter intentFilter = new IntentFilter(AppConstants.LOGIN_SERVICE);
         loginServiceResultReceiver = new LoginServiceResultReceiver();
         LocalBroadcastManager.getInstance(getBaseContext()).registerReceiver(loginServiceResultReceiver, intentFilter);
         //Show progress dialog -- TODO
         showProgressDialog();
         AuthenticationService loginService = new AuthenticationService(getBaseContext());
-        loginService.sendLoginService();
+        loginService.sendLoginService(email,password);
+    }
+
+    @Override
+    public void login(String email, String password) {
+        if(connectionDetector.isConnectingToInternet()){
+            registerLoginService(email,password);
+        }else{
+            Toast.makeText(this,getResources().getString(R.string.no_internet_access),Toast.LENGTH_SHORT).show();
+        }
     }
 
     public class LoginServiceResultReceiver extends BroadcastReceiver {

@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:button="@drawable/custom_radiobtn_design"
             android:checked="false"
-            android:tag="UnChecked" />
+             />
         <!--android:button="@drawable/custom_radiobtn_design"-->
 
         <LinearLayout
@@ -48,7 +48,8 @@
             android:layout_width="@dimen/edit_icon_dimens"
             android:layout_height="@dimen/edit_icon_dimens"
             android:layout_alignParentRight="true"
-            android:src="@drawable/ic_edit" />
+            android:src="@drawable/ic_edit"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 

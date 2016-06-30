@@ -30,4 +30,6 @@ public class AppConstants {
     public static final String GET_ALL_SERVICE_CATEGORIES = "getAllServiceCategories";
     public static final String LOGIN_SERVICE = "loginService";
     public static final String REGISTER_SERVICE = "registerService";
+
+    public static final String SUCCESS ="success";
 }

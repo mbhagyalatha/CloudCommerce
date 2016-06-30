@@ -41,20 +41,20 @@ public class AuthenticationService extends BaseCloudCommerceService implements W
     }
 
 
-    public void sendRegisterService() {
+    public void sendRegisterService(String first_name,String last_name,String email) {
         AuthenticationWsImpl authenticationWs = new AuthenticationWsImpl(AppConstants.REGISTER_REQUEST_ID, this);
-        authenticationWs.sendRegisterRequest();
+        authenticationWs.sendRegisterRequest(first_name, last_name, email);
     }
 
-    public void sendLoginService() {
+    public void sendLoginService(String email,String password) {
         AuthenticationWsImpl authenticationWs = new AuthenticationWsImpl(AppConstants.LOGIN_REQUEST_ID, this);
-        authenticationWs.sendRegisterRequest();
+        authenticationWs.loginRequest(email, password);
     }
 
-    public void sendGuestLoginService() {
+    /*public void sendGuestLoginService() {
         AuthenticationWsImpl authenticationWs = new AuthenticationWsImpl(AppConstants.GUEST_LOGIN_REQUEST_ID, this);
         authenticationWs.sendRegisterRequest();
-    }
+    }*/
 
 
     @Override
@@ -64,9 +64,8 @@ public class AuthenticationService extends BaseCloudCommerceService implements W
 
                 case AppConstants.REGISTER_REQUEST_ID:
                     //broad cast message
-                    broadcastIntent.putExtra(AppConstants.SUCCESS_TEXT, true);
                     //save auth token in session data
-                    LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
+                    parseRegisterResponse(response.toString());
                     break;
                 case AppConstants.LOGIN_REQUEST_ID:
                     parseLoginResponse(response.toString());
@@ -101,18 +100,15 @@ public class AuthenticationService extends BaseCloudCommerceService implements W
         }
     }
 
-    private void parseAuthentication(String response) {
+    private void parseRegisterResponse(String response) {
         try {
             JSONObject jsonObject = new JSONObject(response);
-
-            String access_token = jsonObject.getString("access_token");
-            String token_type = jsonObject.getString("token_type");
-            Long expires_in = jsonObject.getLong("expires_in");
-
-
-            Log.d("access", access_token + " " + token_type + " " + expires_in);
             //save auth token in session data  --TODO
+            if(jsonObject.getBoolean(AppConstants.SUCCESS)){
 
+            }else {
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -120,16 +116,15 @@ public class AuthenticationService extends BaseCloudCommerceService implements W
     }
 
     private void parseLoginResponse(Object response) {
-        JsonReader jsonReader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(response.toString().getBytes())));
+        //JsonReader jsonReader = new JsonReader(new InputStreamReader(new ByteArrayInputStream(response.toString().getBytes())));
 
         try {
             JSONObject obj = new JSONObject(response.toString());
             //save user data in session data --TODO (user details, addres)
-
+            
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         sendResponse(response);
     }
 

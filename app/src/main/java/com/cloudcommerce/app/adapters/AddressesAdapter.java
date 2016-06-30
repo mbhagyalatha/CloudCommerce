@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.datamodels.Address;
-import com.cloudcommerce.app.datamodels.ServiceDataModel;
+import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +26,8 @@ public class AddressesAdapter extends RecyclerView.Adapter<AddressesAdapter.Addr
     private LayoutInflater inflater;
     private Context context;
     private View.OnClickListener listener;
-
+    private static RadioButton lastChecked = null;
+    private static int lastCheckedPos = 0;
 
     public AddressesAdapter(Context context, List<Address> addressesList) {
         this.context = context;
@@ -50,13 +51,41 @@ public class AddressesAdapter extends RecyclerView.Adapter<AddressesAdapter.Addr
     }
 
     @Override
-    public void onBindViewHolder(AddressHolder holder, int position) {
+    public void onBindViewHolder(final AddressHolder holder, final int position) {
         Address addressItem = addressesList.get(position);
         holder.userName.setText(addressItem.getUserName());
         holder.address.setText(addressItem.getStreet() + "\n" + addressItem.getCity() + ", " + addressItem.getState() + "\n" + addressItem.getPhone_no());
         Log.d("Address Info", " " + addressItem.getUserName());
         //set image to imageview using glide
 
+        holder.addrSelectionRadioBtn.setChecked(addressesList.get(position).isSelected());
+        holder.addrSelectionRadioBtn.setTag(new Integer(position));
+        //for default check in first item
+        if(position == 0 && addressesList.get(0).isSelected() && holder.addrSelectionRadioBtn.isChecked())
+        {
+            lastChecked = holder.addrSelectionRadioBtn;
+            lastCheckedPos = 0;
+        }
+
+        holder.addrSelectionRadioBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RadioButton cb = (RadioButton)v;
+                int clickedPos=((Integer)cb.getTag()).intValue();
+
+                if (cb.isChecked()) {
+                    if (lastChecked != null) {
+                        lastChecked.setChecked(false);
+                        addressesList.get(lastCheckedPos).setSelected(false);
+                    }
+                    lastChecked = cb;
+                    lastCheckedPos = clickedPos;
+                } else
+                    lastChecked = null;
+                addressesList.get(clickedPos).setSelected(cb.isChecked());
+                CloudCommerceSessionData.address = addressesList.get(position);
+            }
+        });
     }
 
     @Override

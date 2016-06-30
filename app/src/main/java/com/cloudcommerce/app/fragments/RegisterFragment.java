@@ -1,5 +1,6 @@
 package com.cloudcommerce.app.fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.interfaces.HomeInterface;
+import com.cloudcommerce.app.interfaces.RegisterInterface;
 import com.cloudcommerce.app.utils.Utils;
 
 public class RegisterFragment extends BaseFragment implements EditText.OnFocusChangeListener, View.OnClickListener {
@@ -23,6 +26,7 @@ public class RegisterFragment extends BaseFragment implements EditText.OnFocusCh
     private Button loginBtn, registerBtn;
     private TextView loginAsGuest;
     private LinearLayout registerLayout;
+    private RegisterInterface registerInterface;
 
     public RegisterFragment() {
         // Required empty public constructor
@@ -71,13 +75,20 @@ public class RegisterFragment extends BaseFragment implements EditText.OnFocusCh
 
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Activity context) {
         super.onAttach(context);
+        try {
+            registerInterface = (RegisterInterface) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        registerInterface=null;
     }
 
     @Override
@@ -110,7 +121,8 @@ public class RegisterFragment extends BaseFragment implements EditText.OnFocusCh
             //validate email
             if (Utils.isEmailValid(registerEmail.getText().toString())) {
                 //send register request
-                Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
+                sendRegistrationRequest();
+                //Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
             } else {
                 //show error msg saying to enter valid email
                 registerEmail.setError(getResources().getString(R.string.valid_email_error_msg));
@@ -127,6 +139,10 @@ public class RegisterFragment extends BaseFragment implements EditText.OnFocusCh
                 registerEmail.setError(getResources().getString(R.string.email_error_msg));
             }
         }
+    }
+
+    private void sendRegistrationRequest() {
+        registerInterface.sendRegistrationRequest(firstName.getText().toString(),lastname.getText().toString(),registerEmail.getText().toString());
     }
 
     public EditText getCurrentFocussedEditText() {
