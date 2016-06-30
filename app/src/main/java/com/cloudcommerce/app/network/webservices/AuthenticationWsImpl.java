@@ -11,6 +11,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.network.WebServiceResultListener;
+import com.cloudcommerce.app.utils.AppConstants;
 
 
 import org.json.JSONObject;
@@ -28,14 +29,17 @@ public class AuthenticationWsImpl extends BaseWsImpl {
     }
 
 
-    public void sendRegisterRequest() {
+    public void sendRegisterRequest(String first_name,String last_name,String email) {
         String url = WsUrlConstants.getUrl(WsUrlConstants.EP_REGISTER);
+        url=url.replace(WsUrlConstants.REG_FIRST_NAME,first_name);
+        url=url.replace(WsUrlConstants.REG_LAST_NAME,last_name);
+        url=url.replace(WsUrlConstants.REG_EMAIL,email);
         Log.d("Register url: ", url);
         sendPostRequest(url);
     }
 
-    public void sendLoginRequest() {
-        String url = WsUrlConstants.getUrl(WsUrlConstants.EP_LOGIN);
+    public void loginRequest(String email,String password) {
+        String url = WsUrlConstants.getUrl(WsUrlConstants.EP_LOGIN)+email;
         Log.d("Login url: ", url);
         sendPostRequest(url);
     }

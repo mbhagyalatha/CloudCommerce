@@ -132,5 +132,6 @@
     <dimen name="summary_grand_total_top_spacing">17dp</dimen>
     <dimen name="summary_info_txt_size">14sp</dimen>
     <dimen name="summary_confirm_btn_bottom_spacing">19dp</dimen>
+    <dimen name="space_btwn_cart_payment">30dp</dimen>
 
 </resources>

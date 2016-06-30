@@ -4,12 +4,14 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cloudcommerce.app.R;
+import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 
 public class CartSummaryFragment extends BaseFragment {
     private TextView serviceCharge;

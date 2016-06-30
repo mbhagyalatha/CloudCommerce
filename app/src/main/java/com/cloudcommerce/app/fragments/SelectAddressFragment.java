@@ -22,6 +22,7 @@ import com.cloudcommerce.app.activities.CartSummaryActivity;
 import com.cloudcommerce.app.adapters.AddressesAdapter;
 import com.cloudcommerce.app.adapters.SubServiceAdapter;
 import com.cloudcommerce.app.datamodels.Address;
+import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
     }
 
     private void initializeControls(View selectAddressView) {
+        continueBtn = (Button)selectAddressView.findViewById(R.id.continue_btn);
         addressesRecyclerview = (RecyclerView) selectAddressView.findViewById(R.id.addresses_recyclerview);
         //layout manager to position its items
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
@@ -101,7 +103,7 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.radio_btn:
-                radioBtn = (RadioButton) v;
+                /*radioBtn = (RadioButton) v;
                 String isBtnChecked = v.getTag().toString();
                 Log.d(TAG, "OnClickListener called " + isBtnChecked);
                 if (isBtnChecked.equals("Checked")) {
@@ -112,7 +114,8 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
                     isAddressselected = true;
                     radioBtn.setChecked(true);
                     radioBtn.setTag("Checked");
-                }
+                    CloudCommerceSessionData.address = addressesList.get(0);
+                }*/
                 break;
             case R.id.continue_btn:
                 if(isAddressselected) {
@@ -123,7 +126,6 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
                 break;
         }
     }
-
     private void launchcartSummaryScreen() {
         Intent intent = new Intent(getActivity(), CartSummaryActivity.class);
         startActivity(intent);

@@ -12,23 +12,29 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.fragments.LoginFragment;
 import com.cloudcommerce.app.fragments.RegisterFragment;
+import com.cloudcommerce.app.interfaces.RegisterInterface;
 import com.cloudcommerce.app.network.AuthenticationService;
+import com.cloudcommerce.app.network.ServiceCategoriesService;
 import com.cloudcommerce.app.utils.AppConstants;
+import com.cloudcommerce.app.utils.ConnectionDetector;
 
-public class RegisterActivity extends BaseActivity {
+public class RegisterActivity extends BaseActivity implements RegisterInterface{
     private static final String TAG = "RegisterActivity";
     RegisterFragment registerFragment;
     private RegisterServiceResultReceiver registerServiceResultReceiver;
+    ConnectionDetector connectionDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         initialiseToolbar();
+        connectionDetector= new ConnectionDetector(this);
         registerFragment = RegisterFragment.newInstance();
         //load register fragment
         loadFragment(registerFragment, R.id.register_container, "Register");
@@ -59,14 +65,23 @@ public class RegisterActivity extends BaseActivity {
         return true;
     }
 
-    public void registerRegistrationService() {
+    public void registerRegistrationService(String first_name,String last_name,String email) {
         IntentFilter intentFilter = new IntentFilter(AppConstants.REGISTER_SERVICE);
         registerServiceResultReceiver = new RegisterServiceResultReceiver();
         LocalBroadcastManager.getInstance(getBaseContext()).registerReceiver(registerServiceResultReceiver, intentFilter);
         //Show progress dialog -- TODO
         showProgressDialog();
         AuthenticationService loginService = new AuthenticationService(getBaseContext());
-        loginService.sendRegisterService();
+        loginService.sendRegisterService(first_name,last_name,email);
+    }
+
+    @Override
+    public void sendRegistrationRequest(String first_name,String last_name,String email) {
+        if(connectionDetector.isConnectingToInternet()){
+            registerRegistrationService(first_name,last_name,email);
+        }else{
+            Toast.makeText(this, getResources().getString(R.string.no_internet_access), Toast.LENGTH_SHORT).show();
+        }
     }
 
     public class RegisterServiceResultReceiver extends BroadcastReceiver {
@@ -76,7 +91,6 @@ public class RegisterActivity extends BaseActivity {
             if (intent.getBooleanExtra(AppConstants.SUCCESS_TEXT, false)) {
                 System.out.println("Stats receiver");
                 //save login details
-
             } else {
                 Log.v(TAG, "ResultReceiver redemptions");
                 String error = intent.getStringExtra(AppConstants.ERROR_TEXT);

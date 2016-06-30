@@ -1,7 +1,6 @@
 package com.cloudcommerce.app.fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -15,7 +14,8 @@ import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.activities.ServicesListActivity;
 import com.cloudcommerce.app.adapters.ServiceAdapter;
-import com.cloudcommerce.app.datamodels.ServiceDataModel;
+import com.cloudcommerce.app.datamodels.CategoryDataModel;
+import com.cloudcommerce.app.datamodels.CategoryListDataModel;
 import com.cloudcommerce.app.interfaces.HomeInterface;
 import com.cloudcommerce.app.utils.AppConstants;
 
@@ -25,7 +25,7 @@ public class HomeFragment extends BaseFragment {
     private RecyclerView servicesRecyclerView;
     private ServiceAdapter serviceAdapter;
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private List<ServiceDataModel> servicesList;
+    private List<CategoryListDataModel> servicesList;
     private HomeInterface homeInterface;
 
 
@@ -60,17 +60,18 @@ public class HomeFragment extends BaseFragment {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
         servicesRecyclerView.setLayoutManager(llm);
         //set adapter
-        servicesList = CloudCommerceApplication.getTestData().getServicesList();
-        serviceAdapter = new ServiceAdapter(getActivity(), servicesList);
-        servicesRecyclerView.setAdapter(serviceAdapter);
+        //servicesList = CloudCommerceApplication.getTestData().getServicesList();
+        //serviceAdapter = new ServiceAdapter(getActivity(), servicesList);
+        //servicesRecyclerView.setAdapter(serviceAdapter);
         //pull to refresh functionality
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 //reload service items
-                servicesList = CloudCommerceApplication.getTestData().getServicesList();
-                serviceAdapter.servicesList = servicesList;
-                serviceAdapter.notifyDataSetChanged();
+                //servicesList = CloudCommerceApplication.getTestData().getServicesList();
+//                serviceAdapter.servicesList = servicesList;
+//                serviceAdapter.notifyDataSetChanged();
+                sendServiceCategoriesRequest();
                 mSwipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -79,7 +80,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onClick(View view, int position) {
                 //navigate to SubServicesActivity
-                launchSubservicesScreen(servicesList.get(position).getServiceName());
+                launchSubservicesScreen(servicesList.get(position));
             }
 
             @Override
@@ -110,14 +111,17 @@ public class HomeFragment extends BaseFragment {
         homeInterface = null;
     }
 
-    private void launchSubservicesScreen(String serviceName) {
+    private void launchSubservicesScreen(CategoryListDataModel categoryListDataModel) {
         Intent subServicesIntent = new Intent(getActivity(), ServicesListActivity.class);
-        subServicesIntent.putExtra(AppConstants.SERVICENAME, serviceName);
+        subServicesIntent.putExtra(AppConstants.SERVICENAME, categoryListDataModel.getCat_name());
+        subServicesIntent.putExtra(AppConstants.CAT_ID,categoryListDataModel.getCat_id());
         startActivity(subServicesIntent);
     }
 
-    public void updateServiceCategories(List<ServiceDataModel> serviceCategoriesList) {
-
+    public void updateServiceCategories(CategoryDataModel categoryDataModel) {
+        this.servicesList = categoryDataModel.getCategoryListDataModels();
+        serviceAdapter = new ServiceAdapter(getActivity(), servicesList);
+        servicesRecyclerView.setAdapter(serviceAdapter);
     }
 
     private void sendServiceCategoriesRequest() {

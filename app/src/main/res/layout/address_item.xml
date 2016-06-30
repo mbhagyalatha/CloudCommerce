@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:button="@drawable/custom_radiobtn_design"
             android:checked="false"
-            android:tag="UnChecked" />
+             />
         <!--android:button="@drawable/custom_radiobtn_design"-->
 
         <LinearLayout

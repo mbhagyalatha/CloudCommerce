@@ -20,10 +20,18 @@ public class Address implements Serializable {
     private String zipcode;
     @SerializedName("phone_no")
     private String phone_no;
-
+    private boolean isSelected;
 
     public String getUserName() {
         return userName;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean isSelected) {
+        this.isSelected = isSelected;
     }
 
     public void setUserName(String userName) {

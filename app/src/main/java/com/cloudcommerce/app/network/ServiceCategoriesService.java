@@ -8,16 +8,17 @@ import android.util.Log;
 import com.android.volley.VolleyError;
 import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
-import com.cloudcommerce.app.network.webservices.AuthenticationWsImpl;
+import com.cloudcommerce.app.datamodels.CategoryDataModel;
+import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
+import com.cloudcommerce.app.datamodels.CategoryListDataModel;
 import com.cloudcommerce.app.network.webservices.BaseWsImpl;
 import com.cloudcommerce.app.network.webservices.ServicecategoriesWsImpl;
 import com.cloudcommerce.app.utils.AppConstants;
-import com.google.gson.stream.JsonReader;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStreamReader;
+import java.util.List;
 
 /**
  * Created by bhagya on 06/25/2016.
@@ -40,23 +41,21 @@ public class ServiceCategoriesService extends BaseCloudCommerceService implement
     @Override
     public void onServiceCompleted(Object response, Object error, int reqId) {
         if (error == null) {
-            switch (reqId) {
-
+            switch (reqId)
+            {
                 case AppConstants.GET_ALL_SERVICE_CATEGORIES_REQUEST_ID:
                     broadcastIntent.putExtra(AppConstants.SUCCESS_TEXT, true);
                     LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
+                    sendResponse((CategoryDataModel)response);
                     break;
-
             }
         } else {
             String netError = CloudCommerceApplication.getAppContext().getResources().getString(R.string.net_error);
             String errorMsg = (String) response;
             if (((VolleyError) error).networkResponse != null) {
-
                 int statusCode = ((VolleyError) error).networkResponse.statusCode;
                 if (statusCode == 401) {
                     //User not authenticated --TODO
-
                 } else {
                     sendError(netError);
                 }
@@ -79,8 +78,9 @@ public class ServiceCategoriesService extends BaseCloudCommerceService implement
         LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
     }
 
-    private void sendResponse(Object response) {
+    private void sendResponse(CategoryDataModel response) {
         broadcastIntent.putExtra(AppConstants.SUCCESS_TEXT, true);
         LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
+        CloudCommerceSessionData.getSessionDataInstance().setCategoryDataModel(response);
     }
 }

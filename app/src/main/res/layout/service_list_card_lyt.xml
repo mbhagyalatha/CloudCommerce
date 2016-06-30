@@ -22,8 +22,7 @@
                 android:id="@+id/sub_service_image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/sub_service_image_height"
-                android:padding="1dp"
-                android:src="@drawable/ic_sample_service" />
+                android:padding="1dp" />
 
 
             <TextView

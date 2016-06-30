@@ -10,7 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cloudcommerce.app.R;
-import com.cloudcommerce.app.datamodels.ServiceDataModel;
+import com.cloudcommerce.app.datamodels.CategoryListDataModel;
+import com.cloudcommerce.app.utils.Utils;
 
 import java.util.Collections;
 import java.util.List;
@@ -19,11 +20,11 @@ import java.util.List;
  * Created by bhagya on 6/21/2015.
  */
 public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceHolder> {
-    public List<ServiceDataModel> servicesList = Collections.emptyList();
+    public List<CategoryListDataModel> servicesList = Collections.emptyList();
     private LayoutInflater inflater;
     private Context context;
 
-    public ServiceAdapter(Context context, List<ServiceDataModel> servicesList) {
+    public ServiceAdapter(Context context, List<CategoryListDataModel> servicesList) {
         this.context = context;
         inflater = LayoutInflater.from(context);
         this.servicesList = servicesList;
@@ -38,12 +39,11 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceH
 
     @Override
     public void onBindViewHolder(ServiceHolder holder, int position) {
-        ServiceDataModel serviceItem = servicesList.get(position);
-        holder.serviceName.setText(serviceItem.getServiceName());
-        holder.serviceOfferInfo.setText(serviceItem.getServiceOfferInfo());
-        Log.d("Service Info", " " + serviceItem.getServiceName() + " : " + serviceItem.getServiceOfferInfo());
+        CategoryListDataModel serviceItem = servicesList.get(position);
+        holder.serviceName.setText(serviceItem.getCat_name());
+        holder.serviceOfferInfo.setText(serviceItem.getSaving());
         //set image to imageview using glide
-
+        Utils.loadImage(context, serviceItem.getImage_url(),holder.serviceImage);
     }
 
     @Override

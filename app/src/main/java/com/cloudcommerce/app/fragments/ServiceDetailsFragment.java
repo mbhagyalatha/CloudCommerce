@@ -16,12 +16,12 @@ import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.activities.LoginActivity;
 import com.cloudcommerce.app.activities.SelectAddressActivity;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
-import com.cloudcommerce.app.datamodels.SubServiceDataModel;
+import com.cloudcommerce.app.datamodels.SubCategoryListDataModel;
 import com.cloudcommerce.app.datamodels.UserDataModel;
 import com.cloudcommerce.app.utils.AppConstants;
 
 public class ServiceDetailsFragment extends BaseFragment implements View.OnClickListener {
-    private SubServiceDataModel selectedService;
+    private SubCategoryListDataModel selectedService;
     TextView serviceName, serviceDesc, serviceCharge;
     ImageView serviceImage;
     Button addToCartBtn, orderNowBtn;
@@ -41,7 +41,7 @@ public class ServiceDetailsFragment extends BaseFragment implements View.OnClick
         super.onCreate(savedInstanceState);
         Bundle bundle = getArguments();
         if (bundle != null) {
-            selectedService = (SubServiceDataModel) bundle.getSerializable(AppConstants.SELECTED_SERVICE);
+            selectedService = (SubCategoryListDataModel) bundle.getSerializable(AppConstants.SELECTED_SERVICE);
         }
     }
 
@@ -100,7 +100,6 @@ public class ServiceDetailsFragment extends BaseFragment implements View.OnClick
                 break;
         }
     }
-
     private void launchloginScreen() {
         Intent serviceDescIntent = new Intent(getActivity(), LoginActivity.class);
         serviceDescIntent.putExtra(AppConstants.LOGIN_FROM_SCREEN, AppConstants.LOGIN_FROM_SERVICE_DETAILS);

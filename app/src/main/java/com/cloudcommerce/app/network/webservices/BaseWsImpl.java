@@ -79,7 +79,6 @@ public abstract class BaseWsImpl {
                                 listener.onServiceCompleted(errorMsg, error, getReqId());
                             }
                         } else {
-
                             if (error.getMessage().contains("No authentication challenges found")) {
                                 statusCode = 401;
                             }
@@ -125,12 +124,12 @@ public abstract class BaseWsImpl {
     }
 
     public void sendPostRequest(String endPointUrl) {
-        String url = WsUrlConstants.getUrl(endPointUrl);
-        Log.d("get account url", url);
-        JsonObjectRequest reqs = new JsonObjectRequest(Request.Method.POST, url, null,
+        Log.d("get account url", endPointUrl);
+        JsonObjectRequest reqs = new JsonObjectRequest(Request.Method.POST, endPointUrl, null,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
+                        Log.d("user response", "user response" + response + "  " + response.toString());
                         parseResponse(response);
                     }
                 }, new Response.ErrorListener() {
@@ -143,7 +142,6 @@ public abstract class BaseWsImpl {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-
                 return setHeaders();
             }
         };
@@ -162,8 +160,7 @@ public abstract class BaseWsImpl {
                     public void onResponse(JSONObject response) {
                         // handle response
                         Log.d("user response", "user response" + response + "  " + response.toString());
-
-                        broadcastResponse(response.toString());
+                        parseResponse(response.toString());
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -188,6 +185,4 @@ public abstract class BaseWsImpl {
 
 
     protected abstract void parseResponse(Object response);
-
-
 }

@@ -119,5 +119,4 @@
                 android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
-    l
 </LinearLayout>

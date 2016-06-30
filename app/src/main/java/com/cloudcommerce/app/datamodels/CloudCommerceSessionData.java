@@ -8,6 +8,8 @@ import com.cloudcommerce.app.CloudCommerceApplication;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.List;
+
 /**
  * Created by developer on 12/05/16.
  */
@@ -20,6 +22,10 @@ public class CloudCommerceSessionData {
     public static String selectedMenuTitle;
     public static String SHPREF_KEY_SELECTED_MENU_TITLE = "SHPREF_KEY_SELECTED_MENU_TITLE";
     public static String SHPREF_KEY_ACCESS_TOKEN = "SHPREF_KEY_ACCESS_TOKEN";
+
+    public static CategoryDataModel categoryDataModel;
+    public static SubCategoryDataModel subCategoryDataModel;
+    public static Address address;
 
     public static CloudCommerceSessionData getSessionDataInstance() {
         if (sessionData == null) {
@@ -73,4 +79,26 @@ public class CloudCommerceSessionData {
         prefsEditor.commit();
     }
 
+    public static CategoryDataModel getCategoryDataModel() {
+        return categoryDataModel;
+    }
+
+    public static void setCategoryDataModel(CategoryDataModel categoryDataModel) {
+        CloudCommerceSessionData.categoryDataModel=categoryDataModel;
+    }
+
+    public static SubCategoryDataModel getSubCategoryDataModel() {
+        return subCategoryDataModel;
+    }
+
+    public static void setSubCategoryDataModel(SubCategoryDataModel subcategoryDataModel) {
+        CloudCommerceSessionData.subCategoryDataModel=subcategoryDataModel;
+    }
+
+    public static void setAddress(Address address){
+        CloudCommerceSessionData.address=address;
+    }
+    public static Address getAddress(){
+        return address;
+    }
 }

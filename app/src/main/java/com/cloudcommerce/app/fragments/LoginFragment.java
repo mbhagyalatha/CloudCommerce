@@ -19,6 +19,8 @@ import com.cloudcommerce.app.activities.ForgotpasswordActivity;
 import com.cloudcommerce.app.activities.RegisterActivity;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.datamodels.UserDataModel;
+import com.cloudcommerce.app.interfaces.LoginInterface;
+import com.cloudcommerce.app.interfaces.RegisterInterface;
 import com.cloudcommerce.app.utils.AppConstants;
 import com.cloudcommerce.app.utils.Utils;
 
@@ -28,6 +30,7 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
     private TextView forgotPwd, loginAsGuest;
     private LinearLayout loginLyt;
     private static String fromScreen;
+    private LoginInterface loginInterface;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -80,13 +83,20 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
     }
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach(Activity context) {
         super.onAttach(context);
+        try {
+            loginInterface = (LoginInterface) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString()
+                    + " must implement OnFragmentInteractionListener");
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        loginInterface=null;
     }
 
     @Override
@@ -135,13 +145,14 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
             //validate email
             if (Utils.isEmailValid(loginEmail.getText().toString())) {
                 //send login request and in its suceess save logged in user data in shared preferences
-                Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
-                UserDataModel user = new UserDataModel();
-                user.setEmail(loginEmail.getText().toString());
-                CloudCommerceSessionData.getSessionDataInstance().setUserJsonData(user);
+                //Toast.makeText(getActivity(), "Success", Toast.LENGTH_LONG).show();
+                //UserDataModel user = new UserDataModel();
+                //user.setEmail(loginEmail.getText().toString());
+                //CloudCommerceSessionData.getSessionDataInstance().setUserJsonData(user);
                 //close keyboard
                 hideKeyBoard(currentSelectedView);
                 sendResultBack(fromScreen);
+                sendLoginService();
             } else {
                 //show error msg saying to enter valid email
                 loginEmail.setError(getResources().getString(R.string.valid_email_error_msg));
@@ -155,6 +166,10 @@ public class LoginFragment extends BaseFragment implements EditText.OnFocusChang
                 loginPassword.setError(getResources().getString(R.string.password_error_msg));
             }
         }
+    }
+
+    private void sendLoginService() {
+        loginInterface.login(loginEmail.getText().toString(),loginPassword.getText().toString());
     }
 
     private void sendResultBack(String fromScreen) {
