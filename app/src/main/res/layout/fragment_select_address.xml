@@ -22,7 +22,7 @@
         android:layout_centerHorizontal="true"
         android:background="@color/btn_bg_color"
         android:text="@string/continue_text"
-        android:textAllCaps="false"
+        android:textAllCaps="true"
         android:textColor="@color/white"
         android:textSize="@dimen/btn_text_size" />
 

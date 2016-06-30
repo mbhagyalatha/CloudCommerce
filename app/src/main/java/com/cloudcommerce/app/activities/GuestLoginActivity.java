@@ -29,7 +29,7 @@ public class GuestLoginActivity extends BaseActivity {
         toolbar = (Toolbar) findViewById(R.id.toolbar_top);
         toolbar.setBackgroundColor(getResources().getColor(R.color.toolbar_bg_color));
         mTitle = (TextView) toolBarLayout.findViewById(R.id.toolbar_title);
-        mTitle.setText(getResources().getString(R.string.app_name));
+        mTitle.setText(getResources().getString(R.string.guest_login_text));
         mTitle.setTextColor(getResources().getColor(R.color.white));
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);

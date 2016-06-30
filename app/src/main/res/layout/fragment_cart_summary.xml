@@ -78,7 +78,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="@dimen/summary_items_count_top_spacing"
-                android:text="230"
+                android:text="230.00"
                 android:textColor="@color/cart_summary_text_colors"
                 android:textSize="@dimen/summary_info_txt_size" />
         </RelativeLayout>
@@ -110,7 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="230"
+                    android:text="230.00"
                     android:textColor="@color/cart_summary_text_colors"
                     android:textSize="@dimen/summary_info_txt_size" />
             </RelativeLayout>
@@ -136,7 +136,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="50"
+                    android:text="50.00"
                     android:textColor="@color/cart_summary_text_colors"
                     android:textSize="@dimen/summary_info_txt_size" />
             </RelativeLayout>
@@ -162,7 +162,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:text="280"
+                    android:text="280.00"
                     android:textColor="@color/cart_summary_text_colors"
                     android:textSize="@dimen/summary_info_txt_size" />
             </RelativeLayout>

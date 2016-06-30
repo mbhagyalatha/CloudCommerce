@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import com.cloudcommerce.app.CloudCommerceApplication;
 import com.cloudcommerce.app.R;
@@ -26,11 +27,12 @@ import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import java.util.List;
 
 public class SelectAddressFragment extends BaseFragment implements View.OnClickListener {
-    private Button continueBtn;
     private RadioButton radioBtn;
     private RecyclerView addressesRecyclerview;
     private List<Address> addressesList;
     private AddressesAdapter addressesAdapter;
+    private boolean isAddressselected;
+    private Button continueBtn;
 
     public SelectAddressFragment() {
         // Required empty public constructor
@@ -66,6 +68,24 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
         addressesAdapter = new AddressesAdapter(getActivity(), addressesList);
         addressesAdapter.setListener(this);
         addressesRecyclerview.setAdapter(addressesAdapter);
+       /* radioBtn = (RadioButton) selectAddressView.findViewById(R.id.radio_btn);
+
+        radioBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //boolean checked = ((RadioButton) v).isChecked();
+                String isBtnChecked = v.getTag().toString();
+                Log.d(TAG, "OnClickListener called " + isBtnChecked);
+                if (isBtnChecked.equals("Checked")) {
+                    radioBtn.setChecked(false);
+                    radioBtn.setTag("UnChecked");
+                } else {
+                    radioBtn.setChecked(true);
+                    radioBtn.setTag("Checked");
+                }
+            }
+        });*/
+        continueBtn = (Button)selectAddressView.findViewById(R.id.continue_btn);
         continueBtn.setOnClickListener(this);
     }
 
@@ -87,17 +107,23 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
                 String isBtnChecked = v.getTag().toString();
                 Log.d(TAG, "OnClickListener called " + isBtnChecked);
                 if (isBtnChecked.equals("Checked")) {
+                    isAddressselected = false;
                     radioBtn.setChecked(false);
                     radioBtn.setTag("UnChecked");
                 } else {
+                    isAddressselected = true;
                     radioBtn.setChecked(true);
                     radioBtn.setTag("Checked");
                     CloudCommerceSessionData.address = addressesList.get(0);
                 }*/
                 break;
             case R.id.continue_btn:
-                 launchcartSummaryScreen();
-                 break;
+                if(isAddressselected) {
+                    launchcartSummaryScreen();
+                }else{
+                    Toast.makeText(getActivity(),"Please select address ",Toast.LENGTH_LONG).show();
+                }
+                break;
         }
     }
     private void launchcartSummaryScreen() {
