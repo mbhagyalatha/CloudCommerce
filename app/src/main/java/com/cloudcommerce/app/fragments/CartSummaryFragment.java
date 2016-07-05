@@ -20,7 +20,7 @@ public class CartSummaryFragment extends BaseFragment implements View.OnClickLis
     private TextView serviceCharge,username,street,city_state,phoneneumber;
     private Button cart_continue_btn;
     private ServiceConfirmationInterface serviceConfirmationInterface;
-
+    String address_id="";
     public CartSummaryFragment() {
         // Required empty public constructor
     }
@@ -57,10 +57,17 @@ public class CartSummaryFragment extends BaseFragment implements View.OnClickLis
 
     private void setDataToControls() {
         serviceCharge.setText(getResources().getString(R.string.rupee_symbol) + " " + "230.00");
-        username.setText(CloudCommerceSessionData.getSessionDataInstance().userAddresses.getName());
-        street.setText(CloudCommerceSessionData.getSessionDataInstance().userAddresses.getStreet());
-        city_state.setText(CloudCommerceSessionData.getSessionDataInstance().userAddresses.getCity()+","+CloudCommerceSessionData.getSessionDataInstance().userAddresses.getState());
-        phoneneumber.setText(CloudCommerceSessionData.getSessionDataInstance().userAddresses.getPhone_number());
+        if(CloudCommerceSessionData.getSessionDataInstance().userAddresses != null){
+            username.setText(CloudCommerceSessionData.getSessionDataInstance().userAddresses.getName());
+            street.setText(CloudCommerceSessionData.getSessionDataInstance().userAddresses.getStreet());
+            city_state.setText(CloudCommerceSessionData.getSessionDataInstance().userAddresses.getCity()+","+CloudCommerceSessionData.getSessionDataInstance().userAddresses.getState());
+            phoneneumber.setText(CloudCommerceSessionData.getSessionDataInstance().userAddresses.getPhone_number());
+        }else{
+            username.setText(CloudCommerceSessionData.getSessionDataInstance().getAddress().getUserName());
+            street.setText(CloudCommerceSessionData.getSessionDataInstance().getAddress().getStreet());
+            city_state.setText(CloudCommerceSessionData.getSessionDataInstance().getAddress().getCity()+","+CloudCommerceSessionData.getSessionDataInstance().getAddress().getState());
+            phoneneumber.setText(CloudCommerceSessionData.getSessionDataInstance().getAddress().getPhone_no());
+        }
     }
 
     @Override
@@ -90,7 +97,12 @@ public class CartSummaryFragment extends BaseFragment implements View.OnClickLis
         }
 
     private void getServiceConfirmation() {
+        if(CloudCommerceSessionData.getSessionDataInstance().getAddressid()=="0"){
+            address_id = CloudCommerceSessionData.getSessionDataInstance().userAddresses.getUseraddresssid().getUser_address_id();
+        }else{
+            address_id = CloudCommerceSessionData.getSessionDataInstance().getAddressid();
+        }
         serviceConfirmationInterface.serviceConfirmation(CloudCommerceSessionData.getSessionDataInstance().getUserid(),
-                CloudCommerceSessionData.getSessionDataInstance().userAddresses.getUseraddresssid().getUser_address_id(),"1");
+                address_id,"1");
     }
 }

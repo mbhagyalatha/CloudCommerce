@@ -157,7 +157,7 @@ public class BaseNavigationActivity extends BaseActivity
     }
 
     private void launchServicesActivity() {
-Intent intent = new Intent(this,HomeActivity.class);
+        Intent intent = new Intent(this,HomeActivity.class);
         startActivity(intent);
         finish();
     }

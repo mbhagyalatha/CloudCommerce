@@ -63,6 +63,6 @@ public class SelectAddressActivity extends BaseActivity {
     private void launchAddAddressScreen() {
         Intent intent = new Intent(this, AddAddressActivity.class);
         startActivity(intent);
-        finish();
+        //finish();
     }
 }

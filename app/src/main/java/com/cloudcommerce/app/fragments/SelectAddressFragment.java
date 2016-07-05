@@ -125,6 +125,6 @@ public class SelectAddressFragment extends BaseFragment implements View.OnClickL
     private void launchcartSummaryScreen() {
         Intent intent = new Intent(getActivity(), CartSummaryActivity.class);
         startActivity(intent);
-        getActivity().finish();
+        //getActivity().finish();
     }
 }

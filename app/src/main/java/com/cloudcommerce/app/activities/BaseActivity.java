@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
@@ -185,5 +186,30 @@ public class BaseActivity extends AppCompatActivity {
         builder.setCancelable(false);
         builder.create();
         builder.show();
+    }
+    public void showErrorDialog(final String message, String title,final int code) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(title);
+        builder.setPositiveButton(getResources().getString(R.string.ok_text), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //cancel dialog
+                dialog.dismiss();
+                if(code == 118){
+                    removeStack();
+                }
+            }
+        });
+        builder.setMessage(message);
+        builder.setCancelable(false);
+        builder.create();
+        builder.show();
+    }
+
+    private void removeStack() {
+        Intent i = new Intent(BaseActivity.this, HomeActivity.class);
+        // set the new task and clear flags
+        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(i);
     }
 }

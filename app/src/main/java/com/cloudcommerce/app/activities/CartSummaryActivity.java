@@ -1,7 +1,9 @@
 package com.cloudcommerce.app.activities;
 
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
@@ -33,6 +35,8 @@ public class CartSummaryActivity extends BaseActivity implements ServiceConfirma
     private CartSummaryFragment cartSummaryFragment;
     ServiceConfirmationResultReceiver serviceConfirmationResultReceiver;
     ConnectionDetector connectionDetector;
+    int code=0;
+    String Service_Confirmation_message="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +97,22 @@ public class CartSummaryActivity extends BaseActivity implements ServiceConfirma
             unregisterLoginServiceResultReceiver();
             if (intent.getBooleanExtra(AppConstants.SUCCESS_TEXT, false)) {
                 System.out.println("Stats receiver");
-                //save login details
+                try{
+                    JSONObject jsonObject = new JSONObject(CloudCommerceSessionData.getSessionDataInstance().getServiceConfirmationResponse());
+                    JSONArray jsonArray = jsonObject.getJSONArray(AppConstants.SERVICE_CONFIRM);
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(0);
+                        code = jsonObject1.getInt(AppConstants.CODE);
+                        Service_Confirmation_message = jsonObject1.getString(AppConstants.MESSAGE);
+                    }
+                    if(code == 118){
+                        showErrorDialog(Service_Confirmation_message, AppConstants.SERVICE_CONFIRMATION_TITLE, code);
+                    }else{
+                        showErrorDialog(Service_Confirmation_message,AppConstants.SERVICE_CONFIRMATION_TITLE,code);
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
 
             } else {
                 String error = intent.getStringExtra(AppConstants.ERROR_TEXT);
@@ -116,5 +135,4 @@ public class CartSummaryActivity extends BaseActivity implements ServiceConfirma
             serviceConfirmationResultReceiver = null;
         }
     }
-
 }

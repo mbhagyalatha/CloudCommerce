@@ -11,8 +11,10 @@ import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.datamodels.CategoryDataModel;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.datamodels.CategoryListDataModel;
+import com.cloudcommerce.app.datamodels.SubCategoryDataModel;
 import com.cloudcommerce.app.network.webservices.BaseWsImpl;
 import com.cloudcommerce.app.network.webservices.ServicecategoriesWsImpl;
+import com.cloudcommerce.app.network.webservices.SubServiceCategoryWsImpl;
 import com.cloudcommerce.app.utils.AppConstants;
 
 import org.json.JSONArray;
@@ -20,21 +22,18 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-/**
- * Created by bhagya on 06/25/2016.
- */
-public class ServiceCategoriesService extends BaseCloudCommerceService implements WebServiceResultListener {
+public class SubCategoryService extends BaseCloudCommerceService implements WebServiceResultListener {
 
-    private Intent broadcastIntent = new Intent(AppConstants.GET_ALL_SERVICE_CATEGORIES);
+    private Intent broadcastIntent = new Intent(AppConstants.GET_ALL_SUB_SERVICE_CATEGORIES);
 
-    public ServiceCategoriesService(Context context) {
+    public SubCategoryService(Context context) {
         super(context);
     }
 
 
-    public void getAllServiceCategories() {
-        ServicecategoriesWsImpl serviceCategoriesWs = new ServicecategoriesWsImpl(AppConstants.GET_ALL_SERVICE_CATEGORIES_REQUEST_ID, this);
-        serviceCategoriesWs.getAllServiceCategoriesRequest();
+    public void getAllSubServiceCategories(int cat_id) {
+        SubServiceCategoryWsImpl subServiceCategoryWs = new SubServiceCategoryWsImpl(AppConstants.GET_ALL_SUB_SERVICE_CATEGORIES_REQUEST_ID, this);
+        subServiceCategoryWs.getAllSubServiceCategory(cat_id);
     }
 
 
@@ -43,10 +42,10 @@ public class ServiceCategoriesService extends BaseCloudCommerceService implement
         if (error == null) {
             switch (reqId)
             {
-                case AppConstants.GET_ALL_SERVICE_CATEGORIES_REQUEST_ID:
+                case AppConstants.GET_ALL_SUB_SERVICE_CATEGORIES_REQUEST_ID:
                     broadcastIntent.putExtra(AppConstants.SUCCESS_TEXT, true);
                     LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
-                    sendResponse((CategoryDataModel)response);
+                    sendResponse((SubCategoryDataModel)response);
                     break;
             }
         } else {
@@ -60,7 +59,7 @@ public class ServiceCategoriesService extends BaseCloudCommerceService implement
                     sendError(netError);
                 }
             } else {
-                if (reqId == AppConstants.GET_ALL_SERVICE_CATEGORIES_REQUEST_ID || BaseWsImpl.statusCode == 401)
+                if (reqId == AppConstants.GET_ALL_SUB_SERVICE_CATEGORIES_REQUEST_ID || BaseWsImpl.statusCode == 401)
                     sendError(context.getResources().getString(R.string.net_error));
                 else if (errorMsg.equals(context.getResources().getString(R.string.no_internet_access))) {
                     sendError(context.getResources().getString(R.string.no_internet_access));
@@ -78,9 +77,9 @@ public class ServiceCategoriesService extends BaseCloudCommerceService implement
         LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
     }
 
-    private void sendResponse(CategoryDataModel response) {
+    private void sendResponse(SubCategoryDataModel response) {
         broadcastIntent.putExtra(AppConstants.SUCCESS_TEXT, true);
         LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
-        CloudCommerceSessionData.getSessionDataInstance().setCategoryDataModel(response);
+        CloudCommerceSessionData.getSessionDataInstance().setSubCategoryDataModel(response);
     }
 }

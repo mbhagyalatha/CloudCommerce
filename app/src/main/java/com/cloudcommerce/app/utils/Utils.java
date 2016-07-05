@@ -29,7 +29,7 @@ public class Utils {
         }catch (Exception e){
             e.printStackTrace();
         }
-            Glide.with(context).load("http://res.cloudinary.com/demo/image/upload/sample.jpg").asBitmap().
+            Glide.with(context).load(imageUrl).asBitmap().
                     diskCacheStrategy(DiskCacheStrategy.SOURCE).placeholder(R.drawable.ic_sample_service)
                     .error(R.drawable.ic_sample_service).into(userImageView);
     }

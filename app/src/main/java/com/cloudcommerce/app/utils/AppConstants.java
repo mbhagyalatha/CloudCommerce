@@ -35,6 +35,7 @@ public class AppConstants {
     public static final String REGISTER_SERVICE = "registerService";
     public static final String ADD_ADDRESS_SERVICE = "addressService";
     public static final String SERVICE_CONFIRMATION = "serviceConfirmation";
+    public static final String SERVICE_CONFIRMATION_TITLE = "SERVICE CONFIRMATION";
 
     public static final String SUCCESS ="success";
     public static final String ERRORS ="errors";
@@ -45,5 +46,6 @@ public class AppConstants {
     public static final String USERID ="$oid";
     public static final String USER_ADDRESS_ID ="user_address_id";
     public static final String USER_ADDRESSES ="user_addresses";
+    public static final String SERVICE_CONFIRM ="service_confirm";
 
 }

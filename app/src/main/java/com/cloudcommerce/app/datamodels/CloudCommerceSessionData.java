@@ -35,6 +35,7 @@ public class CloudCommerceSessionData {
     public static Address address;
     public static String registerResponse="";
     public static String loginResponse="";
+    public static String serviceConfirmationResponse="";
     public static String userid="";
     public static String add_address_response="";
     public static String address_id="";
@@ -151,6 +152,13 @@ public class CloudCommerceSessionData {
     }
     public static String getLoginResponse(){;
         return loginResponse;
+    }
+
+    public static void setServiceConfirmationResponse(String serviceConfirmationResponse){
+        CloudCommerceSessionData.serviceConfirmationResponse = serviceConfirmationResponse;
+    }
+    public static String getServiceConfirmationResponse(){;
+        return serviceConfirmationResponse;
     }
 
     public static void setAdd_address_response(String add_address_response){
