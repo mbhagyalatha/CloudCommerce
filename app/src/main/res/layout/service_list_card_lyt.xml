@@ -22,6 +22,7 @@
                 android:id="@+id/sub_service_image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/sub_service_image_height"
+                android:scaleType="fitXY"
                 android:padding="1dp" />
 
 

@@ -30,7 +30,8 @@
                 android:text="@string/cart_summary_title"
                 android:textColor="@color/cart_summary_text_colors"
                 android:layout_toLeftOf="@+id/summary_items_count_txt"
-                android:textSize="@dimen/cart_summary_txt_size" />
+                android:textSize="@dimen/cart_summary_txt_size"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/summary_items_count_txt"
@@ -40,7 +41,8 @@
                 android:layout_alignParentRight="true"
                 android:text="@string/summary_item_count"
                 android:textColor="@color/cart_summary_text_colors"
-                android:textSize="@dimen/summary_info_txt_size" />
+                android:textSize="@dimen/summary_info_txt_size"
+                android:visibility="gone"/>
         </RelativeLayout>
 
         <RelativeLayout
@@ -56,11 +58,12 @@
                 android:layout_marginTop="@dimen/summary_items_count_top_spacing"
                 android:text="1."
                 android:textColor="@color/cart_summary_text_colors"
-                android:textSize="@dimen/summary_info_txt_size" />
+                android:textSize="@dimen/summary_info_txt_size"
+                android:visibility="gone"/>
 
             <TextView
                 android:id="@+id/summary_service_name"
-                style="@style/roboto_regular"
+                style="@style/roboto_bold"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/summary_service_name_left_spacing"
@@ -86,7 +89,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/summary_total_price_left_spacing"
+            android:layout_marginLeft="@dimen/summary_service_name_left_spacing"
             android:orientation="vertical">
 
             <RelativeLayout
@@ -118,7 +121,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/summary_delivery_charges_top_spacing">
+                android:layout_marginTop="@dimen/summary_delivery_charges_top_spacing"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/delivery_charges_txt"
@@ -144,7 +148,8 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/summary_grand_total_top_spacing">
+                android:layout_marginTop="@dimen/summary_grand_total_top_spacing"
+                android:visibility="gone">
 
                 <TextView
                     android:id="@+id/grand_total_txt"

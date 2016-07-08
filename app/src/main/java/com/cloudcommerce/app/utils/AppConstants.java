@@ -23,6 +23,7 @@ public class AppConstants {
     public static final int GET_ALL_SUB_SERVICE_CATEGORIES_REQUEST_ID = 5;
     public static final int ADD_ADDRESS = 6;
     public static final int SERVICE_CONFIRMATION_ID = 7;
+    public static final int GET_ADDRESS_LIST_REQ_ID = 8;
 
     /* Service constants*/
     public static final String SUCCESS_TEXT = "SUCCESS";
@@ -35,7 +36,8 @@ public class AppConstants {
     public static final String REGISTER_SERVICE = "registerService";
     public static final String ADD_ADDRESS_SERVICE = "addressService";
     public static final String SERVICE_CONFIRMATION = "serviceConfirmation";
-    public static final String SERVICE_CONFIRMATION_TITLE = "SERVICE CONFIRMATION";
+    public static final String SERVICE_CONFIRMATION_TITLE = "Service Confirmation";
+    public static final String GET_ADDRESS_LIST = "ADDRESS LIST";
 
     public static final String SUCCESS ="success";
     public static final String ERRORS ="errors";
@@ -48,4 +50,6 @@ public class AppConstants {
     public static final String USER_ADDRESSES ="user_addresses";
     public static final String SERVICE_CONFIRM ="service_confirm";
 
+    public static final String DRAWER_SCREEN = "drawer_screen";
+    public static final String SERVICE_SCREEN = "service_screen";
 }

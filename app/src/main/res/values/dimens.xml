@@ -85,14 +85,14 @@
     <dimen name="forgot_pwd_info_txt_size">12sp</dimen>
 
     <!-- services screen dimens-->
-    <dimen name="service_image_height">139dp</dimen>
+    <dimen name="service_image_height">150dp</dimen>
     <dimen name="service_info_lyt_height">44dp</dimen>
     <dimen name="service_card_spacing">8dp</dimen>
     <dimen name="service_info_spacing">9dp</dimen>
     <dimen name="service_info_txt_size">12sp</dimen>
 
     <!-- sub service screen dimens -->
-    <dimen name="sub_service_image_height">140dp</dimen>
+    <dimen name="sub_service_image_height">150dp</dimen>
     <dimen name="sub_service_spacing">13dp</dimen>
     <dimen name="sub_service_desc_top_spacing">9dp</dimen>
     <dimen name="sub_service_right_arrow_bottom_padding">7dp</dimen>
@@ -133,5 +133,6 @@
     <dimen name="summary_info_txt_size">14sp</dimen>
     <dimen name="summary_confirm_btn_bottom_spacing">19dp</dimen>
     <dimen name="space_btwn_cart_payment">30dp</dimen>
+    <dimen name="addr_no_addr_txt">16dp</dimen>
 
 </resources>

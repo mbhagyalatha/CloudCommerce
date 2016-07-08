@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.activities.CartSummaryActivity;
 import com.cloudcommerce.app.datamodels.Address;
+import com.cloudcommerce.app.datamodels.UserAddresses;
 import com.cloudcommerce.app.interfaces.AddAddressInterface;
 import com.cloudcommerce.app.interfaces.RegisterInterface;
 import com.cloudcommerce.app.utils.Utils;
@@ -30,7 +31,7 @@ public class AddAddressFragment extends BaseFragment implements View.OnClickList
     private Button continueBtn;
     private LinearLayout addAddressLyt;
     private AddAddressInterface addAddressInterface;
-    Address address_;
+    UserAddresses address_;
 
     public AddAddressFragment() {
         // Required empty public constructor
@@ -109,8 +110,7 @@ public class AddAddressFragment extends BaseFragment implements View.OnClickList
         super.onDetach();
         addAddressInterface=null;
     }
-    private void submitAddress(Address address) {
-        Log.d("username","<>"+address.getUserName());
+    private void submitAddress(UserAddresses address) {
         addAddressInterface.submitAddress(address);
     }
 
@@ -127,13 +127,13 @@ public class AddAddressFragment extends BaseFragment implements View.OnClickList
                 //send add address service
                 //launch cart screen
 
-                address_ = new Address();
-                address_.setUserName(name.getText().toString());
+                address_ = new UserAddresses();
+                address_.setName(name.getText().toString());
                 address_.setStreet(address.getText().toString());
                 address_.setCity(city.getText().toString());
                 address_.setState(state.getText().toString());
-                address_.setPhone_no(phoneNo.getText().toString());
-                address_.setZipcode(pincode.getText().toString());
+                address_.setPhone_number(phoneNo.getText().toString());
+                address_.setPincode(pincode.getText().toString());
                 submitAddress(address_);
             } else {
                 if (phoneNo.getText().toString().trim().length() < 10)

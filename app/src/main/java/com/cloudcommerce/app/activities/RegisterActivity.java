@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
+import com.cloudcommerce.app.datamodels.UserDataModel;
 import com.cloudcommerce.app.fragments.LoginFragment;
 import com.cloudcommerce.app.fragments.RegisterFragment;
 import com.cloudcommerce.app.interfaces.RegisterInterface;
@@ -23,6 +24,7 @@ import com.cloudcommerce.app.network.AuthenticationService;
 import com.cloudcommerce.app.network.ServiceCategoriesService;
 import com.cloudcommerce.app.utils.AppConstants;
 import com.cloudcommerce.app.utils.ConnectionDetector;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -60,13 +62,25 @@ public class RegisterActivity extends BaseActivity implements RegisterInterface{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
+                 loadLoginScreen();
                 if (registerFragment != null)
                     //hide keyboard
                     hideKeyBoard(registerFragment.getCurrentFocussedEditText());
                 //finish activity
-                finish();
         }
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        loadLoginScreen();
+    }
+
+    private void loadLoginScreen() {
+        Intent login_screen = new Intent(this,LoginActivity.class);
+        startActivity(login_screen);
+        finish();
     }
 
     public void registerRegistrationService(String first_name,String last_name,String email) {
@@ -98,6 +112,8 @@ public class RegisterActivity extends BaseActivity implements RegisterInterface{
                 try{
                     JSONObject jsonObject = new JSONObject(CloudCommerceSessionData.getSessionDataInstance().getRegisterResponse());
                     if(jsonObject.getBoolean(AppConstants.SUCCESS)){
+                        UserDataModel userDataModel = new Gson().fromJson(jsonObject.getJSONObject("user").toString(),UserDataModel.class);
+                        CloudCommerceSessionData.getSessionDataInstance().setUserJsonData(userDataModel);
                         JSONArray jsonArray = jsonObject.getJSONArray(AppConstants.MESSAGES);
                         for(int i=0;i<jsonArray.length();i++){
                                 JSONObject jsonObject1 = jsonArray.getJSONObject(0);
@@ -107,7 +123,11 @@ public class RegisterActivity extends BaseActivity implements RegisterInterface{
                             JSONObject jsonObject2=jsonObject.getJSONObject(AppConstants.USERID_OBJ);
                             CloudCommerceSessionData.getSessionDataInstance().setUserid(jsonObject2.getString(AppConstants.USERID));
                             Log.d("user id is", "<>" + jsonObject2.getString(AppConstants.USERID));
+                        if(CloudCommerceSessionData.getSessionDataInstance().getFromScreenLogin().equals(AppConstants.DRAWER_SCREEN)){
+                            launchServiceScreen();
+                        }else{
                             launchAddressSelectionScreen();
+                        }
                         }else{
                         JSONArray jsonArray = jsonObject.getJSONArray(AppConstants.ERRORS);
                         for(int i=0;i<jsonArray.length();i++){
@@ -144,6 +164,13 @@ public class RegisterActivity extends BaseActivity implements RegisterInterface{
     private void launchAddressSelectionScreen() {
         Intent serviceDescIntent = new Intent(this, SelectAddressActivity.class);
         startActivity(serviceDescIntent);
+        finish();
+    }
+
+    private void launchServiceScreen() {
+        Intent homescreen = new Intent(this, HomeActivity.class);
+        homescreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homescreen);
         finish();
     }
 }

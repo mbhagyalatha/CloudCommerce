@@ -25,6 +25,8 @@ public class WsUrlConstants {
     public static final String SER_CNF_USER_ADDRESSID="[user_address_id]";
     public static final String SER_CNF_SERVICEID="[service_id]";
 
+    public static final String GET_ADDR_LIST_USERID="[userid]";
+
     public static final String API_KEY = "MevVHxhd5bNkYpVjZJ9QrjuHg627m9IdUp8SL45Dw";
     public static final String EP_LOGIN = "user_login?email=";
     public static final String EP_REGISTER = "register_user?first_name="+REG_FIRST_NAME +"&last_name="+REG_LAST_NAME+"&email="+REG_EMAIL;
@@ -35,6 +37,8 @@ public class WsUrlConstants {
             "&pincode="+ADD_ADDR_PINCODE+"&city="+ADD_ADDR_CITY+"&state="+ADD_ADDR_STATE+"&phone_number="+ADD_ADDR_PHONE_NUM;
 
     public static final String EP_SERVICE_CONFIRMATION = "service_confirmation?user_id="+SER_CNF_USERID+"&user_address_id="+SER_CNF_USER_ADDRESSID+"&service_id="+SER_CNF_SERVICEID;
+
+    public static final String EP_GET_ADDRESS_LIST = "get_user_address?user_id="+GET_ADDR_LIST_USERID;
 
     public static String getUrl(String endPoint) {
         String url = null;

@@ -145,8 +145,8 @@ public class FragmentDrawer extends BaseFragment implements OnClickListener {
                     &&CloudCommerceSessionData.getSessionDataInstance().getUserid()!="0") {
                 signInRequiredLyt.setVisibility(View.GONE);
                 signedInUserLyt.setVisibility(View.VISIBLE);
-                //userName.setText(currentUser.getUserName());
-                userEmail.setText(currentUser.getEmail());
+                userName.setText(CloudCommerceSessionData.getSessionDataInstance().getUserData().getFirst_name()+" "+CloudCommerceSessionData.getSessionDataInstance().getUserData().getLast_name());
+                userEmail.setText(CloudCommerceSessionData.getSessionDataInstance().getUserData().getEmail());
             } else {
                 signedInUserLyt.setVisibility(View.GONE);
                 signInRequiredLyt.setVisibility(View.VISIBLE);
@@ -206,6 +206,7 @@ public class FragmentDrawer extends BaseFragment implements OnClickListener {
                 //close drawer
                 mDrawerLayout.closeDrawer(containerView);
                 //load signin screen
+                CloudCommerceSessionData.getSessionDataInstance().setFromScreenLogin(AppConstants.DRAWER_SCREEN);
                 launchloginScreenScreen();
                 break;
             case R.id.signout_btn:

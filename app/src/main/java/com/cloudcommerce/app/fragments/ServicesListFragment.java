@@ -15,6 +15,7 @@ import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.activities.ServiceDetailsActivity;
 import com.cloudcommerce.app.adapters.SubServiceAdapter;
 import com.cloudcommerce.app.datamodels.CategoryDataModel;
+import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.datamodels.SubCategoryDataModel;
 import com.cloudcommerce.app.datamodels.SubCategoryListDataModel;
 import com.cloudcommerce.app.interfaces.SubCategoryInterface;
@@ -112,6 +113,7 @@ public class ServicesListFragment extends BaseFragment {
     }
 
     private void launchServiceDescriptionScreen(int position) {
+        CloudCommerceSessionData.getSessionDataInstance().setSubCategoryListDataModel(subServicesList.get(position));
         Intent serviceDescIntent = new Intent(getActivity(), ServiceDetailsActivity.class);
         //send selected srevice
         serviceDescIntent.putExtra(AppConstants.SELECTED_SERVICE, subServicesList.get(position));

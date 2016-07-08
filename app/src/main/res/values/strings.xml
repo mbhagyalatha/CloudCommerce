@@ -75,8 +75,10 @@
     <string name="summary_delivery_charges">Delivery Charges</string>
     <string name="summary_grand_total">Grand Total</string>
     <string name="payment">Payment</string>
-    <string name="pay_by_cash_on_delivery">Pay by Cash on Delivery</string>
+    <string name="pay_by_cash_on_delivery">Cash on Delivery</string>
     <string name="shipping_address">Shipping address</string>
+
+    <string name="txt_no_addr_for_user">There are no addresses for this user \n Please add address</string>
 
 
     <!--Network related strings-->

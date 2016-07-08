@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.datamodels.Address;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
+import com.cloudcommerce.app.datamodels.UserAddresses;
 import com.cloudcommerce.app.fragments.AddAddressFragment;
 import com.cloudcommerce.app.fragments.LoginFragment;
 import com.cloudcommerce.app.interfaces.AddAddressInterface;
@@ -37,7 +38,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressInterf
     AddressServiceResultReceiver addressServiceResultReceiver;
 
     @Override
-    public void submitAddress(Address address) {
+    public void submitAddress(UserAddresses address) {
         if(connectionDetector.isConnectingToInternet()){
             submitAddressTServer(address);
         }else{
@@ -45,7 +46,7 @@ public class AddAddressActivity extends BaseActivity implements AddAddressInterf
         }
     }
 
-    public void submitAddressTServer(Address address) {
+    public void submitAddressTServer(UserAddresses address) {
         IntentFilter intentFilter = new IntentFilter(AppConstants.ADD_ADDRESS_SERVICE);
         addressServiceResultReceiver = new AddressServiceResultReceiver();
         LocalBroadcastManager.getInstance(getBaseContext()).registerReceiver(addressServiceResultReceiver, intentFilter);

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.datamodels.UserAddresses;
+import com.cloudcommerce.app.datamodels.UserDataModel;
 import com.cloudcommerce.app.fragments.LoginFragment;
 import com.cloudcommerce.app.interfaces.LoginInterface;
 import com.cloudcommerce.app.network.AuthenticationService;
@@ -104,6 +105,8 @@ public class LoginActivity extends BaseActivity implements LoginInterface{
                 try{
                     JSONObject jsonObject = new JSONObject(CloudCommerceSessionData.getSessionDataInstance().getLoginResponse());
                     if(jsonObject.getBoolean(AppConstants.SUCCESS)){
+                        UserDataModel userDataModel = new Gson().fromJson(jsonObject.getJSONObject("user").toString(),UserDataModel.class);
+                        CloudCommerceSessionData.getSessionDataInstance().setUserJsonData(userDataModel);
                         JSONArray jsonArray = jsonObject.getJSONArray(AppConstants.MESSAGES);
                         for(int i=0;i<jsonArray.length();i++){
                             JSONObject jsonObject1 = jsonArray.getJSONObject(0);
@@ -113,13 +116,18 @@ public class LoginActivity extends BaseActivity implements LoginInterface{
                         JSONObject jsonObject2=jsonObject.getJSONObject(AppConstants.USERID_OBJ);
                         CloudCommerceSessionData.getSessionDataInstance().setUserid(jsonObject2.getString(AppConstants.USERID));
                         Log.d("user id is", "<>" + jsonObject2.getString(AppConstants.USERID));
-                        JSONArray jsonArray1 = jsonObject.getJSONArray(AppConstants.USER_ADDRESSES);
+
+                        /*JSONArray jsonArray1 = jsonObject.getJSONArray(AppConstants.USER_ADDRESSES);
                         for(int i=0;i<jsonArray1.length();i++){
                             userAddresses = new Gson().fromJson(jsonArray1.getJSONObject(i).toString(), UserAddresses.class);
                             userAddressesList.add(userAddresses);
                         }
-                        CloudCommerceSessionData.getSessionDataInstance().setUserAddressesList(userAddressesList);
-                        launchAddressSelectionScreen();
+                        CloudCommerceSessionData.getSessionDataInstance().setUserAddressesList(userAddressesList);*/
+                        if(CloudCommerceSessionData.getSessionDataInstance().getFromScreenLogin().equals(AppConstants.DRAWER_SCREEN)){
+                            launchServiceScreen();
+                        }else{
+                            launchAddressSelectionScreen();
+                        }
                     }else{
                         JSONArray jsonArray = jsonObject.getJSONArray(AppConstants.ERRORS);
                         for(int i=0;i<jsonArray.length();i++){
@@ -156,6 +164,12 @@ public class LoginActivity extends BaseActivity implements LoginInterface{
     private void launchAddressSelectionScreen() {
         Intent serviceDescIntent = new Intent(this, SelectAddressActivity.class);
         startActivity(serviceDescIntent);
+        finish();
+    }
+    private void launchServiceScreen() {
+        Intent homescreen = new Intent(this, HomeActivity.class);
+        homescreen.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(homescreen);
         finish();
     }
 }

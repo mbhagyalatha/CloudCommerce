@@ -18,6 +18,7 @@
                 android:id="@+id/service_image"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/service_image_height"
+                android:scaleType="fitXY"
                 />
 
             <RelativeLayout

@@ -16,6 +16,7 @@ import com.cloudcommerce.app.activities.ServicesListActivity;
 import com.cloudcommerce.app.adapters.ServiceAdapter;
 import com.cloudcommerce.app.datamodels.CategoryDataModel;
 import com.cloudcommerce.app.datamodels.CategoryListDataModel;
+import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.interfaces.HomeInterface;
 import com.cloudcommerce.app.utils.AppConstants;
 
@@ -80,6 +81,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onClick(View view, int position) {
                 //navigate to SubServicesActivity
+                CloudCommerceSessionData.getSessionDataInstance().setFromScreenLogin(AppConstants.SERVICE_SCREEN);
                 launchSubservicesScreen(servicesList.get(position));
             }
 

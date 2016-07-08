@@ -12,7 +12,7 @@ import com.cloudcommerce.app.datamodels.Address;
 import com.cloudcommerce.app.datamodels.CategoryDataModel;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
 import com.cloudcommerce.app.datamodels.CategoryListDataModel;
-import com.cloudcommerce.app.datamodels.UserAddresses;
+import com.cloudcommerce.app.network.webservices.AddressListWsImpl;
 import com.cloudcommerce.app.network.webservices.AddressServiceWsImpl;
 import com.cloudcommerce.app.network.webservices.BaseWsImpl;
 import com.cloudcommerce.app.network.webservices.ServicecategoriesWsImpl;
@@ -23,18 +23,18 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class AddressService extends BaseCloudCommerceService implements WebServiceResultListener {
+public class AddressListService extends BaseCloudCommerceService implements WebServiceResultListener {
 
-    private Intent broadcastIntent = new Intent(AppConstants.ADD_ADDRESS_SERVICE);
+    private Intent broadcastIntent = new Intent(AppConstants.GET_ADDRESS_LIST);
 
-    public AddressService(Context context) {
+    public AddressListService(Context context) {
         super(context);
     }
 
 
-    public void postAddress(UserAddresses address) {
-        AddressServiceWsImpl addressServiceWs = new AddressServiceWsImpl(AppConstants.ADD_ADDRESS, this);
-        addressServiceWs.postAddress(address);
+    public void getAddressList() {
+        AddressListWsImpl addressListWs = new AddressListWsImpl(AppConstants.GET_ADDRESS_LIST_REQ_ID, this);
+        addressListWs.getAddressList();
     }
 
 
@@ -43,7 +43,7 @@ public class AddressService extends BaseCloudCommerceService implements WebServi
         if (error == null) {
             switch (reqId)
             {
-                case AppConstants.ADD_ADDRESS:
+                case AppConstants.GET_ADDRESS_LIST_REQ_ID:
                     sendResponse(response.toString());
                     break;
             }
@@ -58,7 +58,7 @@ public class AddressService extends BaseCloudCommerceService implements WebServi
                     sendError(netError);
                 }
             } else {
-                if (reqId == AppConstants.ADD_ADDRESS || BaseWsImpl.statusCode == 401)
+                if (reqId == AppConstants.GET_ADDRESS_LIST_REQ_ID || BaseWsImpl.statusCode == 401)
                     sendError(context.getResources().getString(R.string.net_error));
                 else if (errorMsg.equals(context.getResources().getString(R.string.no_internet_access))) {
                     sendError(context.getResources().getString(R.string.no_internet_access));
@@ -79,6 +79,6 @@ public class AddressService extends BaseCloudCommerceService implements WebServi
     private void sendResponse(String response) {
         broadcastIntent.putExtra(AppConstants.SUCCESS_TEXT, true);
         LocalBroadcastManager.getInstance(context).sendBroadcast(broadcastIntent);
-        CloudCommerceSessionData.getSessionDataInstance().setAdd_address_response(response);
+        CloudCommerceSessionData.getSessionDataInstance().setAddressListResponse(response);
     }
 }

@@ -13,14 +13,17 @@ import android.widget.TextView;
 
 import com.cloudcommerce.app.R;
 import com.cloudcommerce.app.datamodels.CloudCommerceSessionData;
+import com.cloudcommerce.app.datamodels.SubCategoryDataModel;
+import com.cloudcommerce.app.datamodels.SubCategoryListDataModel;
 import com.cloudcommerce.app.interfaces.LoginInterface;
 import com.cloudcommerce.app.interfaces.ServiceConfirmationInterface;
 
 public class CartSummaryFragment extends BaseFragment implements View.OnClickListener{
-    private TextView serviceCharge,username,street,city_state,phoneneumber;
+    private TextView serviceCharge,username,street,city_state,phoneneumber,summary_service_name,summary_total_price;
     private Button cart_continue_btn;
     private ServiceConfirmationInterface serviceConfirmationInterface;
     String address_id="";
+    SubCategoryListDataModel subCategoryListDataModel;
     public CartSummaryFragment() {
         // Required empty public constructor
     }
@@ -46,6 +49,8 @@ public class CartSummaryFragment extends BaseFragment implements View.OnClickLis
     }
 
     private void initialiseControls(View cartSummaryView) {
+        summary_service_name = (TextView)cartSummaryView.findViewById(R.id.summary_service_name);
+        summary_total_price = (TextView)cartSummaryView.findViewById(R.id.summary_total_price);
         serviceCharge = (TextView) cartSummaryView.findViewById(R.id.summary_service_price);
         username = (TextView) cartSummaryView.findViewById(R.id.username);
         street = (TextView) cartSummaryView.findViewById(R.id.street);
@@ -56,18 +61,21 @@ public class CartSummaryFragment extends BaseFragment implements View.OnClickLis
     }
 
     private void setDataToControls() {
-        serviceCharge.setText(getResources().getString(R.string.rupee_symbol) + " " + "230.00");
+        subCategoryListDataModel = CloudCommerceSessionData.getSessionDataInstance().getSubCategoryListDataModel();
+        serviceCharge.setText(getResources().getString(R.string.rupee_symbol) + " " + subCategoryListDataModel.getSub_service_charge());
+        summary_service_name.setText(subCategoryListDataModel.getSub_cat_name());
+        summary_total_price.setText(getResources().getString(R.string.rupee_symbol) + " " +subCategoryListDataModel.getSub_service_charge());
         if(CloudCommerceSessionData.getSessionDataInstance().userAddresses != null){
             username.setText(CloudCommerceSessionData.getSessionDataInstance().userAddresses.getName());
             street.setText(CloudCommerceSessionData.getSessionDataInstance().userAddresses.getStreet());
             city_state.setText(CloudCommerceSessionData.getSessionDataInstance().userAddresses.getCity()+","+CloudCommerceSessionData.getSessionDataInstance().userAddresses.getState());
             phoneneumber.setText(CloudCommerceSessionData.getSessionDataInstance().userAddresses.getPhone_number());
-        }else{
+        }/*else{
             username.setText(CloudCommerceSessionData.getSessionDataInstance().getAddress().getUserName());
             street.setText(CloudCommerceSessionData.getSessionDataInstance().getAddress().getStreet());
             city_state.setText(CloudCommerceSessionData.getSessionDataInstance().getAddress().getCity()+","+CloudCommerceSessionData.getSessionDataInstance().getAddress().getState());
             phoneneumber.setText(CloudCommerceSessionData.getSessionDataInstance().getAddress().getPhone_no());
-        }
+        }*/
     }
 
     @Override

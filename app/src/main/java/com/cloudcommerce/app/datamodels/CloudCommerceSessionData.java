@@ -21,6 +21,9 @@ public class CloudCommerceSessionData {
     public static String CLOUD_COMMERCE_APP = "CloudCommerceApp";
     public static String SHPREF_KEY_USER_OBJECT = "SHPREF_KEY_USER_OBJECT";
     public static String SHPREF_KEY_IS_FIRST_LAUNCH = "SHPREF_KEY_IS_FIRST_LAUNCH";
+    public static String SHPREF_KEY_FROM_SCREEN_LOGIN = "SHPREF_KEY_FROM_SCREEN_LOGIN";
+    public static String SHPREF_KEY_FROM_SCREEN_REG = "SHPREF_KEY_FROM_SCREEN_REG";
+
     public static boolean isFirstlaunch;
     public static String selectedMenuTitle;
     public static String SHPREF_KEY_SELECTED_MENU_TITLE = "SHPREF_KEY_SELECTED_MENU_TITLE";
@@ -28,19 +31,23 @@ public class CloudCommerceSessionData {
     public static String SHPREF_KEY_USER_ID = "SHPREF_KEY_USER_ID";
     public static String SHPREF_KEY_ADDRESS_ID = "SHPREF_KEY_ADDRESS_ID";
     public static String SHPREF_KEY_USER_ADDRESSES = "SHPREF_KEY_USER_ADDRESSES";
+    public static String SHPREF_KEY_USER_ADDRESSES_OBJ = "SHPREF_KEY_USER_ADDRESSES_OBJ";
 
     public static CategoryDataModel categoryDataModel;
     public static SubCategoryDataModel subCategoryDataModel;
+    public static SubCategoryListDataModel subCategoryListDataModel;
     public static UserAddresses userAddresses;
     public static Address address;
     public static String registerResponse="";
     public static String loginResponse="";
+    public static String getAddressListResponse="";
     public static String serviceConfirmationResponse="";
     public static String userid="";
     public static String add_address_response="";
     public static String address_id="";
     public static ArrayList<UserAddresses> userAddressesList;
     public static boolean isaddressSelected;
+    public static USERADDRESSOBJ useraddressobj;
 
     public static CloudCommerceSessionData getSessionDataInstance() {
         if (sessionData == null) {
@@ -58,6 +65,28 @@ public class CloudCommerceSessionData {
         return isFirstlaunch;
     }
 
+    public static void setFromScreenLogin(String  from_screen_login) {
+        SharedPreferences.Editor prefsEditor = CloudCommerceApplication.getAppContext().getSharedPreferences(CLOUD_COMMERCE_APP, Context.MODE_PRIVATE).edit();
+        prefsEditor.putString(SHPREF_KEY_FROM_SCREEN_LOGIN, from_screen_login);
+        prefsEditor.commit();
+    }
+
+    public static String getFromScreenLogin() {
+        String  from_screen_login = CloudCommerceApplication.getAppContext().getSharedPreferences(CLOUD_COMMERCE_APP, Context.MODE_PRIVATE).getString(SHPREF_KEY_FROM_SCREEN_LOGIN, null);
+        return from_screen_login;
+    }
+
+    public static void setFromScreenReg(String  from_screen_reg) {
+        SharedPreferences.Editor prefsEditor = CloudCommerceApplication.getAppContext().getSharedPreferences(CLOUD_COMMERCE_APP, Context.MODE_PRIVATE).edit();
+        prefsEditor.putString(SHPREF_KEY_FROM_SCREEN_REG, from_screen_reg);
+        prefsEditor.commit();
+    }
+
+    public static String getFromScreenReg() {
+        String  from_screen_login = CloudCommerceApplication.getAppContext().getSharedPreferences(CLOUD_COMMERCE_APP, Context.MODE_PRIVATE).getString(SHPREF_KEY_FROM_SCREEN_REG, null);
+        return from_screen_login;
+    }
+
     public static void setIsFirstlaunch(boolean isFirstlaunch) {
         CloudCommerceSessionData.isFirstlaunch = isFirstlaunch;
         SharedPreferences.Editor prefsEditor = CloudCommerceApplication.getAppContext().getSharedPreferences(CLOUD_COMMERCE_APP, Context.MODE_PRIVATE).edit();
@@ -67,6 +96,7 @@ public class CloudCommerceSessionData {
 
     public static String getUserid(){
         String userid = CloudCommerceApplication.getAppContext().getSharedPreferences(CLOUD_COMMERCE_APP, Context.MODE_PRIVATE).getString(SHPREF_KEY_USER_ID, "0");
+        Log.d("USERID IS","<>"+userid);
         return userid;
     }
 
@@ -133,6 +163,14 @@ public class CloudCommerceSessionData {
         CloudCommerceSessionData.subCategoryDataModel=subcategoryDataModel;
     }
 
+    public static SubCategoryListDataModel getSubCategoryListDataModel() {
+        return subCategoryListDataModel;
+    }
+
+    public static void setSubCategoryListDataModel(SubCategoryListDataModel subcategoryListDataModel) {
+        CloudCommerceSessionData.subCategoryListDataModel=subcategoryListDataModel;
+    }
+
     public static void setAddress(Address address){
         CloudCommerceSessionData.address=address;
     }
@@ -152,6 +190,13 @@ public class CloudCommerceSessionData {
     }
     public static String getLoginResponse(){;
         return loginResponse;
+    }
+
+    public static void setAddressListResponse(String getAddressListResponse){
+        CloudCommerceSessionData.getAddressListResponse = getAddressListResponse;
+    }
+    public static String getAddressListResponse(){;
+        return getAddressListResponse;
     }
 
     public static void setServiceConfirmationResponse(String serviceConfirmationResponse){
@@ -181,5 +226,21 @@ public class CloudCommerceSessionData {
                 .getSharedPreferences(CLOUD_COMMERCE_APP, Context.MODE_PRIVATE)
                 .getString(SHPREF_KEY_USER_ADDRESSES, SerializeDeserialize.serialize(new ArrayList<UserAddresses>())));
         return userAddressesList;
+    }
+
+    public static void setUserAddressObj(USERADDRESSOBJ userAddressObj){
+        SharedPreferences.Editor prefsEditor = CloudCommerceApplication.getAppContext().getSharedPreferences(CLOUD_COMMERCE_APP, Context.MODE_PRIVATE).edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(userAddressObj); // myObject - instance of MyObject
+        prefsEditor.putString(SHPREF_KEY_USER_ADDRESSES_OBJ, json);
+        prefsEditor.commit();
+    }
+
+    public static USERADDRESSOBJ getUserAddressesObj()
+    {
+        Gson gson = new Gson();
+        String json = CloudCommerceApplication.getAppContext().getSharedPreferences(CLOUD_COMMERCE_APP, Context.MODE_PRIVATE).getString(SHPREF_KEY_USER_ADDRESSES_OBJ, null);
+        USERADDRESSOBJ useraddressobj = gson.fromJson(json, USERADDRESSOBJ.class);
+        return useraddressobj;
     }
 }
